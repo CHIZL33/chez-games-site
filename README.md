@@ -32,7 +32,8 @@ Open `/home/runner/work/chez-games-site/chez-games-site/admin` on your deployed 
 1. In `/home/runner/work/chez-games-site/chez-games-site/admin/config.yml`, confirm:
    - `backend.repo` is `CHIZL33/chez-games-site`
    - `backend.branch` matches your default deployment branch
-2. Configure Decap CMS GitHub authentication for your deployment environment.
+   - `backend.base_url` and `backend.auth_endpoint` point to a valid OAuth provider (`https://api.netlify.com` + `auth` for Netlify)
+2. Configure Decap CMS GitHub authentication for your deployment environment if you are not using Netlify's OAuth endpoint.
 3. Deploy the site, then open `/admin`.
 4. Make edits in CMS and publish. Content updates commit back to the repo automatically.
 
