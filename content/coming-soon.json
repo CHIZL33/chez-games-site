@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "title": "Project Rush",
+      "description": "Competitive obstacle courses with speedrun leaderboards.",
+      "status": "Prototype"
+    },
+    {
+      "title": "Project Clash",
+      "description": "Small-team arena battles focused on movement and strategy.",
+      "status": "Concept"
+    },
+    {
+      "title": "Project Build",
+      "description": "Sandbox world-building with community challenges and events.",
+      "status": "Planning"
+    }
+  ]
+}

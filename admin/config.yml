@@ -1,0 +1,125 @@
+backend:
+  name: github
+  repo: CHIZL33/chez-games-site
+  branch: main
+
+publish_mode: editorial_workflow
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "site"
+    label: "Site Content"
+    files:
+      - name: "settings"
+        label: "Main Site Content"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - label: "Brand"
+            name: "brand"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Link", name: "href", widget: "string" }
+          - label: "Navigation"
+            name: "navigation"
+            widget: "list"
+            summary: "{{fields.label}} → {{fields.href}}"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Link", name: "href", widget: "string" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Lead Text", name: "lead", widget: "text" }
+              - label: "Hero Buttons"
+                name: "actions"
+                widget: "list"
+                max: 2
+                min: 2
+                summary: "{{fields.label}} → {{fields.href}}"
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Link", name: "href", widget: "string" }
+                  - label: "Style"
+                    name: "style"
+                    widget: "select"
+                    options:
+                      - { label: "Primary", value: "primary" }
+                      - { label: "Secondary", value: "secondary" }
+              - label: "Status Card"
+                name: "statusCard"
+                widget: "object"
+                fields:
+                  - { label: "Card Title", name: "title", widget: "string" }
+                  - { label: "Card Subtitle", name: "subtitle", widget: "string" }
+                  - label: "Status Bullet Points"
+                    name: "items"
+                    widget: "list"
+                    field: { label: "Item", name: "item", widget: "string" }
+          - label: "Games Section"
+            name: "games"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "title", widget: "string" }
+              - { label: "Lead Text", name: "lead", widget: "text" }
+          - label: "About Section"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "title", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+              - label: "Stats"
+                name: "stats"
+                widget: "list"
+                summary: "{{fields.value}} - {{fields.label}}"
+                fields:
+                  - { label: "Value", name: "value", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+          - label: "Community Section"
+            name: "community"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "title", widget: "string" }
+              - { label: "Lead Text", name: "lead", widget: "text" }
+          - label: "Community Links"
+            name: "links"
+            widget: "object"
+            fields:
+              - { label: "Discord URL", name: "discord", widget: "string" }
+              - { label: "Roblox Group URL", name: "robloxGroup", widget: "string" }
+              - { label: "YouTube URL", name: "youtube", widget: "string" }
+              - { label: "TikTok URL", name: "tiktok", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Contact Email", name: "email", widget: "string" }
+
+  - name: "coming_soon"
+    label: "Coming Soon Cards"
+    files:
+      - name: "cards"
+        label: "Coming Soon List"
+        file: "content/coming-soon.json"
+        format: "json"
+        fields:
+          - label: "Cards"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.status}})"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Status", name: "status", widget: "string", default: "Coming soon" }
+              - label: "Optional Link"
+                name: "link"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "Button Label", name: "label", widget: "string", required: false }
+                  - { label: "URL", name: "href", widget: "string", required: false }

@@ -1,0 +1,85 @@
+{
+  "brand": {
+    "text": "Chez Games",
+    "href": "#"
+  },
+  "navigation": [
+    {
+      "label": "Games",
+      "href": "#games"
+    },
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Community",
+      "href": "#community"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "hero": {
+    "eyebrow": "Roblox game studio",
+    "title": "New Roblox worlds are in the works.",
+    "lead": "We are building our first Roblox experiences now. Follow along for dev updates, launch news, and community events.",
+    "actions": [
+      {
+        "label": "View Roadmap",
+        "href": "#games",
+        "style": "primary"
+      },
+      {
+        "label": "Community Links",
+        "href": "#community",
+        "style": "secondary"
+      }
+    ],
+    "statusCard": {
+      "title": "Studio Status",
+      "subtitle": "Pre-launch phase",
+      "items": [
+        "First game concept in production",
+        "Discord community setup in progress",
+        "Website updates posted regularly"
+      ]
+    }
+  },
+  "games": {
+    "title": "Games in development",
+    "lead": "No released games yet — these are current project ideas."
+  },
+  "about": {
+    "title": "Built by players, for players",
+    "body": "Chez Games is focused on creating fun, social Roblox experiences. Community feedback will help shape each update from day one.",
+    "stats": [
+      {
+        "value": "0",
+        "label": "Released games (for now)"
+      },
+      {
+        "value": "100%",
+        "label": "Built in Roblox Studio"
+      },
+      {
+        "value": "Always",
+        "label": "Community-first updates"
+      }
+    ]
+  },
+  "community": {
+    "title": "Join the community",
+    "lead": "Use these links to connect with the studio and follow progress."
+  },
+  "links": {
+    "discord": "https://discord.gg/your-invite-code",
+    "robloxGroup": "https://www.roblox.com/communities/00000000/your-group-name#!/about",
+    "youtube": "https://www.youtube.com/@yourchannel",
+    "tiktok": "https://www.tiktok.com/@yourname"
+  },
+  "contact": {
+    "email": "contact@chezgames.com"
+  }
+}
