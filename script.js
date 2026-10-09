@@ -101,6 +101,15 @@ function setLink(id, href, label) {
   if (!element || !href) {
     return;
   }
+
+  function setButtonStyle(id, style) {
+    const element = document.getElementById(id);
+    if (!element) {
+      return;
+    }
+    element.classList.remove('btn-primary', 'btn-secondary');
+    element.classList.add(style === 'secondary' ? 'btn-secondary' : 'btn-primary');
+  }
   element.href = href;
   if (label) {
     element.textContent = label;
@@ -236,6 +245,8 @@ function applySiteContent(site) {
 
   setLink('hero-primary-action', site.hero?.actions?.[0]?.href, site.hero?.actions?.[0]?.label);
   setLink('hero-secondary-action', site.hero?.actions?.[1]?.href, site.hero?.actions?.[1]?.label);
+  setButtonStyle('hero-primary-action', site.hero?.actions?.[0]?.style);
+  setButtonStyle('hero-secondary-action', site.hero?.actions?.[1]?.style);
   setLink('brand-link', site.brand?.href, site.brand?.text);
 
   renderNavigation(site.navigation);
