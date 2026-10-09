@@ -1,8 +1,12 @@
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#site-nav');
-const form = document.querySelector('#subscribe-form');
-const message = document.querySelector('#form-message');
 const year = document.querySelector('#year');
+const communityLinks = {
+  discord: 'https://discord.gg/your-invite-code',
+  robloxGroup: 'https://www.roblox.com/communities/00000000/your-group-name#!/about',
+  youtube: 'https://www.youtube.com/@yourchannel',
+  tiktok: 'https://www.tiktok.com/@yourname'
+};
 
 if (year) {
   year.textContent = new Date().getFullYear();
@@ -16,17 +20,18 @@ if (menuButton && nav) {
   });
 }
 
-if (form && message) {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
+const linkBindings = [
+  ['discord-link', communityLinks.discord],
+  ['roblox-group-link', communityLinks.robloxGroup],
+  ['youtube-link', communityLinks.youtube],
+  ['tiktok-link', communityLinks.tiktok]
+];
 
-    const emailInput = form.querySelector('input[type="email"]');
-    if (!emailInput || !emailInput.value.trim()) {
-      message.textContent = 'Please enter a valid email address.';
-      return;
-    }
-
-    message.textContent = 'Thanks for subscribing! You are on the list.';
-    form.reset();
-  });
-}
+linkBindings.forEach(([id, url]) => {
+  const link = document.getElementById(id);
+  if (link && url) {
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+  }
+});
