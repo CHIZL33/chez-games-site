@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Chez Games</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .dash-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background: var(--surface, #1e1e2f);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+      }
+      .dash-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #334155;
+        padding-bottom: 20px;
+      }
+      .dash-header h1 {
+        font-size: 1.5rem;
+        color: #fff;
+      }
+      .card {
+        background: #0f172a;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+      .card h2 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+        color: #f8fafc;
+      }
+      .form-group {
+        margin-bottom: 16px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        color: #cbd5e1;
+      }
+      .form-group input, .form-group textarea {
+        width: 100%;
+        padding: 10px 14px;
+        background: #1e293b;
+        border: 1px solid #475569;
+        border-radius: 6px;
+        color: #fff;
+      }
+      .btn {
+        padding: 10px 20px;
+        background: #6366f1;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: #4f46e5;
+      }
+      .btn-danger {
+        background: #ef4444;
+      }
+      .btn-danger:hover {
+        background: #dc2626;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+      th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #334155;
+        color: #cbd5e1;
+      }
+      th {
+        color: #fff;
+        font-weight: 600;
+      }
+      .badge {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+      .badge-pending { background: rgba(234, 179, 8, 0.2); color: #facc15; }
+      .badge-approved { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+      .badge-rejected { background: rgba(248, 113, 113, 0.2); color: #f87171; }
+    </style>
+  </head>
+  <body>
+    <div class="dash-container">
+      <div class="dash-header">
+        <div>
+          <h1>User Dashboard</h1>
+          <p id="user-email" style="color: #94a3b8; font-size: 0.9rem; margin-top: 4px;"></p>
+        </div>
+        <div>
+          <button id="logout-btn" class="btn btn-danger">Log Out</button>
+        </div>
+      </div>
+
+      <div id="status-alert" style="display:none; padding: 12px; border-radius: 6px; margin-bottom: 20px;"></div>
+
+      <!-- Request Admin Access Card -->
+      <div class="card">
+        <h2>Request Admin Access</h2>
+        <p style="color: #94a3b8; margin-bottom: 16px; font-size: 0.95rem;">
+          Send an admin message requesting permissions to edit the site. Once approved by an existing admin, you will receive admin rights.
+        </p>
+        <form id="request-admin-form">
+          <div class="form-group">
+            <label for="recipient-email">Admin Recipient Email</label>
+            <input type="email" id="recipient-email" value="admin@chez.games" required />
+          </div>
+          <div class="form-group">
+            <label for="admin-message">Message / Reason</label>
+            <textarea id="admin-message" rows="3" placeholder="Please grant me admin rights to edit the site content..." required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Request Message</button>
+        </form>
+      </div>
+
+      <!-- Admin Panel (Visible only if user is admin) -->
+      <div id="admin-panel" class="card" style="display: none; border-color: #6366f1;">
+        <h2 style="color: #818cf8;">Admin Panel: Review Admin Requests</h2>
+        <p style="color: #94a3b8; margin-bottom: 16px; font-size: 0.95rem;">
+          Approve or reject incoming admin access requests from users.
+        </p>
+        <div style="overflow-x: auto;">
+          <table id="requests-table">
+            <thead>
+              <tr>
+                <th>Sender</th>
+                <th>Recipient</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="requests-tbody">
+              <tr><td colspan="5" style="text-align: center;">Loading requests...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" style="text-align: center;">
+        <a href="index.html" class="btn" style="text-decoration: none; display: inline-block;">Return to Homepage</a>
+      </div>
+    </div>
+
+    <script type="module">
+      import { logout } from '@netlify/identity';
+
+      const userEmailEl = document.getElementById('user-email');
+      const statusAlert = document.getElementById('status-alert');
+      const adminPanel = document.getElementById('admin-panel');
+      const requestsTbody = document.getElementById('requests-tbody');
+
+      function showAlert(msg, type = 'success') {
+        statusAlert.textContent = msg;
+        statusAlert.style.display = 'block';
+        statusAlert.style.background = type === 'success' ? 'rgba(74, 222, 128, 0.1)' : 'rgba(248, 113, 113, 0.1)';
+        statusAlert.style.color = type === 'success' ? '#4ade80' : '#f87171';
+      }
+
+      async function loadUserData() {
+        try {
+          const res = await fetch('/api/auth/user');
+          if (!res.ok) {
+            window.location.href = 'signup.html';
+            return;
+          }
+          const data = await res.json();
+          if (!data.user) {
+            window.location.href = 'signup.html';
+            return;
+          }
+
+          userEmailEl.textContent = `Signed in as: ${data.user.email} ${data.profile?.isAdmin ? '(Admin)' : '(Member)'}`;
+
+          if (data.profile?.isAdmin) {
+            adminPanel.style.display = 'block';
+            loadAdminMessages();
+          }
+        } catch (err) {
+          console.error(err);
+          window.location.href = 'signup.html';
+        }
+      }
+
+      async function loadAdminMessages() {
+        try {
+          const res = await fetch('/api/admin/messages');
+          if (!res.ok) return;
+          const messages = await res.json();
+          
+          if (messages.length === 0) {
+            requestsTbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No admin requests found.</td></tr>';
+            return;
+          }
+
+          requestsTbody.innerHTML = messages.map(m => `
+            <tr>
+              <td>${m.senderEmail}</td>
+              <td>${m.recipientEmail}</td>
+              <td>${m.message}</td>
+              <td><span class="badge badge-${m.status}">${m.status}</span></td>
+              <td>
+                ${m.status === 'pending' ? `
+                  <button class="btn" style="padding: 4px 8px; font-size: 0.8rem;" onclick="updateStatus(${m.id}, 'approved')">Approve</button>
+                  <button class="btn btn-danger" style="padding: 4px 8px; font-size: 0.8rem;" onclick="updateStatus(${m.id}, 'rejected')">Reject</button>
+                ` : 'Completed'}
+              </td>
+            </tr>
+          `).join('');
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      window.updateStatus = async function(id, status) {
+        try {
+          const res = await fetch('/api/admin/messages', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id, status })
+          });
+          if (res.ok) {
+            showAlert(`Request successfully ${status}!`);
+            loadAdminMessages();
+          } else {
+            showAlert('Failed to update status', 'error');
+          }
+        } catch (err) {
+          showAlert(err.message, 'error');
+        }
+      };
+
+      document.getElementById('request-admin-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const recipientEmail = document.getElementById('recipient-email').value;
+        const message = document.getElementById('admin-message').value;
+
+        try {
+          const res = await fetch('/api/messages/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ recipientEmail, message })
+          });
+          if (res.ok) {
+            showAlert('Admin request message sent successfully!');
+            document.getElementById('admin-message').value = '';
+          } else {
+            showAlert('Failed to send message', 'error');
+          }
+        } catch (err) {
+          showAlert(err.message, 'error');
+        }
+      });
+
+      document.getElementById('logout-btn').addEventListener('click', async () => {
+        await logout();
+        window.location.href = 'index.html';
+      });
+
+      loadUserData();
+    </script>
+  </body>
+</html>
