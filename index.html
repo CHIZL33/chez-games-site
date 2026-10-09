@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Chez Games builds polished, social-first game experiences for players everywhere."
+    />
+    <title>Chez Games | Play Better Together</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="#">Chez Games</a>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">
+          Menu
+        </button>
+        <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+          <a href="#games">Games</a>
+          <a href="#about">About</a>
+          <a href="#community">Community</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Independent game studio</p>
+            <h1>Games designed for moments worth sharing.</h1>
+            <p class="lead">
+              We build modern browser-first games with competitive depth and
+              welcoming communities.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#games">Explore Games</a>
+              <a class="btn btn-secondary" href="#community">Join Discord</a>
+            </div>
+          </div>
+          <div class="hero-card" aria-hidden="true">
+            <h2>Featured Launch</h2>
+            <p>Night Arena: Season 3 is live.</p>
+            <ul>
+              <li>New ranked ladder rewards</li>
+              <li>Expanded map pool</li>
+              <li>Cross-platform private lobbies</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="games" class="section">
+        <div class="container">
+          <h2>Featured games</h2>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Night Arena</h3>
+              <p>Tactical 3v3 battles focused on teamwork and smart rotations.</p>
+            </article>
+            <article class="card">
+              <h3>Sky Sprint</h3>
+              <p>Fast-paced time trials with custom tracks and ghost racing.</p>
+            </article>
+            <article class="card">
+              <h3>Puzzle Forge</h3>
+              <p>Daily logic challenges with global leaderboards and co-op modes.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section alt">
+        <div class="container split">
+          <div>
+            <h2>Built by players, for players</h2>
+            <p>
+              Chez Games combines thoughtful design, balanced systems, and rapid
+              community feedback loops to keep every update meaningful.
+            </p>
+          </div>
+          <div class="stat-list" role="list" aria-label="Studio highlights">
+            <div role="listitem"><strong>1M+</strong><span>Matches played</span></div>
+            <div role="listitem"><strong>120+</strong><span>Countries reached</span></div>
+            <div role="listitem"><strong>24/7</strong><span>Live moderation</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="community" class="section">
+        <div class="container callout">
+          <h2>Stay in the loop</h2>
+          <p>Get patch notes, event schedules, and studio updates every month.</p>
+          <form class="subscribe-form" id="subscribe-form" novalidate>
+            <label for="email" class="visually-hidden">Email address</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </form>
+          <p id="form-message" class="form-message" aria-live="polite"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+      <div class="container footer-wrap">
+        <p>© <span id="year"></span> Chez Games. All rights reserved.</p>
+        <a href="mailto:hello@chezgames.example">hello@chezgames.example</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
