@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: CHIZL33/chez-games-site
+  name: git-gateway
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
 
 publish_mode: editorial_workflow
 media_folder: "assets/uploads"
