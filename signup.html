@@ -107,6 +107,12 @@
       <div id="error-box" class="error-msg"></div>
       <div id="success-box" class="success-msg"></div>
 
+      <!-- Quick Netlify Identity Widget Launch -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <button id="open-identity-modal" class="auth-btn" style="background: #4f46e5; margin-bottom: 12px;">Open Login / Sign Up Modal</button>
+        <p style="color: #94a3b8; font-size: 0.85rem;">Or use the form below:</p>
+      </div>
+
       <!-- Sign Up Form -->
       <div id="signup-section">
         <h1>Create Account</h1>
@@ -146,6 +152,7 @@
       </div>
     </div>
 
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script type="module">
       import { signup, login, handleAuthCallback } from '@netlify/identity';
 
@@ -153,6 +160,18 @@
       const successBox = document.getElementById('success-box');
       const signupSection = document.getElementById('signup-section');
       const loginSection = document.getElementById('login-section');
+
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', user => {
+          if (user) window.location.href = 'dashboard.html';
+        });
+        window.netlifyIdentity.on('login', user => {
+          window.location.href = 'dashboard.html';
+        });
+        document.getElementById('open-identity-modal').addEventListener('click', () => {
+          window.netlifyIdentity.open();
+        });
+      }
 
       function showError(msg) {
         errorBox.textContent = msg;
