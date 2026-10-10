@@ -87,6 +87,14 @@ if (menuButton && nav) {
     menuButton.setAttribute('aria-expanded', String(!expanded));
     nav.classList.toggle('open');
   });
+
+  // Close the mobile menu after picking a section
+  nav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) {
+      nav.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
+  });
 }
 
 function setText(id, value) {
@@ -102,14 +110,6 @@ function setLink(id, href, label) {
     return;
   }
 
-  function setButtonStyle(id, style) {
-    const element = document.getElementById(id);
-    if (!element) {
-      return;
-    }
-    element.classList.remove('btn-primary', 'btn-secondary');
-    element.classList.add(style === 'secondary' ? 'btn-secondary' : 'btn-primary');
-  }
   element.href = href;
   if (label) {
     element.textContent = label;
@@ -121,6 +121,15 @@ function setLink(id, href, label) {
     element.removeAttribute('target');
     element.removeAttribute('rel');
   }
+}
+
+function setButtonStyle(id, style) {
+  const element = document.getElementById(id);
+  if (!element) {
+    return;
+  }
+  element.classList.remove('btn-primary', 'btn-secondary');
+  element.classList.add(style === 'secondary' ? 'btn-secondary' : 'btn-primary');
 }
 
 function renderNavigation(links = []) {

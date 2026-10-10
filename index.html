@@ -30,13 +30,10 @@
           <a href="#about">About</a>
           <a href="#community">Community</a>
           <a href="#contact">Contact</a>
-          <a id="auth-nav-btn" href="#login" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.9rem; margin-left: 10px;" data-netlify-identity-button>Log In / Sign Up</a>
         </nav>
+        <button id="auth-nav-btn" type="button" class="btn btn-primary btn-sm nav-auth" data-state="guest">Log In</button>
       </div>
     </header>
-
-    <!-- Netlify Identity Widget Script -->
-    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <main id="main-content">
       <section class="hero">
@@ -53,7 +50,8 @@
               <a id="hero-secondary-action" class="btn btn-secondary" href="#community">Community Links</a>
             </div>
           </div>
-          <div class="hero-card" aria-hidden="true">
+          <div class="hero-card">
+            <span class="pulse-dot" aria-hidden="true"></span>
             <h2 id="hero-card-title">Studio Status</h2>
             <p id="hero-card-subtitle">Pre-launch phase</p>
             <ul id="hero-status-list">
@@ -116,9 +114,6 @@
             <a id="youtube-link" class="btn btn-secondary" href="#">YouTube</a>
             <a id="tiktok-link" class="btn btn-secondary" href="#">TikTok</a>
           </div>
-          <p class="helper-text">
-            Tip: update this content visually in <code>/admin</code> after CMS setup.
-          </p>
         </div>
       </section>
     </main>
@@ -130,7 +125,37 @@
       </div>
     </footer>
 
+    <div id="auth-modal" class="modal" hidden>
+      <div class="modal-backdrop" data-auth-close></div>
+      <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+        <button type="button" class="modal-close" aria-label="Close" data-auth-close>&times;</button>
+        <div class="auth-tabs" role="tablist">
+          <button type="button" role="tab" class="active" aria-selected="true" data-auth-tab="login">Log In</button>
+          <button type="button" role="tab" aria-selected="false" data-auth-tab="signup">Sign Up</button>
+        </div>
+        <h2 id="auth-title">Welcome back</h2>
+        <p id="auth-subtitle" class="modal-subtitle">Log in to your Chez Games account.</p>
+        <form id="auth-form">
+          <div id="auth-name-field" class="field" hidden>
+            <label for="auth-name">Display name</label>
+            <input id="auth-name" name="name" type="text" autocomplete="nickname" maxlength="60" />
+          </div>
+          <div class="field">
+            <label for="auth-email">Email</label>
+            <input id="auth-email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div id="auth-password-field" class="field">
+            <label for="auth-password">Password</label>
+            <input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="6" required />
+          </div>
+          <p id="auth-message" class="auth-message" role="status" hidden></p>
+          <button id="auth-submit" type="submit" class="btn btn-primary btn-block">Log In</button>
+          <a id="auth-forgot" href="#" class="auth-link">Forgot your password?</a>
+        </form>
+      </div>
+    </div>
+
     <script src="script.js"></script>
-    <script type="module" src="auth-check.js"></script>
+    <script type="module" src="auth.js"></script>
   </body>
 </html>
