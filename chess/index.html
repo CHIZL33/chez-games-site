@@ -5059,7 +5059,7 @@ function streamersHtml(){
 /* YouTube inside ChessLab: pick a chess channel or paste any link, with a follow-along board and a theater mode.
    The player lives in its own element that is never re-rendered, so a video keeps playing while the rest of the tab updates. */
 const YT_CH=[['Chess.com','UC5kS0l76kC0xOzMPtOmSFGw'],['GothamChess','UCQHX6ViZmPsWiYSFAyS0a3Q'],['GMHikaru','UCweCc7bSMX5J4jEH7HFImng'],['agadmator','UCL5YbN5WLFD8dLIegT5QAbA'],['Saint Louis Chess Club','UCM-ONC2bCHytG2mYtKDmIeA']];
-const Y={cur:null,stopped:false,forced:false,theater:false,board:store.get('ytBoard',true),g:new Chess(),sel:null,flip:false,last:null};
+const Y={cur:null,stopped:false,popped:null,theater:false,board:store.get('ytBoard',true),g:new Chess(),sel:null,flip:false,last:null};
 function ytParse(s){
   s=(s||'').trim();if(!s)return null;
   if(/^[\w-]{11}$/.test(s))return{k:'v',id:s};
@@ -5086,15 +5086,22 @@ const ytLink=c=>c.k==='v'?`https://www.youtube.com/watch?v=${c.id}${c.list?'&lis
 const ytOnSite=()=>/^https?:$/.test(location.protocol)&&NET.canEmbed();
 function ytPlayer(){
   const el=$('ytPlayer'),c=Y.cur;if(!el)return;
-  const open=c?`<a class="btn ghost sm" href="${ytLink(c)}" target="_blank" rel="noopener">Open on YouTube ↗</a>`:'';
+  const open=c?`<button class="btn sm" data-y="pop">⧉ Pop-out player</button><a class="btn ghost sm" href="${ytLink(c)}" target="_blank" rel="noopener">Open in a new tab ↗</a>`:'';
   if(!c)el.innerHTML='<div class="ytph"><div style="font-size:38px">▶</div><b>Pick a channel or paste a link</b><div class="muted" style="margin-top:4px;font-size:13px">Videos, live streams and playlists play right here, next to a board you can move the pieces on.</div></div>';
   else if(!navigator.onLine)el.innerHTML='<div class="ytph"><b>You\'re offline</b><div class="muted" style="margin-top:4px;font-size:13px">Connect to the internet to watch YouTube.</div></div>';
   else if(Y.stopped)el.innerHTML=`<div class="ytph"><b>Paused when you left the Watch tab</b><div class="row" style="justify-content:center;margin-top:10px"><button class="btn sm" data-y="resume">▶ Resume</button>${open}</div></div>`;
-  else if(!ytOnSite()&&!Y.forced)el.innerHTML=`<div class="ytph"><b>YouTube only plays on the website version</b><div class="muted" style="margin:4px 0 10px;font-size:13px">YouTube refuses to play inside a page opened as a file on your computer. Open ChessLab from its web address (chez.games/chess) and this plays right here.</div><div class="row" style="justify-content:center">${open}<button class="btn ghost sm" data-y="try">Try anyway</button></div></div>`;
+  else if(!ytOnSite())el.innerHTML=`<div class="ytph">${Y.popped===c?'<div style="font-size:30px">⧉</div><b>Playing in the pop-out window</b><div class="muted" style="margin:4px 0 10px;font-size:13px">Keep it beside this one and follow along on the board. Lost it? Press Pop-out again to bring it back.</div>':'<b>Watch in a pop-out window</b><div class="muted" style="margin:4px 0 10px;font-size:13px">YouTube blocks videos inside a page opened as a file (Error 153), so this opens a small player window you can put beside ChessLab. On chez.games/chess it plays right here.</div>'}<div class="row" style="justify-content:center">${open}</div></div>`;
   else el.innerHTML=`<iframe src="${ytSrc(c)}" title="YouTube player" allow="autoplay; encrypted-media; picture-in-picture; fullscreen; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
-  const o=$('ytOpen');if(o){o.classList.toggle('hidden',!c);if(c)o.href=ytLink(c);}
+  const o=$('ytOpen');if(o){o.classList.toggle('hidden',!c||!ytOnSite());o.textContent='⧉ Pop out';}
 }
-function ytPlay(c,note){Y.cur=c;Y.stopped=false;Y.forced=false;$('ytMsg').textContent=note||'';ytPlayer();}
+function ytPop(){
+  const c=Y.cur;if(!c)return;
+  const w=Math.min(900,Math.round(screen.availWidth*.5)),h=Math.round(w*9/16)+120;
+  const win=window.open(ytLink(c),'chesslabYT',`popup=yes,width=${w},height=${h},left=${screen.availWidth-w},top=0`);
+  if(!win){toast('Your browser blocked the pop-up — allow pop-ups for this page, or use "Open in a new tab".',4500);return;}
+  try{win.focus();}catch(e){}Y.popped=c;ytPlayer();
+}
+function ytPlay(c,note,user){Y.cur=c;Y.stopped=false;Y.popped=null;$('ytMsg').textContent=note||'';ytPlayer();if(user&&!ytOnSite()&&navigator.onLine)ytPop();}
 function ytBoard(){
   const el=$('ytBoard');if(!el)return;
   const B=Y.g.board(),dests=Y.sel?Y.g.moves({square:Y.sel,verbose:true}).map(m=>m.to):[];let h='';
@@ -5117,7 +5124,7 @@ function ytEnsure(el){
   if(el.querySelector('#ytHost'))return;
   el.innerHTML='<div id="wHead"></div><div id="ytHost"></div><div id="watchRest"></div>';
   $('ytHost').innerHTML=`<div class="card wcard ytcard" id="ytCard">
-    <div class="row" style="justify-content:space-between"><h4>▶ YouTube</h4><div class="row" style="gap:6px"><a class="btn ghost sm hidden" id="ytOpen" target="_blank" rel="noopener">Open on YouTube ↗</a><button class="btn ghost sm" id="ytBoardBtn" data-y="board" title="Show or hide the follow-along board">♟ Board</button><button class="btn ghost sm" id="ytTheater" data-y="theater" title="Fill the whole window (Esc to exit)">🖥 Theater mode</button></div></div>
+    <div class="row" style="justify-content:space-between"><h4>▶ YouTube</h4><div class="row" style="gap:6px"><button class="btn ghost sm hidden" id="ytOpen" data-y="pop" title="Error 153 or a black player? Watch it in a small window instead">⧉ Pop out</button><button class="btn ghost sm" id="ytBoardBtn" data-y="board" title="Show or hide the follow-along board">♟ Board</button><button class="btn ghost sm" id="ytTheater" data-y="theater" title="Fill the whole window (Esc to exit)">🖥 Theater mode</button></div></div>
     <form class="row ythide" id="ytForm" style="margin:8px 0"><input type="text" id="ytUrl" placeholder="Paste a YouTube video, live stream or playlist link" style="flex:1;min-width:180px" spellcheck="false" autocomplete="off"><button class="btn">Play</button></form>
     <div class="ytch ythide">${YT_CH.map(([n,id])=>`<span class="ytchan"><b>${n}</b><button class="chip" data-y="live:${id}">🔴 Live</button><button class="chip" data-y="latest:${id}">▶ Latest</button></span>`).join('')}</div>
     <div class="muted" id="ytMsg" style="font-size:12.5px;min-height:16px"></div>
@@ -5129,13 +5136,13 @@ function ytEnsure(el){
   $('ytForm').onsubmit=e=>{e.preventDefault();const c=ytParse($('ytUrl').value);
     if(!c)$('ytMsg').textContent='That doesn\'t look like a YouTube link. Copy the address of a video, live stream or playlist.';
     else if(c.k==='handle')$('ytMsg').textContent='Channel pages with @names can\'t be played directly. Open the channel, click a video or its live stream, and paste that link.';
-    else ytPlay(c);};
+    else ytPlay(c,'',true);};
   host.addEventListener('click',e=>{
     const s=e.target.closest('[data-sq]');if(s){ytSquare(s.dataset.sq);return;}
     const b=e.target.closest('[data-y]');if(!b)return;const a=b.dataset.y;
-    if(a.startsWith('live:'))ytPlay({k:'live',id:a.slice(5)},'If the channel isn\'t live right now YouTube shows "video unavailable" — press Latest instead.');
-    else if(a.startsWith('latest:'))ytPlay({k:'ch',id:a.slice(7)});
-    else if(a==='try'){Y.forced=true;ytPlayer();}
+    if(a.startsWith('live:'))ytPlay({k:'live',id:a.slice(5)},'If the channel isn\'t live right now YouTube shows its channel page instead — press Latest for recent videos.',true);
+    else if(a.startsWith('latest:'))ytPlay({k:'ch',id:a.slice(7)},'',true);
+    else if(a==='pop')ytPop();
     else if(a==='resume'){Y.stopped=false;ytPlayer();}
     else if(a==='theater'){Y.theater=!Y.theater;ytSync();}
     else if(a==='board'){Y.board=!Y.board;store.set('ytBoard',Y.board);ytSync();}
