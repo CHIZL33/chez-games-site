@@ -5086,21 +5086,32 @@ const ytLink=c=>c.k==='v'?`https://www.youtube.com/watch?v=${c.id}${c.list?'&lis
 const ytOnSite=()=>/^https?:$/.test(location.protocol)&&NET.canEmbed();
 function ytPlayer(){
   const el=$('ytPlayer'),c=Y.cur;if(!el)return;
-  const open=c?`<button class="btn sm" data-y="pop">⧉ Pop-out player</button><a class="btn ghost sm" href="${ytLink(c)}" target="_blank" rel="noopener">Open in a new tab ↗</a>`:'';
+  const open=c?`<button class="btn sm" data-y="pop">${Y.popped===c?'📌 Snap':'▶ Play'}</button><button class="btn ghost sm" data-y="close">✕ Close video</button><a class="btn ghost sm" href="${ytLink(c)}" target="_blank" rel="noopener">Open in a new tab ↗</a>`:'';
   if(!c)el.innerHTML='<div class="ytph"><div style="font-size:38px">▶</div><b>Pick a channel or paste a link</b><div class="muted" style="margin-top:4px;font-size:13px">Videos, live streams and playlists play right here, next to a board you can move the pieces on.</div></div>';
   else if(!navigator.onLine)el.innerHTML='<div class="ytph"><b>You\'re offline</b><div class="muted" style="margin-top:4px;font-size:13px">Connect to the internet to watch YouTube.</div></div>';
   else if(Y.stopped)el.innerHTML=`<div class="ytph"><b>Paused when you left the Watch tab</b><div class="row" style="justify-content:center;margin-top:10px"><button class="btn sm" data-y="resume">▶ Resume</button>${open}</div></div>`;
-  else if(!ytOnSite())el.innerHTML=`<div class="ytph">${Y.popped===c?'<div style="font-size:30px">⧉</div><b>Playing in the pop-out window</b><div class="muted" style="margin:4px 0 10px;font-size:13px">Keep it beside this one and follow along on the board. Lost it? Press Pop-out again to bring it back.</div>':'<b>Watch in a pop-out window</b><div class="muted" style="margin:4px 0 10px;font-size:13px">YouTube blocks videos inside a page opened as a file (Error 153), so this opens a small player window you can put beside ChessLab. On chez.games/chess it plays right here.</div>'}<div class="row" style="justify-content:center">${open}</div></div>`;
+  else if(!ytOnSite())el.innerHTML=`<div class="ytph">${Y.popped===c?'<b>The video is playing on top of this box</b><div class="muted" style="margin:4px 0 10px;font-size:13px">Scrolled, moved the window or clicked behind it? Press Snap and it jumps back into place.</div>':'<b>Ready to play</b><div class="muted" style="margin:4px 0 10px;font-size:13px">In the file version YouTube plays in a small window placed right on this box. On chez.games/chess it plays inside the page.</div>'}<div class="row" style="justify-content:center">${open}</div></div>`;
   else el.innerHTML=`<iframe src="${ytSrc(c)}" title="YouTube player" allow="autoplay; encrypted-media; picture-in-picture; fullscreen; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
   const o=$('ytOpen');if(o){o.classList.toggle('hidden',!c||!ytOnSite());o.textContent='⧉ Pop out';}
 }
+// The pop-out window is placed exactly over the player box so the video looks built in. A pop-up has its own
+// title/address bar (about 64px) and YouTube's watch page has a 56px header above the video, so the window is
+// lifted by both: the video itself lands on the box. YouTube's page can't be moved afterwards, so after scrolling
+// or moving ChessLab press "Snap" and it reopens in the right spot.
+const POP_BAR=64,YT_HEAD=56;
 function ytPop(){
-  const c=Y.cur;if(!c)return;
-  const w=Math.min(900,Math.round(screen.availWidth*.5)),h=Math.round(w*9/16)+120;
-  const win=window.open(ytLink(c),'chesslabYT',`popup=yes,width=${w},height=${h},left=${screen.availWidth-w},top=0`);
+  const c=Y.cur,box=$('ytPlayer');if(!c||!box)return;
+  let r=box.getBoundingClientRect();
+  if(r.top<POP_BAR+YT_HEAD||r.bottom>innerHeight){scrollBy(0,r.top-POP_BAR-YT_HEAD-8);r=box.getBoundingClientRect();}
+  const bx=Math.max(0,(outerWidth-innerWidth)/2),top=Math.round(screenY+(outerHeight-innerHeight-bx)+r.top-POP_BAR-YT_HEAD);
+  const feat=`popup=yes,width=${Math.round(r.width)},height=${Math.round(r.height)+YT_HEAD},left=${Math.round(screenX+bx+r.left)},top=${Math.max(0,top)}`;
+  if(Y.win&&!Y.win.closed)Y.win.close();
+  const win=window.open(ytLink(c),'chesslabYT',feat);
   if(!win){toast('Your browser blocked the pop-up — allow pop-ups for this page, or use "Open in a new tab".',4500);return;}
-  try{win.focus();}catch(e){}Y.popped=c;ytPlayer();
+  Y.win=win;try{win.focus();}catch(e){}Y.popped=c;ytPlayer();
 }
+function ytClosePop(){if(Y.win&&!Y.win.closed)Y.win.close();Y.win=null;}
+addEventListener('beforeunload',ytClosePop);
 function ytPlay(c,note,user){Y.cur=c;Y.stopped=false;Y.popped=null;$('ytMsg').textContent=note||'';ytPlayer();if(user&&!ytOnSite()&&navigator.onLine)ytPop();}
 function ytBoard(){
   const el=$('ytBoard');if(!el)return;
@@ -5143,8 +5154,9 @@ function ytEnsure(el){
     if(a.startsWith('live:'))ytPlay({k:'live',id:a.slice(5)},'If the channel isn\'t live right now YouTube shows its channel page instead — press Latest for recent videos.',true);
     else if(a.startsWith('latest:'))ytPlay({k:'ch',id:a.slice(7)},'',true);
     else if(a==='pop')ytPop();
-    else if(a==='resume'){Y.stopped=false;ytPlayer();}
-    else if(a==='theater'){Y.theater=!Y.theater;ytSync();}
+    else if(a==='close'){ytClosePop();Y.popped=null;Y.cur=null;ytPlayer();}
+    else if(a==='resume'){Y.stopped=false;ytPlayer();if(!ytOnSite())ytPop();}
+    else if(a==='theater'){Y.theater=!Y.theater;ytSync();if(Y.popped&&Y.win&&!Y.win.closed)setTimeout(ytPop,80);}
     else if(a==='board'){Y.board=!Y.board;store.set('ytBoard',Y.board);ytSync();}
     else if(a==='undo'){Y.g.undo();const h=Y.g.history({verbose:true});Y.last=h[h.length-1]||null;Y.sel=null;ytBoard();}
     else if(a==='reset'){Y.g=new Chess();Y.last=null;Y.sel=null;ytBoard();}
@@ -5153,7 +5165,7 @@ function ytEnsure(el){
   });
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&Y.theater){Y.theater=false;ytSync();}});
   // stop the sound when you leave the tab
-  window.addEventListener('hashchange',()=>{if(location.hash!=='#watch'){if(Y.theater){Y.theater=false;ytSync();}if(Y.cur&&!Y.stopped&&$('ytPlayer').querySelector('iframe')){Y.stopped=true;ytPlayer();}}});
+  window.addEventListener('hashchange',()=>{if(location.hash!=='#watch'){if(Y.theater){Y.theater=false;ytSync();}if(Y.cur&&!Y.stopped&&($('ytPlayer').querySelector('iframe')||(Y.win&&!Y.win.closed))){ytClosePop();Y.popped=null;Y.stopped=true;ytPlayer();}}});
   ytSync();ytPlayer();ytBoard();
 }
 /* ChessLab TV: a live Stockfish-vs-Stockfish game played on this device, so it needs no website at all */
@@ -5233,7 +5245,7 @@ function render(){
   el.querySelector('#tvRev').onclick=()=>{if(!TV.g||!TV.sans.length){toast('Wait for a few moves first.');return;}TV.paused=true;const g=new Chess();g.header('Event','ChessLab TV','White','Stockfish','Black','Stockfish');TV.sans.forEach(x=>g.move(x));openReview(g.pgn());};
   if(!TV.g)tvNew();tvDraw();tvLoop();
 }
-window.Watch={render,loadPlayer,ytParse,ytSrc};
+window.Watch={render,loadPlayer,ytParse,ytSrc,Y};
 })();
 
 </script>
