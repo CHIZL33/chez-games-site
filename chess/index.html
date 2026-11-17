@@ -3853,14 +3853,44 @@ const GAMBITS=[
   ['Elephant Trap','b','trap','d4 d5 c4 e6 Nc3 Nf6 Bg5 Nbd7 cxd5 exd5 Nxd5 Nxd5'],
   ["Noah's Ark Trap",'b','trap','e4 e5 Nf3 Nc6 Bb5 a6 Ba4 d6 d4 b5 Bb3 Nxd4 Nxd4 exd4 Qxd4 c5'],
   ['Stafford Queen Trap','b','trap','e4 e5 Nf3 Nf6 Nxe5 Nc6 Nxc6 dxc6 d3 Bc5 Bg5 Nxe4 Bxd8 Bxf2+ Ke2 Bg4#'],
+  // what comes after the gambit: '|' marks the key move, the moves after it are the main follow-up lines
+  ["King's Gambit",'w','gambit','e4 e5 f4| exf4 Nf3 g5 h4 g4 Ne5'],
+  ["King's Gambit",'w','gambit','e4 e5 f4| exf4 Nf3 d6 d4 g5 h4 g4 Ng1'],
+  ['Evans Gambit','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 b4| Bxb4 c3 Ba5 d4 exd4 O-O'],
+  ['Danish Gambit','w','gambit','e4 e5 d4 exd4 c3| dxc3 Bc4 cxb2 Bxb2'],
+  ['Smith-Morra Gambit','w','gambit','e4 c5 d4 cxd4 c3| dxc3 Nxc3 Nc6 Nf3 d6 Bc4 e6 O-O'],
+  ['Scotch Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 Bc4| Nf6 e5 d5 Bb5 Ne4 Nxd4'],
+  ['Göring Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 c3| dxc3 Nxc3 Bb4 Bc4'],
+  ['Vienna Gambit','w','gambit','e4 e5 Nc3 Nf6 f4| d5 fxe5 Nxe4 Nf3'],
+  ["Queen's Gambit",'w','gambit','d4 d5 c4| dxc4 e3 Nf6 Bxc4'],
+  ["Queen's Gambit",'w','gambit','d4 d5 c4| e6 Nc3 Nf6 Bg5'],
+  ['Blackmar-Diemer Gambit','w','gambit','d4 d5 e4 dxe4 Nc3 Nf6 f3| exf3 Nxf3'],
+  ['Fried Liver Attack','w','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 d5 exd5 Nxd5 Nxf7| Kxf7 Qf3+ Ke6 Nc3'],
+  ['Halloween Gambit','w','gambit','e4 e5 Nf3 Nc6 Nc3 Nf6 Nxe5| Nxe5 d4 Ng6 e5 Ng8 Bc4'],
+  ['Jerome Gambit','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 Bxf7+| Kxf7 Nxe5+ Nxe5 d4'],
+  ['Cochrane Gambit','w','gambit','e4 e5 Nf3 Nf6 Nxe5 d6 Nxf7| Kxf7 Nc3 c5 Bc4+ Be6'],
+  ['Falkbeer Countergambit','b','gambit','e4 e5 f4 d5| exd5 e4 d3 Nf6 dxe4 Nxe4'],
+  ['Falkbeer Countergambit','b','gambit','e4 e5 f4 d5| exd5 exf4 Nf3 Nf6'],
+  ['Falkbeer Countergambit','b','gambit','e4 e5 f4 d5| Nf3 dxe4 Nxe5 Bd6'],
+  ['Falkbeer Countergambit','b','gambit','e4 e5 f4 d5| fxe5 dxe4 Nc3 Nc6'],
+  ['Albin Countergambit','b','gambit','d4 d5 c4 e5| dxe5 d4 Nf3 Nc6'],
+  ['Budapest Gambit','b','gambit','d4 Nf6 c4 e5| dxe5 Ng4 Nf3 Nc6 Bf4 Bb4+'],
+  ['Benko Gambit','b','gambit','d4 Nf6 c4 c5 d5 b5| cxb5 a6 bxa6 Bxa6'],
+  ['Elephant Gambit','b','gambit','e4 e5 Nf3 d5| exd5 e4 Qe2 Nf6'],
+  ['Latvian Gambit','b','gambit','e4 e5 Nf3 f5| Nxe5 Qf6 d4 d6 Nc4 fxe4'],
+  ['Schliemann Gambit','b','gambit','e4 e5 Nf3 Nc6 Bb5 f5| Nc3 fxe4 Nxe4 d5'],
+  ['Icelandic Gambit','b','gambit','e4 d5 exd5 Nf6 c4 e6| dxe6 Bxe6'],
+  ['Marshall Attack','b','gambit','e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 O-O c3 d5| exd5 Nxd5 Nxe5 Nxe5 Rxe5 c6'],
+  ["From's Gambit",'b','gambit','f4 e5| fxe5 d6 exd6 Bxd6 Nf3 g5'],
+  ['Traxler Counterattack','b','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 Bc5 Nxf7 Bxf2+| Kxf2 Nxe4+ Kg1 Qh4 g3 Nxg3'],
 ];
 const GBOOK=new Map(),GBAD=[];
 for(const [name,side,type,line] of GAMBITS){
-  const g=new Chess(),mv=line.split(' '),sac=mv[mv.length-1];
+  const g=new Chess(),raw=line.split(' '),ki=raw.findIndex(t=>t.endsWith('|')),key=ki<0?raw.length-1:ki,mv=raw.map(t=>t.replace('|','')),sac=mv[key];
   for(let i=0;i<mv.length;i++){
     const fen=g.fen(),k=fkey(fen),turn=g.turn(),m=g.move(mv[i]);if(!m){GBAD.push(name);break;}
     if(turn!==side)continue;
-    const a=GBOOK.get(k)||[];if(!a.some(x=>x.name===name))a.push({name,type,sac,uci:m.from+m.to+(m.promotion||''),rest:mv.slice(i),isSac:i===mv.length-1});GBOOK.set(k,a);
+    const a=GBOOK.get(k)||[];if(!a.some(x=>x.name===name))a.push({name,type,sac,uci:m.from+m.to+(m.promotion||''),rest:mv.slice(i),isSac:i===key,after:i>key});GBOOK.set(k,a);
   }
 }
 // what the piece on sq stands to lose if the opponent simply takes it
@@ -3902,7 +3932,7 @@ async function brillHunt(fen,{budget=14000,alive=()=>true,onProg}={}){
   const wBest=W(E0);let best=null;const take=c=>{if(!best||c.score>best.score)best=c;};
   const bks=GBOOK.get(fkey(fen)),bk=bks&&bks[Math.floor(Math.random()*bks.length)];
   if(bk){const gb=new Chess(fen),pv=[];for(const sn of bk.rest){const m=gb.move(sn);if(!m)break;pv.push(m.from+m.to);}
-    take({kind:'book',brill:false,name:bk.name,type:bk.type,also:bks.filter(x=>x!==bk).map(x=>x.name),sacSan:bk.sac,isSac:bk.isSac,uci:bk.uci,sac:bk.uci,pv,e:E0,w:wBest,score:1500});}
+    take({kind:'book',brill:false,after:bk.after,name:bk.name,type:bk.type,also:bks.filter(x=>x!==bk).map(x=>x.name),sacSan:bk.sac,isSac:bk.isSac,uci:bk.uci,sac:bk.uci,pv,e:E0,w:wBest,score:1500});}
   const sacs=sacMoves(fen).slice(0,10).map(x=>x.uci),sacSet=new Set(sacs);
   if(sacs.length){
     const R=await hMoves(fen,10,alive,sacs);if(!R)return undefined;
@@ -3936,6 +3966,7 @@ function gemWhat(fen,r){
   const sacSan=(()=>{if(r.kind!=='setup')return uciToSan(fen,r.sac);const g=new Chess(fen);uciMove(g,r.uci);uciMove(g,r.reply);return uciToSan(g.fen(),r.sac);})();
   if(r.kind==='book'){
     const trap=r.type==='trap',also=r.also&&r.also.length?`<div class="muted" style="font-size:12px;margin-top:3px">Also from here: ${r.also.slice(0,4).map(esc).join(', ')}${r.also.length>4?'…':''}</div>`:'';
+    if(r.after)return `<b>${esc(uciToSan(fen,r.uci))}</b> — keep going with the <b>${esc(r.name)}</b>: this is its main line after <b>${esc(r.sacSan)}</b>`+also;
     return (r.isSac?`<b>${esc(r.sacSan)}${trap?'!':'!?'}</b> — the ${trap?'key move':'sacrifice'} of the <b>${esc(r.name)}</b>`
       :`<b>${esc(uciToSan(fen,r.uci))}</b> — heading for the <b>${esc(r.name)}</b> (${trap?'the trap':'its sacrifice'}: <b>${esc(r.sacSan)}</b>)`)+also;
   }
