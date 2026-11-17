@@ -4393,12 +4393,13 @@ function scRender(){
     }
     body=h;
   }
-  el.innerHTML=`<div class="sc"><div class="schead">${dot}<b>♞ ChessLab Coach</b><span class="muted" style="font-size:11px;margin-left:auto">bot games only</span><button class="scx" data-sc="board" title="Show or hide the mini board">${SC.board?'▣':'□'}</button></div>${body}</div>`;
+  el.innerHTML=`<div class="sc"><div class="schead">${dot}<b>♞ ChessLab Coach</b><span class="muted" style="font-size:11px;margin-left:auto">bot games only</span><button class="scx" data-sc="reset" title="Lost track? Look at the board again">↻</button><button class="scx" data-sc="board" title="Show or hide the mini board">${SC.board?'▣':'□'}</button></div>${body}</div>`;
 }
 function scClick(e){
   const b=e.target.closest('[data-sc]');if(!b)return;const a=b.dataset.sc;
   if(a==='r1'||a==='r2'||a==='r3'){const n=+a[1];SC.reveal=SC.reveal>=n?n-1:n;}
   else if(a==='gem')SC.gem=!SC.gem;
+  else if(a==='reset'){SC.game=null;SC.G=null;SC.pend='';SC.unk=0;SC.tok++;SC.state='find';}
   else if(a==='board'){SC.board=!SC.board;store.set('scBoard',SC.board);}
   else if(a==='turn:me')scSetTurn(SC.me);
   else if(a==='turn:opp')scSetTurn(SC.me==='w'?'b':'w');
