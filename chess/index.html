@@ -413,6 +413,32 @@ footer a{color:#8b92a0}
 .tvboard{box-shadow:none}
 .tvside{display:flex;justify-content:space-between;align-items:center;width:calc(var(--sq)*8);font-size:13px;padding:5px 2px}
 .tvmoves{width:calc(var(--sq)*8);font:12px 'IBM Plex Mono',monospace;color:var(--muted);margin-top:4px;min-height:32px}
+.sccheck{display:flex;gap:8px;align-items:center;font-size:13.5px;cursor:pointer}
+.sccheck input{width:17px;height:17px;accent-color:var(--accent)}
+.sc{display:flex;flex-direction:column;gap:8px;font-size:13.5px}
+.scpip{margin:0;padding:10px;background:var(--bg,#16181d);overflow:auto}
+.schead{display:flex;align-items:center;gap:7px}
+.scdot{width:9px;height:9px;border-radius:50%;background:#666;flex:none}
+.scdot.on{background:#3ecf6a;box-shadow:0 0 8px #3ecf6a}
+.scx{background:none;border:1px solid var(--line);border-radius:6px;color:var(--text);cursor:pointer;padding:1px 6px}
+.scmsg{background:var(--panel2,#262a33);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;line-height:1.5}
+.scmsg .muted{font-size:12.5px;margin-top:4px}
+.scbw{position:relative;--sq:min(28px,calc((100vw - 24px) / 8));width:calc(var(--sq)*8);align-self:center}
+.scb{box-shadow:none}
+.scarr{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4}
+.scgrade{display:flex;gap:8px;align-items:flex-start;background:var(--panel2,#262a33);border-radius:8px;padding:7px 9px;font-size:12.5px;line-height:1.4}
+.scgrade .ic{flex:none;margin-top:1px}
+.scturn{font-weight:600}
+.scwarn{background:#3a2420;border:1px solid #a5513f;border-radius:8px;padding:6px 9px;font-size:12.5px}
+.scbtns{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.scbtns .btn{min-height:34px;padding:6px 4px;font-size:12.5px}
+.scbtns .btn:not(.on){background:#1b1e24;color:var(--text);border:1px solid var(--line)}
+.scbtns .gembtn.found:not(.on){border-color:var(--brilliant);color:#7fe3d3;box-shadow:0 0 10px #1fbfa633}
+.scstep{background:#1b1e24;border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:7px 9px;line-height:1.45}
+.scmv{display:flex;gap:8px;align-items:flex-start;background:#1b1e24;border-radius:8px;padding:7px 9px;line-height:1.4}
+.scn{flex:none;width:20px;height:20px;border-radius:50%;color:#fff;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+.scwhy{font-size:12.5px;margin:2px 0}
+.scgem{border:1px solid var(--brilliant);background:linear-gradient(90deg,#14302d,#1b1e24 80%);border-radius:8px;padding:8px 10px;line-height:1.45}
 .modesel{padding:3px 6px;font-size:12px;margin-right:auto;margin-left:6px}
 .card.gem{border:1px solid #2f7f73;background:linear-gradient(90deg,#14302d,#272b34 75%)}
 .card.gem.found{border-color:var(--brilliant);box-shadow:0 0 14px #1fbfa633}
@@ -593,6 +619,14 @@ footer a{color:#8b92a0}
             <input type="text" id="fenIn" placeholder="Paste a FEN (optional)" style="flex:1;min-width:180px" spellcheck="false" autocomplete="off">
             <button class="btn" id="freeBoard">Open board</button>
           </div>
+        </div>
+        <div class="card">
+          <b>🖥 Screen coach for chess.com bots</b>
+          <div class="muted" style="font-size:12.5px;margin:2px 0 8px">Watches your chess.com game against a bot and teaches you on every move: a hint step by step, the 2–3 best moves and why, and brilliant ideas. It floats over chess.com in a small window.</div>
+          <label class="sccheck"><input type="checkbox" id="scOk"> I'm playing a <b>bot</b> on chess.com (Play → Computer), not a person.</label>
+          <div class="muted" style="font-size:12px;margin:4px 0 8px">Chess.com allows outside help only in games against bots. Using this against people breaks its fair-play rules and gets accounts closed.</div>
+          <div class="row"><button class="btn" id="scStart" disabled>📺 Share chess.com tab</button><button class="btn ghost hidden" id="scFloat">🪟 Open floating coach</button><button class="btn ghost hidden" id="scStop">Stop</button></div>
+          <div id="scPanel" class="hidden" style="margin-top:10px"></div>
         </div>
         <div id="msg" class="muted"></div>
       </div>
@@ -3762,26 +3796,70 @@ let huntEng=null,huntTok=0,huntFor=null,huntRes=null,huntMsg='';
 const getHunt=()=>huntEng||(huntEng=new Engine()),huntCache=new Map(),GEM_FLOOR=35,GEM_COMP=10,GEM_SETUP=4;
 // Famous sacrificial gambits and traps. Engines dislike most of them, so they can't be found by evaluation — when the
 // position is on one of these lines, the hunt follows it. [name, side that sacrifices, moves, the sacrifice]
+// [name, side that plays it, 'gambit' (a sacrifice) or 'trap' (a trick the opponent can fall into), moves]
+// The last move of each line is its key move. Several lines can share a position: the hunt picks one of them.
 const GAMBITS=[
-  ['Alien Gambit','w','e4 c6 d4 d5 Nc3 dxe4 Nxe4 Nf6 Ng5 h6 Nxf7','Nxf7'],
-  ['Fried Liver Attack','w','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 d5 exd5 Nxd5 Nxf7','Nxf7'],
-  ['Cochrane Gambit','w','e4 e5 Nf3 Nf6 Nxe5 d6 Nxf7','Nxf7'],
-  ['Halloween Gambit','w','e4 e5 Nf3 Nc6 Nc3 Nf6 Nxe5','Nxe5'],
-  ['Légal Trap','w','e4 e5 Nf3 d6 Bc4 Bg4 Nc3 g6 Nxe5','Nxe5'],
-  ['Jerome Gambit','w','e4 e5 Nf3 Nc6 Bc4 Bc5 Bxf7+','Bxf7+'],
-  ['Muzio Gambit','w','e4 e5 f4 exf4 Nf3 g5 Bc4 g4 O-O','O-O'],
-  ['ICBM Gambit','w','e4 d5 Nf3 dxe4 Ng5 Nf6 d3 exd3 Bxd3 h6 Nxf7','Nxf7'],
-  ['Traxler Counterattack','b','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 Bc5 Nxf7 Bxf2+','Bxf2+'],
-  ['Fishing Pole Trap','b','e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Ng4 h3 h5','h5'],
-  ['Blackburne Shilling Gambit','b','e4 e5 Nf3 Nc6 Bc4 Nd4','Nd4'],
-  ['Stafford Gambit','b','e4 e5 Nf3 Nf6 Nxe5 Nc6','Nc6'],
+  // white sacrifices
+  ['Alien Gambit','w','gambit','e4 c6 d4 d5 Nc3 dxe4 Nxe4 Nf6 Ng5 h6 Nxf7'],
+  ['Fried Liver Attack','w','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 d5 exd5 Nxd5 Nxf7'],
+  ['Cochrane Gambit','w','gambit','e4 e5 Nf3 Nf6 Nxe5 d6 Nxf7'],
+  ['Halloween Gambit','w','gambit','e4 e5 Nf3 Nc6 Nc3 Nf6 Nxe5'],
+  ['Jerome Gambit','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 Bxf7+'],
+  ['Muzio Gambit','w','gambit','e4 e5 f4 exf4 Nf3 g5 Bc4 g4 O-O'],
+  ['ICBM Gambit','w','gambit','e4 d5 Nf3 dxe4 Ng5 Nf6 d3 exd3 Bxd3 h6 Nxf7'],
+  ['Evans Gambit','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 b4'],
+  ["King's Gambit",'w','gambit','e4 e5 f4'],
+  ['Danish Gambit','w','gambit','e4 e5 d4 exd4 c3'],
+  ['Smith-Morra Gambit','w','gambit','e4 c5 d4 cxd4 c3'],
+  ['Scotch Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 Bc4'],
+  ['Göring Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 c3'],
+  ['Vienna Gambit','w','gambit','e4 e5 Nc3 Nf6 f4'],
+  ['Urusov Gambit','w','gambit','e4 e5 Bc4 Nf6 d4'],
+  ['Blackmar-Diemer Gambit','w','gambit','d4 d5 e4 dxe4 Nc3 Nf6 f3'],
+  ['Staunton Gambit','w','gambit','d4 f5 e4'],
+  ["Queen's Gambit",'w','gambit','d4 d5 c4'],
+  ['Sicilian Wing Gambit','w','gambit','e4 c5 b4'],
+  ['Tennison Gambit','w','gambit','e4 d5 Nf3 dxe4 Ng5'],
+  ['Damiano Punisher','w','gambit','e4 e5 Nf3 f6 Nxe5'],
+  // white traps
+  ['Légal Trap','w','trap','e4 e5 Nf3 d6 Bc4 Bg4 Nc3 g6 Nxe5'],
+  ["Scholar's Mate",'w','trap','e4 e5 Bc4 Nc6 Qh5 Nf6 Qxf7#'],
+  ['Caro-Kann Smothered Mate','w','trap','e4 c6 d4 d5 Nc3 dxe4 Nxe4 Nd7 Qe2 Ngf6 Nd6#'],
+  ['Petrov Queen Trap','w','trap','e4 e5 Nf3 Nf6 Nxe5 Nxe4 Qe2 Nf6 Nc6+'],
+  ['Mortimer Punisher','w','trap','e4 e5 Nf3 Nc6 Bb5 d6 d4 Bd7 Nc3 Nf6 O-O Be7 Bxc6 Bxc6 dxe5 dxe5 Qxd8+'],
+  // black sacrifices
+  ['Traxler Counterattack','b','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 Bc5 Nxf7 Bxf2+'],
+  ['Stafford Gambit','b','gambit','e4 e5 Nf3 Nf6 Nxe5 Nc6'],
+  ['Englund Gambit','b','gambit','d4 e5'],
+  ['Albin Countergambit','b','gambit','d4 d5 c4 e5'],
+  ['Budapest Gambit','b','gambit','d4 Nf6 c4 e5'],
+  ['Benko Gambit','b','gambit','d4 Nf6 c4 c5 d5 b5'],
+  ['Elephant Gambit','b','gambit','e4 e5 Nf3 d5'],
+  ['Latvian Gambit','b','gambit','e4 e5 Nf3 f5'],
+  ['Rousseau Gambit','b','gambit','e4 e5 Nf3 Nc6 Bc4 f5'],
+  ['Schliemann Gambit','b','gambit','e4 e5 Nf3 Nc6 Bb5 f5'],
+  ['Falkbeer Countergambit','b','gambit','e4 e5 f4 d5'],
+  ["From's Gambit",'b','gambit','f4 e5'],
+  ['Icelandic Gambit','b','gambit','e4 d5 exd5 Nf6 c4 e6'],
+  ['Marshall Attack','b','gambit','e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 O-O c3 d5'],
+  // black traps
+  ['Fishing Pole Trap','b','trap','e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Ng4 h3 h5'],
+  ['Blackburne Shilling Trap','b','trap','e4 e5 Nf3 Nc6 Bc4 Nd4 Nxe5 Qg5 Nxf7 Qxg2'],
+  ['Englund Gambit Trap','b','trap','d4 e5 dxe5 Nc6 Nf3 Qe7 Bf4 Qb4+ Bd2 Qxb2 Bc3 Bb4 Qd2 Bxc3 Qxc3 Qc1#'],
+  ['Lasker Trap','b','trap','d4 d5 c4 e5 dxe5 d4 e3 Bb4+ Bd2 dxe3 Bxb4 exf2+ Ke2 fxg1=N+'],
+  ['Kieninger Trap','b','trap','d4 Nf6 c4 e5 dxe5 Ng4 Nf3 Nc6 Bf4 Bb4+ Nbd2 Qe7 a3 Ngxe5 axb4 Nd3#'],
+  ['Siberian Trap','b','trap','e4 c5 d4 cxd4 c3 dxc3 Nxc3 Nc6 Nf3 e6 Bc4 Qc7 O-O Nf6 Qe2 Ng4 h3 Nd4'],
+  ['Elephant Trap','b','trap','d4 d5 c4 e6 Nc3 Nf6 Bg5 Nbd7 cxd5 exd5 Nxd5 Nxd5'],
+  ["Noah's Ark Trap",'b','trap','e4 e5 Nf3 Nc6 Bb5 a6 Ba4 d6 d4 b5 Bb3 Nxd4 Nxd4 exd4 Qxd4 c5'],
+  ['Stafford Queen Trap','b','trap','e4 e5 Nf3 Nf6 Nxe5 Nc6 Nxc6 dxc6 d3 Bc5 Bg5 Nxe4 Bxd8 Bxf2+ Ke2 Bg4#'],
 ];
-const GBOOK=new Map();
-for(const [name,side,line,sac] of GAMBITS){
-  const g=new Chess(),mv=line.split(' ');
+const GBOOK=new Map(),GBAD=[];
+for(const [name,side,type,line] of GAMBITS){
+  const g=new Chess(),mv=line.split(' '),sac=mv[mv.length-1];
   for(let i=0;i<mv.length;i++){
-    const fen=g.fen(),k=fkey(fen),turn=g.turn(),m=g.move(mv[i]);if(!m)break;
-    if(turn===side&&!GBOOK.has(k))GBOOK.set(k,{name,sac,uci:m.from+m.to,rest:mv.slice(i),isSac:i===mv.length-1});
+    const fen=g.fen(),k=fkey(fen),turn=g.turn(),m=g.move(mv[i]);if(!m){GBAD.push(name);break;}
+    if(turn!==side)continue;
+    const a=GBOOK.get(k)||[];if(!a.some(x=>x.name===name))a.push({name,type,sac,uci:m.from+m.to+(m.promotion||''),rest:mv.slice(i),isSac:i===mv.length-1});GBOOK.set(k,a);
   }
 }
 // what the piece on sq stands to lose if the opponent simply takes it
@@ -3821,9 +3899,9 @@ async function brillHunt(fen,{budget=14000,alive=()=>true,onProg}={}){
   const t0=Date.now(),s=g.turn()==='w'?1:-1,W=e=>winPct(s*e.cp),mating=e=>e.mate!==null&&e.mate!==undefined&&s*e.mate>0;
   const E0=await hEval(fen,12,alive);if(!E0)return undefined;
   const wBest=W(E0);let best=null;const take=c=>{if(!best||c.score>best.score)best=c;};
-  const bk=GBOOK.get(fkey(fen));
+  const bks=GBOOK.get(fkey(fen)),bk=bks&&bks[Math.floor(Math.random()*bks.length)];
   if(bk){const gb=new Chess(fen),pv=[];for(const sn of bk.rest){const m=gb.move(sn);if(!m)break;pv.push(m.from+m.to);}
-    take({kind:'book',brill:false,name:bk.name,sacSan:bk.sac,isSac:bk.isSac,uci:bk.uci,sac:bk.uci,pv,e:E0,w:wBest,score:1500});}
+    take({kind:'book',brill:false,name:bk.name,type:bk.type,also:bks.filter(x=>x!==bk).map(x=>x.name),sacSan:bk.sac,isSac:bk.isSac,uci:bk.uci,sac:bk.uci,pv,e:E0,w:wBest,score:1500});}
   const sacs=sacMoves(fen).slice(0,10).map(x=>x.uci),sacSet=new Set(sacs);
   if(sacs.length){
     const R=await hMoves(fen,10,alive,sacs);if(!R)return undefined;
@@ -3841,7 +3919,7 @@ async function brillHunt(fen,{budget=14000,alive=()=>true,onProg}={}){
       const g1=new Chess(fen);if(!uciMove(g1,c.uci)||g1.game_over())continue;const f1=g1.fen();
       const reps=await hMoves(f1,10,alive,null,3);if(!reps)return undefined;
       for(let k=0;k<reps.length;k++){
-        const rp=reps[k];if(k&&s*(rp.e.cp-reps[0].e.cp)>15)break;      // only the reply the opponent should play (or one just as good)
+        const rp=reps[k];if(k&&s*(rp.e.cp-reps[0].e.cp)>5)break;      // only the reply the opponent should actually play
         const g2=new Chess(f1);if(!uciMove(g2,rp.uci)||g2.game_over())continue;const f2=g2.fen();
         const sc=sacMoves(f2).slice(0,10).map(x=>x.uci);if(!sc.length)continue;
         const R=await hMoves(f2,10,alive,sc);if(!R)return undefined;
@@ -3853,17 +3931,25 @@ async function brillHunt(fen,{budget=14000,alive=()=>true,onProg}={}){
   }
   huntCache.set(key,best);return best;
 }
+function gemWhat(fen,r){
+  const sacSan=(()=>{if(r.kind!=='setup')return uciToSan(fen,r.sac);const g=new Chess(fen);uciMove(g,r.uci);uciMove(g,r.reply);return uciToSan(g.fen(),r.sac);})();
+  if(r.kind==='book'){
+    const trap=r.type==='trap',also=r.also&&r.also.length?`<div class="muted" style="font-size:12px;margin-top:3px">Also from here: ${r.also.slice(0,4).map(esc).join(', ')}${r.also.length>4?'…':''}</div>`:'';
+    return (r.isSac?`<b>${esc(r.sacSan)}${trap?'!':'!?'}</b> — the ${trap?'key move':'sacrifice'} of the <b>${esc(r.name)}</b>`
+      :`<b>${esc(uciToSan(fen,r.uci))}</b> — heading for the <b>${esc(r.name)}</b> (${trap?'the trap':'its sacrifice'}: <b>${esc(r.sacSan)}</b>)`)+also;
+  }
+  return r.kind==='now'?`<b>${esc(sacSan)}${r.brill?'!!':'!?'}</b> — a ${r.brill?'brilliant':'gambit'} sacrifice you can play right now`
+    :`<b>${esc(uciToSan(fen,r.uci))}</b> sets up <b>${esc(sacSan)}${r.brill?'!!':'!?'}</b> — a ${r.brill?'brilliant':'gambit'} sacrifice next move if they answer <b>${esc((()=>{const g=new Chess(fen);uciMove(g,r.uci);return uciToSan(g.fen(),r.reply);})())}</b>`;
+}
+const gemTag=r=>r.kind==='book'?(r.type==='trap'?'📖 famous trap':'📖 famous gambit · risky'):r.brill?'sound':'gambit · some risk';
 function drawGem(fen){
   const el=$('gemCard');el.classList.toggle('hidden',SET.anaMode!=='brill');if(SET.anaMode!=='brill')return;
   const r=huntRes,head=t=>`<div class="row" style="justify-content:space-between;margin-bottom:4px"><b style="font-size:13px">💎 Brilliant hunt</b><span class="muted" style="font-size:12px">${t}</span></div>`;
   if(r===undefined){el.className='card gem scan';el.innerHTML=head(esc(huntMsg||'looking for sacrifices…'))+'<div class="muted" style="font-size:12.5px">Checking every move for a sacrifice it could set up…</div>';return;}
   if(!r){el.className='card gem';el.innerHTML=head('nothing here')+'<div class="muted" style="font-size:12.5px">No real sacrifice to play or set up here with natural moves. Make a move and I\'ll look again.</div>';return;}
-  const turn=new Chess(fen).turn(),ev={cp:r.e.cp,mate:r.e.mate,over:r.e.over},sacSan=(()=>{if(r.kind!=='setup')return uciToSan(fen,r.sac);const g=new Chess(fen);uciMove(g,r.uci);uciMove(g,r.reply);return uciToSan(g.fen(),r.sac);})();
-  const what=r.kind==='book'?(r.isSac?`<b>${esc(r.sacSan)}!?</b> — the sacrifice of the <b>${esc(r.name)}</b>`:`<b>${esc(uciToSan(fen,r.uci))}</b> — heading for the <b>${esc(r.name)}</b> and its sacrifice <b>${esc(r.sacSan)}!?</b>`)
-    :r.kind==='now'?`<b>${esc(sacSan)}${r.brill?'!!':'!?'}</b> — a ${r.brill?'brilliant':'gambit'} sacrifice you can play right now`
-    :`<b>${esc(uciToSan(fen,r.uci))}</b> sets up <b>${esc(sacSan)}${r.brill?'!!':'!?'}</b> — a ${r.brill?'brilliant':'gambit'} sacrifice next move if they answer <b>${esc((()=>{const g=new Chess(fen);uciMove(g,r.uci);return uciToSan(g.fen(),r.reply);})())}</b>`;
+  const ev={cp:r.e.cp,mate:r.e.mate,over:r.e.over},what=gemWhat(fen,r);
   el.className='card gem found';
-  el.innerHTML=head(r.kind==='book'?'📖 famous gambit · risky':r.brill?'sound':'gambit · some risk')+`<div style="font-size:13.5px">${what}</div><div class="lines" style="margin-top:6px"><div class="ln" data-uci="${r.uci}" title="Click to play it on the board"><span class="ev ${ev.cp>=0?'w':'b'}">${evalText(ev)}</span><span class="mv">${pvSan(fen,r.pv,9,true)}</span></div></div>`;
+  el.innerHTML=head(gemTag(r))+`<div style="font-size:13.5px">${what}</div><div class="lines" style="margin-top:6px"><div class="ln" data-uci="${r.uci}" title="Click to play it on the board"><span class="ev ${ev.cp>=0?'w':'b'}">${evalText(ev)}</span><span class="mv">${pvSan(fen,r.pv,9,true)}</span></div></div>`;
 }
 function startHunt(){
   if(SET.anaMode!=='brill'){if(huntFor){huntFor=null;huntTok++;}drawGem('');return;}
@@ -3939,6 +4025,381 @@ $('freeBoard').onclick=()=>openBoard($('fenIn').value);
 $('fenIn').addEventListener('keydown',e=>{if(e.key==='Enter')openBoard($('fenIn').value);});
 $('cancel').onclick=()=>{cancelFlag=true;if(anaEngine)anaEngine.stop();};
 $('newAnalysis').onclick=()=>{plies=[];evals=[];cls=[];headers={};T.root=null;T.cur=null;T.free=false;T.gen++;liveTok++;if(liveEngine)liveEngine.stop();showR('inputView');reviewRender();};
+
+/* ===================== SCREEN COACH (chess.com bot games) =====================
+   You share your chess.com tab; ChessLab finds the board in the picture, learns what your pieces look like from the
+   starting position, follows the game move by move and coaches you on your turn: a hint step by step, the 2-3 best
+   moves with reasons, and brilliant / gambit ideas. It floats over chess.com in a picture-in-picture window. */
+const SC={stream:null,video:null,cv:null,cx:null,timer:null,G:null,tpl:store.get('scTpl',null),flip:false,me:'w',game:null,
+  state:'off',msg:'',pend:'',pendN:0,unk:0,lost:0,findAt:0,root:null,pip:null,eng:null,tok:0,an:null,hunt:undefined,
+  reveal:0,gem:false,grade:null,lastMove:null,askTurn:null,board:store.get('scBoard',true)};
+const SCN=16,SC_PN={p:'pawn',n:'knight',b:'bishop',r:'rook',q:'queen',k:'king'};
+const SC_START=(()=>{const B=new Chess().board(),o=[];for(const row of B)for(const p of row)o.push(p?p.color+p.type:'');return o.join(',');})();
+const scPx=(D,W,x,y)=>{const i=((y|0)*W+(x|0))<<2;return[D[i],D[i+1],D[i+2]];};
+const scDiff=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1])+Math.abs(a[2]-b[2]);
+const scLum=c=>c[0]*.299+c[1]*.587+c[2]*.114;
+
+/* ---- 1. find the board: rows of 8 equal, alternating squares, then the exact top edge from the square colours ---- */
+function scFindBoard(D,W,H){
+  const rows=[];
+  for(let y=0;y<H;y+=2){
+    const segs=[];let sx=0,ref=scPx(D,W,0,y);
+    for(let x=1;x<W;x++){const c=scPx(D,W,x,y);if(scDiff(c,ref)>40){segs.push({a:sx,b:x,c:ref});sx=x;ref=c;}}
+    segs.push({a:sx,b:W,c:ref});
+    const S=[];for(const g of segs){if(g.b-g.a<3&&S.length)S[S.length-1].b=g.b;else S.push({a:g.a,b:g.b,c:g.c});}
+    for(let i=0;i+8<=S.length;i++){
+      const L=(S[i+7].b-S[i].a)/8;if(L<12)continue;
+      let ok=true;
+      for(let k=0;k<8&&ok;k++)if(Math.abs(S[i+k].b-S[i+k].a-L)>Math.max(2.5,L*.08))ok=false;
+      for(let k=0;k<6&&ok;k++)if(scDiff(S[i+k].c,S[i+k+2].c)>40)ok=false;
+      if(ok&&scDiff(S[i].c,S[i+1].c)<40)ok=false;
+      if(ok){rows.push({y,x0:S[i].a,L,A:S[i].c,B:S[i+1].c});i+=7;}
+    }
+  }
+  if(!rows.length)return null;
+  // the biggest group of matching rows is the board
+  let best=null;
+  for(const r of rows){const grp=rows.filter(q=>Math.abs(q.x0-r.x0)<=4&&Math.abs(q.L-r.L)<=2);const sc=grp.length*r.L;if(!best||sc>best.sc)best={sc,grp};}
+  const grp=best.grp;if(grp.length<3)return null;
+  const med=a=>a.slice().sort((p,q)=>p-q)[a.length>>1];
+  const x0=med(grp.map(r=>r.x0)),L=med(grp.map(r=>r.L)),r0=grp[0];
+  const light=scLum(r0.A)>=scLum(r0.B)?r0.A:r0.B,dark=light===r0.A?r0.B:r0.A;
+  const ys=grp.map(r=>r.y),ymin=Math.min(...ys),ymax=Math.max(...ys);
+  let bestY=null,bestS=-1;
+  for(let y0=Math.max(0,Math.floor(ymin-8*L));y0<=ymin;y0++){
+    if(y0+8*L>H+1)break;let s=0;
+    for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+      const exp=(r+c)%2?dark:light,x=x0+c*L,y=y0+r*L;
+      for(const[a,b]of[[.1,.1],[.9,.1],[.1,.9],[.9,.9]])if(scDiff(scPx(D,W,Math.min(W-1,x+a*L),Math.min(H-1,y+b*L)),exp)<45)s++;
+    }
+    if(s>bestS){bestS=s;bestY=y0;}
+  }
+  if(bestS<256*.6||ymax>bestY+8*L)return null;
+  // fine alignment: samples hugging every square's edges only all match when the grid sits exactly on the board
+  const fit=(X,Y)=>{let n=0;for(let r=0;r<8;r++)for(let c=0;c<8;c++){const exp=(r+c)%2?dark:light,x=X+c*L,y=Y+r*L;
+    for(const[a,b]of[[.03,.03],[.97,.03],[.03,.97],[.97,.97],[.5,.02],[.5,.98],[.02,.5],[.98,.5]]){const px=x+a*L,py=y+b*L;if(px>=0&&py>=0&&px<W&&py<H&&scDiff(scPx(D,W,px,py),exp)<45)n++;}}return n;};
+  let fx=x0,fy=bestY,fs=-1;const R=Math.ceil(L/4);
+  for(let dy=-R;dy<=R;dy++)for(let dx=-3;dx<=3;dx++){const v=fit(x0+dx,bestY+dy);if(v>fs){fs=v;fx=x0+dx;fy=bestY+dy;}}
+  return{x0:fx,y0:fy,L,light,dark};
+}
+
+/* ---- 2. read every square: which cells differ from the square's own background colour, and their colours ---- */
+function scFeat(D,W,G,r,c){
+  const L=G.L,x=G.x0+c*L,y=G.y0+r*L,n=SCN*SCN;
+  const pts=[[.06,.06],[.94,.06],[.06,.94],[.94,.94],[.5,.04],[.5,.96],[.04,.5],[.96,.5]].map(([a,b])=>scPx(D,W,x+a*L,y+b*L));
+  let bg=pts[0],bn=-1;for(const p of pts){const k=pts.filter(q=>scDiff(p,q)<30).length;if(k>bn){bn=k;bg=p;}}
+  const m=new Uint8Array(n),col=new Uint8Array(n*3);let cnt=0;
+  for(let i=0;i<SCN;i++)for(let j=0;j<SCN;j++){
+    const p=scPx(D,W,x+L*(.12+.76*(j+.5)/SCN),y+L*(.12+.76*(i+.5)/SCN)),k=i*SCN+j;
+    col[k*3]=p[0];col[k*3+1]=p[1];col[k*3+2]=p[2];if(scDiff(p,bg)>50){m[k]=1;cnt++;}
+  }
+  return{m,col,cnt,bg,occ:cnt>=n*.07};
+}
+function scDist(f,T){
+  let s=0;const n=SCN*SCN;
+  for(let k=0;k<n;k++){const P=T.P[k],m=f.m[k];s+=Math.abs(m-P);
+    if(m&&P>.5){const i=k*3;s+=.8*(Math.abs(f.col[i]-T.C[i])+Math.abs(f.col[i+1]-T.C[i+1])+Math.abs(f.col[i+2]-T.C[i+2]))/765;}}
+  return s/n;
+}
+// screen square <-> board square
+const scBoardIdx=(r,c)=>SC.flip?(7-r)*8+(7-c):r*8+c;
+function scRead(D,W,G){
+  const F=[];let match=0;
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){const f=scFeat(D,W,G,r,c);F.push(f);if(scDiff(f.bg,(r+c)%2?G.dark:G.light)<45)match++;}
+  return{F,match};
+}
+const scStartLike=F=>F.every((f,i)=>{const r=i>>3;return(r<2||r>5)?f.occ:!f.occ;});
+// learn the piece pictures from a starting position (works with any chess.com board and piece theme)
+function scLearn(F){
+  const pieceLum=rows=>{let s=0,n=0;for(const r of rows)for(let c=0;c<8;c++){const f=F[r*8+c];for(let k=0;k<SCN*SCN;k++)if(f.m[k]){s+=scLum([f.col[k*3],f.col[k*3+1],f.col[k*3+2]]);n++;}}return n?s/n:0;};
+  const whiteBottom=pieceLum([6,7])>pieceLum([0,1]);
+  SC.flip=!whiteBottom;SC.me=whiteBottom?'w':'b';
+  const start=SC_START.split(','),acc={};
+  for(const r of[0,1,6,7])for(let c=0;c<8;c++){
+    const code=start[scBoardIdx(r,c)],key=code+((r+c)%2?'d':'l'),f=F[r*8+c],n=SCN*SCN;
+    const a=acc[key]||(acc[key]={P:new Float32Array(n),C:new Float32Array(n*3),N:new Float32Array(n),k:0});a.k++;
+    for(let i=0;i<n;i++)if(f.m[i]){a.P[i]++;a.N[i]++;a.C[i*3]+=f.col[i*3];a.C[i*3+1]+=f.col[i*3+1];a.C[i*3+2]+=f.col[i*3+2];}
+  }
+  const tpl={};
+  for(const[key,a]of Object.entries(acc)){
+    const P=[],C=[];for(let i=0;i<SCN*SCN;i++){P.push(+(a.P[i]/a.k).toFixed(2));for(let j=0;j<3;j++)C.push(a.N[i]?Math.round(a.C[i*3+j]/a.N[i]):0);}
+    tpl[key]={P,C};
+  }
+  SC.tpl=tpl;store.set('scTpl',tpl);
+}
+function scClassify(F){
+  const out=new Array(64).fill('');let bad=0;
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+    const f=F[r*8+c];if(!f.occ)continue;
+    const bg=(r+c)%2?'d':'l',ob=bg==='d'?'l':'d';let best=null,bd=1e9;
+    for(const code of['wp','wn','wb','wr','wq','wk','bp','bn','bb','br','bq','bk']){
+      const T=SC.tpl[code+bg]||SC.tpl[code+ob];if(!T)continue;const d=scDist(f,T);if(d<bd){bd=d;best=code;}
+    }
+    if(bd>.3){bad++;continue;}
+    out[scBoardIdx(r,c)]=best;
+  }
+  return{P:out,bad};
+}
+const scKey=g=>{const o=[];for(const row of g.board())for(const p of row)o.push(p?p.color+p.type:'');return o.join(',');};
+
+/* ---- 3. follow the game ---- */
+function scSet(state,msg){if(SC.state===state&&SC.msg===(msg||''))return;SC.state=state;SC.msg=msg||'';scRender();}
+function scFrame(D,W,H){
+  if(!SC.G){const now=Date.now();if(now-SC.findAt<900&&!SC.test)return;SC.findAt=now;SC.G=scFindBoard(D,W,H);if(!SC.G){scSet('find');return;}}
+  const R=scRead(D,W,SC.G);
+  if(R.match<40){if(++SC.lost>4){SC.G=null;SC.lost=0;scSet('find');}return;}
+  SC.lost=0;
+  if(scStartLike(R.F))scLearn(R.F);
+  if(!SC.tpl){scSet('learn');return;}
+  const {P,bad}=scClassify(R.F);if(bad)return;            // a piece mid-drag, move dots or a hover outline: wait
+  const key=P.join(',');
+  if(key!==SC.pend){SC.pend=key;SC.pendN=1;if(!SC.test)return;}else if(++SC.pendN>2&&SC.game&&scKey(SC.game)===key)return;
+  scSync(P,key,R);
+}
+function scSync(P,key,R){
+  if(key===SC_START){if(!SC.game||scKey(SC.game)!==key||SC.game.history().length){SC.game=new Chess();SC.lastMove=null;SC.grade=null;SC.askTurn=null;scSet('play');scOnPos();}return;}
+  if(!SC.game){scInit(P,R);return;}
+  const g=SC.game,cur=scKey(g);if(cur===key){SC.unk=0;return;}
+  for(const m of g.moves({verbose:true})){g.move(m);const k=scKey(g);g.undo();if(k===key){SC.unk=0;scApply([m]);return;}}
+  for(const m1 of g.moves({verbose:true})){g.move(m1);
+    for(const m2 of g.moves({verbose:true})){g.move(m2);const k=scKey(g);g.undo();if(k===key){g.undo();SC.unk=0;scApply([m1,m2]);return;}}
+    g.undo();}
+  if(++SC.unk>=4){SC.game=null;scInit(P,R);}
+}
+// start following from the middle of a game: rebuild the position from the picture
+function scInit(P,R){
+  const wp=[],bp=[];P.forEach((c,i)=>{if(c==='wp')wp.push(i>>3);if(c==='bp')bp.push(i>>3);});
+  // which side is at the bottom? white pawns normally stand nearer white's side of the board
+  const avg=a=>a.reduce((x,y)=>x+y,0)/(a.length||1);
+  if(wp.length&&bp.length&&avg(wp)<avg(bp)){SC.flip=!SC.flip;SC.me=SC.flip?'b':'w';P=P.slice().reverse();}
+  let fen='';for(let r=0;r<8;r++){let e=0;for(let c=0;c<8;c++){const p=P[r*8+c];if(!p){e++;continue;}if(e){fen+=e;e=0;}fen+=p[0]==='w'?p[1].toUpperCase():p[1];}if(e)fen+=e;if(r<7)fen+='/';}
+  const at=(sq,code)=>P[(8-+sq[1])*8+sq.charCodeAt(0)-97]===code;
+  let cr=(at('e1','wk')&&at('h1','wr')?'K':'')+(at('e1','wk')&&at('a1','wr')?'Q':'')+(at('e8','bk')&&at('h8','br')?'k':'')+(at('e8','bk')&&at('a8','br')?'q':'');
+  // the last-move highlight tells whose turn it is: the piece standing on a highlighted square just moved
+  let turn=null;
+  if(R)R.F.forEach((f,i)=>{const r=i>>3,c=i&7;if(turn||!f.occ)return;const exp=(r+c)%2?SC.G.dark:SC.G.light;if(scDiff(f.bg,exp)>45){const code=P[scBoardIdx(r,c)];if(code)turn=code[0]==='w'?'b':'w';}});
+  const make=t=>{const g=new Chess();return g.load(`${fen} ${t} ${cr||'-'} - 0 20`)?g:null;};
+  if(!turn){if(!make('w')&&!make('b')){scSet('lost');return;}SC.askTurn=P.join(',');SC.game=null;scSet('turn');return;}
+  const g=make(turn)||make(turn==='w'?'b':'w');if(!g){scSet('lost');return;}
+  SC.game=g;SC.lastMove=null;SC.grade=null;SC.askTurn=null;scSet('play');scOnPos();
+}
+function scSetTurn(t){
+  if(!SC.askTurn)return;const P=SC.askTurn.split(',');SC.askTurn=null;
+  let fen='';for(let r=0;r<8;r++){let e=0;for(let c=0;c<8;c++){const p=P[r*8+c];if(!p){e++;continue;}if(e){fen+=e;e=0;}fen+=p[0]==='w'?p[1].toUpperCase():p[1];}if(e)fen+=e;if(r<7)fen+='/';}
+  const g=new Chess();if(!g.load(`${fen} ${t} - - 0 20`)){scSet('lost');return;}
+  SC.game=g;scSet('play');scOnPos();
+}
+function scApply(ms){
+  const g=SC.game;
+  for(const m of ms){const fb=g.fen();g.move(m);const fa=g.fen();SC.lastMove=m;if(m.color===SC.me)scGrade(makePly(m,fb,fa));}
+  scSet('play');scOnPos();
+}
+
+/* ---- 4. coach ---- */
+function scHang(fen,color){
+  const B=new Chess(fen).board(),out=[];
+  for(let r=0;r<8;r++)for(let f=0;f<8;f++){const p=B[r][f];if(!p||p.color!==color)continue;const sq='abcdefgh'[f]+(8-r),v=pieceHang(B,sq,color);if(v)out.push({sq,t:p.type,v});}
+  return out.sort((a,b)=>b.v-a.v);
+}
+// why a move is good, in plain words; theme = the hint for step 1
+function scWhy(fen,uci,e){
+  const g=new Chess(fen),me=g.turn(),opp=me==='w'?'b':'w',s=me==='w'?1:-1;
+  const m=uciMove(g,uci);if(!m)return{theme:'quiet',why:[]};
+  const fa=g.fen(),Ba=g.board(),why=[];let theme=null;const set=t=>{if(!theme)theme=t;};
+  const mate=e&&e.mate!==null&&e.mate!==undefined&&s*e.mate>0?Math.abs(e.mate):0;
+  if(m.san.includes('#')){set('mate1');why.push("It's checkmate!");}
+  else if(mate){set('mate');why.push(`It starts a forced checkmate in ${mate}.`);}
+  if(m.promotion){set('promote');why.push(`Your pawn turns into a ${SC_PN[m.promotion]}.`);}
+  if(m.captured){
+    const back=pieceHang(Ba,m.to,me);
+    const g2=new Chess(fa),recap=g2.moves({verbose:true}).some(x=>x.to===m.to);
+    if(!recap){set('win');why.push(`It wins their ${SC_PN[m.captured]} for free.`);}
+    else if(VAL[m.captured]>VAL[m.piece]){set('win');why.push(`Your ${SC_PN[m.piece]} takes their ${SC_PN[m.captured]}, which is worth more.`);}
+    else{if(VAL[m.captured]>=3)set('trade');why.push(VAL[m.captured]===VAL[m.piece]?`It trades off their active ${SC_PN[m.captured]}.`:`It takes their ${SC_PN[m.captured]}${back?'':' safely'}.`);}
+  }
+  const fake=fa.split(' ');fake[1]=me;fake[3]='-';const gx=new Chess();let hits=[];
+  if(gx.load(fake.join(' ')))hits=gx.moves({square:m.to,verbose:true}).filter(x=>x.captured&&x.captured!=='k'&&VAL[x.captured]>=3).map(x=>({t:x.captured,sq:x.to}));
+  if(m.san.includes('+'))hits.unshift({t:'k',sq:''});
+  if(hits.length>=2&&!m.san.includes('#')){set('fork');why.push(`It's a fork: it attacks their ${hits.slice(0,2).map(h=>SC_PN[h.t]+(h.sq?' on '+h.sq:'')).join(' and ')} at once.`);}
+  const hb=scHang(fen,me),ha=scHang(fa,me);
+  if(hb.some(h=>h.sq===m.from)&&!ha.some(h=>h.sq===m.to)){set('save');why.push(`It moves your ${SC_PN[m.piece]} out of danger.`);}
+  else if(hb.length&&ha.length<hb.length){set('protect');why.push(`It protects your ${SC_PN[hb[0].t]} on ${hb[0].sq}.`);}
+  const ob=scHang(fen,opp).length,oa=scHang(fa,opp);
+  if(oa.length>ob&&!m.captured&&hits.length<2){set('attack');why.push(`It attacks their ${SC_PN[oa[0].t]} on ${oa[0].sq}.`);}
+  if(m.san.includes('+')&&!m.san.includes('#')&&hits.length<2){set('check');why.push("It's check, so they have to answer it.");}
+  if(/[kq]/.test(m.flags)){set('castle');why.push('It castles: your king gets safe and your rook joins the game.');}
+  const moveNo=+fen.split(' ')[5]||1,home=me==='w'?'1':'8';
+  if((m.piece==='n'||m.piece==='b')&&m.from[1]===home&&moveNo<=15){set('develop');why.push(`It brings your ${SC_PN[m.piece]} into the game.`);}
+  if(m.piece==='p'&&['d4','e4','d5','e5','c4','c5','f4','f5'].includes(m.to)&&moveNo<=10){set('centre');why.push('It grabs space in the centre.');}
+  set('quiet');
+  return{theme,why,m,fa};
+}
+const SC_IDEA={mate1:'You have checkmate in one move! Look at every check.',mate:'There is a forced checkmate for you. Start with forcing moves: checks first.',
+  promote:'One of your pawns can become a queen.',win:'You can win material: one of their pieces is not protected well enough.',
+  fork:'Look for a fork: one move that attacks two of their pieces at once.',save:'One of your pieces is under attack. Deal with that first!',
+  protect:'Something of yours needs protecting.',attack:'You can attack one of their pieces and make the bot react.',check:'A check is strong here.',
+  castle:'Time to get your king safe.',trade:'A trade is good here: swap off one of their most active pieces.',develop:"Bring another piece into the game. Don't move the same piece twice.",centre:'Fight for the centre with a pawn.',
+  quiet:'No tactic right now. Find your worst piece and improve it.'};
+const scPov=e=>{const s=SC.me==='w'?1:-1;return{cp:s*e.cp,mate:e.mate!==null&&e.mate!==undefined?s*e.mate:null};};
+function scWord(e){const p=scPov(e);if(p.mate!==null)return p.mate>0?'You have a forced mate':'They have a forced mate';const v=p.cp;return v>300?"You're winning":v>100?"You're better":v>-100?'About equal':v>-300?"You're worse":"You're losing";}
+function scOnPos(){
+  SC.tok++;SC.an=null;SC.hunt=undefined;SC.threat=undefined;SC.reveal=3;SC.gem=true;if(SC.eng)SC.eng.stop();
+  const g=SC.game;if(g&&!g.game_over()&&g.turn()===SC.me)scAnalyze();
+  scRender();
+}
+function scAnalyze(){
+  const tok=SC.tok,fen=SC.game.fen(),turn=fen.split(' ')[1],alive=()=>tok===SC.tok;
+  SC.eng=SC.eng||new Engine();
+  SC.eng.search(fen,{depth:14,multipv:3,cancelled:()=>!alive()}).then(r=>{
+    if(!alive())return;
+    SC.an={fen,lines:r.lines.filter(Boolean).map(l=>{const w=lineToWhite(l,turn);return{uci:l.pv[0],pv:l.pv,e:{cp:w.cp,mate:w.mate}};}).filter(l=>l.uci)};
+    scRender();
+    return scThreat(fen,alive);
+  }).then(t=>{
+    if(!alive())return;SC.threat=t;scRender();
+    return brillHunt(fen,{budget:5000,alive});
+  }).then(h=>{if(!alive()||h===undefined)return;SC.hunt=h;scRender();}).catch(()=>{});
+}
+// what would the bot do if it could move again right now? that is its threat
+async function scThreat(fen,alive){
+  const g=new Chess(fen);if(g.in_check())return{check:true};
+  const f=fen.split(' ');f[1]=f[1]==='w'?'b':'w';f[3]='-';const g2=new Chess();if(!g2.load(f.join(' '))||g2.game_over())return null;
+  const r=await SC.eng.search(g2.fen(),{depth:11,multipv:1,cancelled:()=>!alive()});
+  if(!alive()||!r.lines[0])return undefined;
+  const l=r.lines[0],w=lineToWhite(l,g2.turn()),m=uciMove(new Chess(g2.fen()),l.pv[0]);if(!m)return null;
+  const pov=scPov({cp:w.cp,mate:w.mate}),best=SC.an&&SC.an.lines[0],now=best?scPov(best.e):null;
+  if(pov.mate!==null&&pov.mate<0)return{san:m.san,uci:l.pv[0],text:Math.abs(pov.mate)===1?`The bot threatens ${m.san} — checkmate!`:`The bot threatens ${m.san}, starting a checkmate in ${Math.abs(pov.mate)}.`};
+  if(m.captured&&VAL[m.captured]>=3){const g3=new Chess(g2.fen());g3.move(m);const recap=g3.moves({verbose:true}).some(x=>x.to===m.to);
+    if(!recap||VAL[m.captured]>VAL[m.piece])return{san:m.san,uci:l.pv[0],text:`The bot threatens ${m.san}, winning your ${SC_PN[m.captured]}.`};}
+  if(now&&now.mate===null&&pov.mate===null&&now.cp-pov.cp>250)return{san:m.san,uci:l.pv[0],text:`The bot threatens ${m.san}.`};
+  return null;
+}
+function scGrade(p){
+  const prev=SC.grade&&SC.grade.r?{c:SC.grade.r.c,ply:SC.grade.p}:null,tok=p.fenBefore+p.uci;
+  SC.grade={p,key:tok};
+  Promise.all([evalFen(p.fenBefore,12),evalFen(p.fenAfter,12)]).then(([E0,E1])=>{
+    if(!SC.grade||SC.grade.key!==tok)return;
+    const r=classifyCore(p,E0,E1,prev,true);let text='';
+    try{text=templateComment(COACHES[SET.coach]?SET.coach:Object.keys(COACHES)[0],moveFacts(p,E0,E1,r),hashStr(tok));}catch(e){}
+    SC.grade={p,key:tok,r,text};scRender();
+  }).catch(()=>{});
+}
+
+/* ---- 5. the coach window ---- */
+function scMini(fen,arrows){
+  const B=new Chess(fen).board(),fl=SC.me==='b';let h='';
+  for(let row=0;row<8;row++)for(let col=0;col<8;col++){const r=fl?7-row:row,f=fl?7-col:col,p=B[r][f],sq='abcdefgh'[f]+(8-r);
+    const hl=SC.lastMove&&(SC.lastMove.from===sq||SC.lastMove.to===sq);
+    h+=`<div class="sq ${(f+8-r)%2?'l':'d'}${hl?' hl':''}">${p?`<div class="pc p-${p.color}${p.type.toUpperCase()}"></div>`:''}</div>`;}
+  const xy=sq=>{const f=sq.charCodeAt(0)-97,r=8-+sq[1];return fl?[7-f+.5,7-r+.5]:[f+.5,r+.5];};
+  let svg='';for(const a of arrows){const[x1,y1]=xy(a.uci.slice(0,2)),[x2,y2]=xy(a.uci.slice(2,4)),dx=x2-x1,dy=y2-y1,d=Math.hypot(dx,dy)||1,ux=dx/d,uy=dy/d,ex=x2-ux*.35,ey=y2-uy*.35;
+    svg+=`<line x1="${x1}" y1="${y1}" x2="${ex}" y2="${ey}" stroke="${a.c}" stroke-width=".16" stroke-linecap="round" opacity=".85"/><polygon points="${x2},${y2} ${ex-uy*.28},${ey+ux*.28} ${ex+uy*.28},${ey-ux*.28}" fill="${a.c}" opacity=".85"/>`;}
+  return `<div class="scbw"><div class="board scb">${h}</div><svg class="scarr" viewBox="0 0 8 8">${svg}</svg></div>`;
+}
+const SC_COL=['#5fbf4a','#4f8fd6','#b06cd8'];
+function scRender(){
+  const el=SC.root;if(!el)return;
+  const dot=`<span class="scdot ${SC.stream?'on':''}"></span>`;
+  let body='';
+  const g=SC.game;
+  if(!SC.stream)body='<div class="scmsg">Not watching. Press <b>Share chess.com tab</b> in ChessLab.</div>';
+  else if(SC.state==='find'||SC.state==='off')body='<div class="scmsg">👀 Looking for the board…<div class="muted">Open your game on chess.com (Play → Computer). Keep the whole board visible.</div></div>';
+  else if(SC.state==='learn')body='<div class="scmsg">♟ Found the board!<div class="muted">Start a <b>new game</b> so I can learn what your pieces look like. I only need to see the starting position once.</div></div>';
+  else if(SC.state==='turn')body='<div class="scmsg">Whose move is it?<div class="row" style="justify-content:center;margin-top:8px;gap:6px"><button class="btn sm" data-sc="turn:me">My move</button><button class="btn ghost sm" data-sc="turn:opp">Bot\'s move</button></div></div>';
+  else if(SC.state==='lost'||!g)body='<div class="scmsg">🤔 I lost track of the game.<div class="muted">It will pick up again by itself. Starting a new game always works.</div></div>';
+  else{
+    const mine=g.turn()===SC.me,fen=g.fen(),an=SC.an&&SC.an.fen===fen?SC.an:null,best=an&&an.lines[0];
+    const arrows=[];
+    if(mine&&best){if(SC.reveal===2)arrows.push({uci:best.uci.slice(0,2)+best.uci.slice(0,2),c:SC_COL[0]});if(SC.reveal>=3)an.lines.slice(0,3).forEach((l,i)=>arrows.push({uci:l.uci,c:SC_COL[i]}));}
+    if(mine&&SC.gem&&SC.hunt)arrows.push({uci:SC.hunt.uci,c:'#1fbfa6'});
+    if(mine&&SC.threat&&SC.threat.uci)arrows.unshift({uci:SC.threat.uci,c:'#e05545'});
+    const Gr=SC.grade;
+    let h='';
+    if(SC.board)h+=scMini(fen,arrows.filter(a=>a.uci.slice(0,2)!==a.uci.slice(2,4)));
+    if(Gr)h+=`<div class="scgrade">${Gr.r?icon(Gr.r.c)+`<div><b style="color:${CLS[Gr.r.c].color}">${CLS[Gr.r.c].label}</b> · <b>${esc(Gr.p.san)}</b><div class="muted">${esc(Gr.text)}</div></div>`:`<span class="ic pend"></span><div class="muted">Checking your move ${esc(Gr.p.san)}…</div>`}</div>`;
+    if(g.game_over())h+=`<div class="scturn">${g.in_checkmate()?(g.turn()===SC.me?'Checkmate — the bot won. Start a new game and try again!':'🏆 Checkmate — you won!'):'Draw.'}</div>`;
+    else if(!mine)h+=`<div class="scturn">⏳ Bot's move${SC.lastMove&&SC.lastMove.color===SC.me?'':'…'}</div>`;
+    else{
+      const danger=scHang(fen,SC.me);
+      h+=`<div class="scturn">🟢 Your move${best?` · <span class="muted">${scWord(best.e)} (${evalText(scPov(best.e))})</span>`:''}</div>`;
+      if(SC.lastMove&&SC.lastMove.color!==SC.me)h+=`<div class="muted" style="font-size:12.5px">The bot played <b>${esc(SC.lastMove.san)}</b>.</div>`;
+      if(SC.threat&&SC.threat.check)h+='<div class="scwarn">⚠️ You\'re in check!</div>';
+      else if(SC.threat)h+=`<div class="scwarn">🎯 ${esc(SC.threat.text)}</div>`;
+      if(danger.length&&!(SC.threat&&SC.threat.text&&/winning your/.test(SC.threat.text)))h+=`<div class="scwarn">⚠️ Your ${SC_PN[danger[0].t]} on ${danger[0].sq} is under attack${danger.length>1?` (and ${danger.length-1} more piece${danger.length>2?'s':''})`:''}.</div>`;
+      if(!best)h+='<div class="muted" style="margin-top:6px">Thinking…</div>';
+      else{
+        const W=an.lines.map(l=>({l,w:scWhy(fen,l.uci,l.e)})),bw=W[0].w,bm=bw.m;
+        const hunt=SC.hunt,gemBtn=hunt===undefined?'💎 Looking…':hunt?'💎 Brilliant idea!':'💎 None here';
+        h+=`<div class="scbtns"><button class="btn sm${SC.reveal>=1?' on':''}" data-sc="r1">💡 Idea</button><button class="btn sm${SC.reveal>=2?' on':''}" data-sc="r2">♞ Piece</button><button class="btn sm${SC.reveal>=3?' on':''}" data-sc="r3">✅ Best moves</button><button class="btn sm gembtn${hunt?' found':''}${SC.gem?' on':''}" data-sc="gem" ${hunt===undefined?'disabled':''}>${gemBtn}</button></div>`;
+        if(SC.reveal>=1)h+=`<div class="scstep">💡 ${esc(SC_IDEA[bw.theme])}</div>`;
+        if(SC.reveal>=2)h+=`<div class="scstep">♞ ${/[kq]/.test(bm.flags)?'Look at your <b>king</b>: castling is the move.':`Move your <b>${SC_PN[bm.piece]}</b> on <b>${bm.from}</b>.`}</div>`;
+        if(SC.reveal>=3)h+=W.map(({l,w},i)=>`<div class="scmv"><span class="scn" style="background:${SC_COL[i]}">${i+1}</span><div><b>${esc(w.m.san)}</b> <span class="muted">${evalText(scPov(l.e))}</span><div class="scwhy">${esc(w.why.slice(0,2).join(' ')||'It keeps your position strongest.')}</div><div class="muted" style="font-size:11.5px">Likely: ${pvSan(fen,l.pv.slice(0,5),5,true)}</div></div></div>`).join('');
+        if(SC.gem&&hunt)h+=`<div class="scgem"><div class="muted" style="font-size:11.5px">${esc(gemTag(hunt))}</div>${gemWhat(fen,hunt)}<div class="muted" style="font-size:11.5px;margin-top:3px">Line: ${pvSan(fen,hunt.pv.slice(0,6),6,true)}</div></div>`;
+        if(SC.gem&&hunt===null)h+='<div class="scgem muted">No brilliant idea here. Play the best move instead.</div>';
+      }
+    }
+    body=h;
+  }
+  el.innerHTML=`<div class="sc"><div class="schead">${dot}<b>♞ ChessLab Coach</b><span class="muted" style="font-size:11px;margin-left:auto">bot games only</span><button class="scx" data-sc="board" title="Show or hide the mini board">${SC.board?'▣':'□'}</button></div>${body}</div>`;
+}
+function scClick(e){
+  const b=e.target.closest('[data-sc]');if(!b)return;const a=b.dataset.sc;
+  if(a==='r1'||a==='r2'||a==='r3'){const n=+a[1];SC.reveal=SC.reveal>=n?n-1:n;}
+  else if(a==='gem')SC.gem=!SC.gem;
+  else if(a==='board'){SC.board=!SC.board;store.set('scBoard',SC.board);}
+  else if(a==='turn:me')scSetTurn(SC.me);
+  else if(a==='turn:opp')scSetTurn(SC.me==='w'?'b':'w');
+  scRender();
+}
+function scStepVideo(){
+  const v=SC.video;if(!v||v.readyState<2||!v.videoWidth)return;
+  const W=v.videoWidth,H=v.videoHeight;if(SC.cv.width!==W||SC.cv.height!==H){SC.cv.width=W;SC.cv.height=H;}
+  SC.cx.drawImage(v,0,0,W,H);scFrame(SC.cx.getImageData(0,0,W,H).data,W,H);
+}
+async function scStart(){
+  if(!$('scOk').checked){toast('Tick the box first: this is only for games against chess.com bots.');return;}
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getDisplayMedia){toast('This browser can\'t share a tab. Use Chrome or Edge on a computer.',4500);return;}
+  let cc=null;try{cc=new CaptureController();}catch(e){}
+  const opts={video:{displaySurface:'browser',frameRate:5},audio:false,preferCurrentTab:false,selfBrowserSurface:'exclude',surfaceSwitching:'include',monitorTypeSurfaces:'exclude'};
+  if(cc)opts.controller=cc;
+  let stream;
+  try{stream=await navigator.mediaDevices.getDisplayMedia(opts);}catch(e){toast(e&&e.name==='NotAllowedError'?'Sharing was cancelled or is blocked on this computer.':'Could not start sharing.',4000);return;}
+  try{cc&&cc.setFocusBehavior('no-focus-change');}catch(e){}
+  scStop(true);SC.stream=stream;
+  SC.video=document.createElement('video');SC.video.muted=true;SC.video.playsInline=true;SC.video.srcObject=stream;SC.video.play().catch(()=>{});
+  SC.cv=document.createElement('canvas');SC.cx=SC.cv.getContext('2d',{willReadFrequently:true});
+  SC.G=null;SC.game=null;SC.pend='';SC.state='find';
+  stream.getVideoTracks()[0].addEventListener('ended',()=>scStop());
+  SC.timer=setInterval(scStepVideo,400);
+  $('scPanel').classList.remove('hidden');if(!SC.pip)SC.root=$('scPanel');
+  $('scFloat').classList.toggle('hidden',!('documentPictureInPicture' in window));$('scStop').classList.remove('hidden');$('scStart').textContent='📺 Share a different tab';
+  scRender();
+  toast('documentPictureInPicture' in window?'Now press "Open floating coach", then go to your chess.com tab.':'Put ChessLab next to your chess.com window — the coach is in this card.',5000);
+}
+function scStop(keepUi){
+  if(SC.timer)clearInterval(SC.timer);SC.timer=null;
+  if(SC.stream)SC.stream.getTracks().forEach(t=>t.stop());SC.stream=null;SC.video=null;SC.tok++;if(SC.eng)SC.eng.stop();
+  if(keepUi)return;
+  if(SC.pip){try{SC.pip.close();}catch(e){}SC.pip=null;}
+  SC.root=$('scPanel');$('scFloat').classList.add('hidden');$('scStop').classList.add('hidden');$('scStart').textContent='📺 Share chess.com tab';scRender();
+}
+async function scFloat(){
+  if(SC.pip){SC.pip.focus();return;}
+  let w;try{w=await documentPictureInPicture.requestWindow({width:340,height:620});}catch(e){toast('Could not open the floating window.');return;}
+  const d=w.document;
+  for(const st of document.querySelectorAll('style,link[rel=stylesheet]'))d.head.appendChild(st.cloneNode(true));
+  d.documentElement.setAttribute('style',document.documentElement.getAttribute('style')||'');
+  d.documentElement.className=document.documentElement.className;d.body.className=document.body.className+' scpip';
+  d.title='ChessLab Coach';d.body.innerHTML='<div id="scRoot"></div>';
+  SC.pip=w;SC.root=d.getElementById('scRoot');SC.root.addEventListener('click',scClick);
+  $('scPanel').innerHTML='<div class="muted" style="padding:6px 2px">The coach is in the floating window. Go to your chess.com tab and play!</div>';
+  w.addEventListener('pagehide',()=>{SC.pip=null;SC.root=$('scPanel');scRender();});
+  scRender();
+}
+$('scOk').onchange=e=>{$('scStart').disabled=!e.target.checked;};
+$('scStart').onclick=scStart;$('scStop').onclick=()=>scStop();$('scFloat').onclick=scFloat;
+$('scPanel').addEventListener('click',scClick);SC.root=$('scPanel');
+window.SC=SC;window.scFrame=scFrame;
 
 /* ===================== TABS / NAV / KEYS ===================== */
 function openReview(pgnText){ if(pgnText) $('pgn').value=pgnText; if(location.hash!=='#analyze'){location.hash='analyze';} setTab('review'); UI.page='analyze'; runAnalysis(); bumpStat('reviews'); }
