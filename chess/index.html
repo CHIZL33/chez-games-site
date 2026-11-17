@@ -4116,7 +4116,7 @@ function scRead(D,W,G){
   for(let y=0;y<bh;y++){let r=0,g=0,b=0;for(let x=0;x<bw;x++){const i=((y+by)*W+x+bx)<<2;r+=D[i];g+=D[i+1];b+=D[i+2];const k=(y+1)*W1+x+1,u=y*W1+x+1;IR[k]=IR[u]+r;IG[k]=IG[u]+g;IB[k]=IB[u]+b;}}
   const box=(x,y,w,h)=>{x=Math.max(0,Math.min(bw-1,x));y=Math.max(0,Math.min(bh-1,y));w=Math.max(1,Math.min(bw-x,w));h=Math.max(1,Math.min(bh-y,h));
     const a=y*W1+x,b2=y*W1+x+w,c2=(y+h)*W1+x,d=(y+h)*W1+x+w,n=w*h;return[(IR[d]-IR[b2]-IR[c2]+IR[a])/n,(IG[d]-IG[b2]-IG[c2]+IG[a])/n,(IB[d]-IB[b2]-IB[c2]+IB[a])/n];};
-  const L=G.L,n=SCN*SCN,cs=L*.76/SCN,cw=Math.max(1,Math.round(cs)),p=Math.max(2,Math.round(L*.1)),ins=Math.max(1,Math.round(L*.03)),e=Math.round(L)-ins-p;
+  const L=G.L,n=SCN*SCN,cs=L*.76/SCN,cw=Math.max(1,Math.round(cs)),p=Math.max(2,Math.round(L*.08)),ins=Math.max(3,Math.round(L*.08)),e=Math.round(L)-ins-p;   // inset past chess.com's hover outline
   const raw=[];
   for(let r=0;r<8;r++)for(let c=0;c<8;c++){
     const sx=G.x0-bx+c*L,sy=G.y0-by+r*L,X=Math.round(sx),Y=Math.round(sy);
