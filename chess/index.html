@@ -4189,7 +4189,7 @@ function scClassify(F){
     for(const code of['wp','wn','wb','wr','wq','wk','bp','bn','bb','br','bq','bk']){
       const T=SC.tpl[code+bg]||SC.tpl[code+ob];if(!T)continue;const d=scDist(f,T);if(d<bd){bd=d;best=code;}
     }
-    if(bd>.3){bad++;continue;}
+    if(bd>.3){if(f.cnt<SCN*SCN*.25)continue;bad++;continue;}   // faint and unlike any piece: wood grain, not a piece
     out[scBoardIdx(r,c)]=best;
   }
   return{P:out,bad};
