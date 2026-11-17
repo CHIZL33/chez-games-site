@@ -4187,7 +4187,7 @@ function scClassify(F){
     const f=F[r*8+c];if(!f.occ)continue;
     const bg=(r+c)%2?'d':'l',ob=bg==='d'?'l':'d';let best=null,bd=1e9;
     for(const code of['wp','wn','wb','wr','wq','wk','bp','bn','bb','br','bq','bk']){
-      const T=SC.tpl[code+bg]||SC.tpl[code+ob];if(!T)continue;const d=scDist(f,T);if(d<bd){bd=d;best=code;}
+      const A=SC.tpl[code+bg],B=SC.tpl[code+ob];if(!A&&!B)continue;const d=Math.min(A?scDist(f,A):9,B?scDist(f,B):9);if(d<bd){bd=d;best=code;}
     }
     if(bd>.3){if(f.cnt<SCN*SCN*.25)continue;bad++;continue;}   // faint and unlike any piece: wood grain, not a piece
     out[scBoardIdx(r,c)]=best;
