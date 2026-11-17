@@ -621,9 +621,9 @@ footer a{color:#8b92a0}
           </div>
         </div>
         <div class="card">
-          <b>🖥 Screen coach for chess.com bots</b>
-          <div class="muted" style="font-size:12.5px;margin:2px 0 8px">Watches your chess.com game against a bot and teaches you on every move: a hint step by step, the 2–3 best moves and why, and brilliant ideas. It floats over chess.com in a small window.</div>
-          <label class="sccheck"><input type="checkbox" id="scOk"> I'm playing a <b>bot</b> on chess.com (Play → Computer), not a person.</label>
+          <b>🖥 Screen coach for bot games</b>
+          <div class="muted" style="font-size:12.5px;margin:2px 0 8px">Watches your game against a bot on chess.com (or any site, any board design) and teaches you on every move: a hint step by step, the 2–3 best moves and why, and brilliant ideas. It floats over the game in a small window.</div>
+          <label class="sccheck"><input type="checkbox" id="scOk"> I'm playing a <b>bot</b> (computer), not a person.</label>
           <div class="muted" style="font-size:12px;margin:4px 0 8px">Chess.com allows outside help only in games against bots. Using this against people breaks its fair-play rules and gets accounts closed.</div>
           <div class="row"><button class="btn" id="scStart" disabled>📺 Share chess.com tab</button><button class="btn ghost hidden" id="scFloat">🪟 Open floating coach</button><button class="btn ghost hidden" id="scStop">Stop</button></div>
           <div id="scPanel" class="hidden" style="margin-top:10px"></div>
@@ -4030,7 +4030,7 @@ $('newAnalysis').onclick=()=>{plies=[];evals=[];cls=[];headers={};T.root=null;T.
    You share your chess.com tab; ChessLab finds the board in the picture, learns what your pieces look like from the
    starting position, follows the game move by move and coaches you on your turn: a hint step by step, the 2-3 best
    moves with reasons, and brilliant / gambit ideas. It floats over chess.com in a picture-in-picture window. */
-const SC={stream:null,video:null,cv:null,cx:null,timer:null,G:null,tpl:store.get('scTpl',null),flip:false,me:'w',game:null,
+const SC={stream:null,video:null,cv:null,cx:null,timer:null,G:null,tpl:store.get('scTpl2',null),badN:0,flip:false,me:'w',game:null,
   state:'off',msg:'',pend:'',pendN:0,unk:0,lost:0,findAt:0,root:null,pip:null,eng:null,tok:0,an:null,hunt:undefined,
   reveal:0,gem:false,grade:null,lastMove:null,askTurn:null,board:store.get('scBoard',true)};
 const SCN=16,SC_PN={p:'pawn',n:'knight',b:'bishop',r:'rook',q:'queen',k:'king'};
@@ -4039,61 +4039,104 @@ const scPx=(D,W,x,y)=>{const i=((y|0)*W+(x|0))<<2;return[D[i],D[i+1],D[i+2]];};
 const scDiff=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1])+Math.abs(a[2]-b[2]);
 const scLum=c=>c[0]*.299+c[1]*.587+c[2]*.114;
 
-/* ---- 1. find the board: rows of 8 equal, alternating squares, then the exact top edge from the square colours ---- */
-function scFindBoard(D,W,H){
-  const rows=[];
-  for(let y=0;y<H;y+=2){
-    const segs=[];let sx=0,ref=scPx(D,W,0,y);
-    for(let x=1;x<W;x++){const c=scPx(D,W,x,y);if(scDiff(c,ref)>40){segs.push({a:sx,b:x,c:ref});sx=x;ref=c;}}
-    segs.push({a:sx,b:W,c:ref});
-    const S=[];for(const g of segs){if(g.b-g.a<3&&S.length)S[S.length-1].b=g.b;else S.push({a:g.a,b:g.b,c:g.c});}
-    for(let i=0;i+8<=S.length;i++){
-      const L=(S[i+7].b-S[i].a)/8;if(L<12)continue;
-      let ok=true;
-      for(let k=0;k<8&&ok;k++)if(Math.abs(S[i+k].b-S[i+k].a-L)>Math.max(2.5,L*.08))ok=false;
-      for(let k=0;k<6&&ok;k++)if(scDiff(S[i+k].c,S[i+k+2].c)>40)ok=false;
-      if(ok&&scDiff(S[i].c,S[i+1].c)<40)ok=false;
-      if(ok){rows.push({y,x0:S[i].a,L,A:S[i].c,B:S[i+1].c});i+=7;}
-    }
-  }
-  if(!rows.length)return null;
-  // the biggest group of matching rows is the board
-  let best=null;
-  for(const r of rows){const grp=rows.filter(q=>Math.abs(q.x0-r.x0)<=4&&Math.abs(q.L-r.L)<=2);const sc=grp.length*r.L;if(!best||sc>best.sc)best={sc,grp};}
-  const grp=best.grp;if(grp.length<3)return null;
-  const med=a=>a.slice().sort((p,q)=>p-q)[a.length>>1];
-  const x0=med(grp.map(r=>r.x0)),L=med(grp.map(r=>r.L)),r0=grp[0];
-  const light=scLum(r0.A)>=scLum(r0.B)?r0.A:r0.B,dark=light===r0.A?r0.B:r0.A;
-  const ys=grp.map(r=>r.y),ymin=Math.min(...ys),ymax=Math.max(...ys);
-  let bestY=null,bestS=-1;
-  for(let y0=Math.max(0,Math.floor(ymin-8*L));y0<=ymin;y0++){
-    if(y0+8*L>H+1)break;let s=0;
-    for(let r=0;r<8;r++)for(let c=0;c<8;c++){
-      const exp=(r+c)%2?dark:light,x=x0+c*L,y=y0+r*L;
-      for(const[a,b]of[[.1,.1],[.9,.1],[.1,.9],[.9,.9]])if(scDiff(scPx(D,W,Math.min(W-1,x+a*L),Math.min(H-1,y+b*L)),exp)<45)s++;
-    }
-    if(s>bestS){bestS=s;bestY=y0;}
-  }
-  if(bestS<256*.6||ymax>bestY+8*L)return null;
-  // fine alignment: samples hugging every square's edges only all match when the grid sits exactly on the board
-  const fit=(X,Y)=>{let n=0;for(let r=0;r<8;r++)for(let c=0;c<8;c++){const exp=(r+c)%2?dark:light,x=X+c*L,y=Y+r*L;
-    for(const[a,b]of[[.03,.03],[.97,.03],[.03,.97],[.97,.97],[.5,.02],[.5,.98],[.02,.5],[.98,.5]]){const px=x+a*L,py=y+b*L;if(px>=0&&py>=0&&px<W&&py<H&&scDiff(scPx(D,W,px,py),exp)<45)n++;}}return n;};
-  let fx=x0,fy=bestY,fs=-1;const R=Math.ceil(L/4);
-  for(let dy=-R;dy<=R;dy++)for(let dx=-3;dx<=3;dx++){const v=fit(x0+dx,bestY+dy);if(v>fs){fs=v;fx=x0+dx;fy=bestY+dy;}}
-  return{x0:fx,y0:fy,L,light,dark};
+/* ---- 1. find the board. Works on any board design, flat or textured (wood, marble…): a chessboard is the only
+   8×8 grid whose square corners alternate light/dark. Corners are used because pieces never reach them. ---- */
+function scLumDS(D,W,H){
+  const f=Math.min(1,320/W),Wd=Math.max(1,Math.floor(W*f)),Hd=Math.max(1,Math.floor(H*f)),A=new Float32Array(Wd*Hd),bx=W/Wd,by=H/Hd;
+  for(let y=0;y<Hd;y++){const y0=Math.floor(y*by),y1=Math.max(y0+1,Math.floor((y+1)*by));
+    for(let x=0;x<Wd;x++){const x0=Math.floor(x*bx),x1=Math.max(x0+1,Math.floor((x+1)*bx));let s=0,n=0;
+      for(let yy=y0;yy<y1;yy++)for(let xx=x0;xx<x1;xx++){const i=(yy*W+xx)<<2;s+=D[i]*.299+D[i+1]*.587+D[i+2]*.114;n++;}A[y*Wd+x]=s/n;}}
+  return{A,Wd,Hd,f:Wd/W};
 }
-
-/* ---- 2. read every square: which cells differ from the square's own background colour, and their colours ---- */
-function scFeat(D,W,G,r,c){
-  const L=G.L,x=G.x0+c*L,y=G.y0+r*L,n=SCN*SCN;
-  const pts=[[.06,.06],[.94,.06],[.06,.94],[.94,.94],[.5,.04],[.5,.96],[.04,.5],[.96,.5]].map(([a,b])=>scPx(D,W,x+a*L,y+b*L));
-  let bg=pts[0],bn=-1;for(const p of pts){const k=pts.filter(q=>scDiff(p,q)<30).length;if(k>bn){bn=k;bg=p;}}
-  const m=new Uint8Array(n),col=new Uint8Array(n*3);let cnt=0;
-  for(let i=0;i<SCN;i++)for(let j=0;j<SCN;j++){
-    const p=scPx(D,W,x+L*(.12+.76*(j+.5)/SCN),y+L*(.12+.76*(i+.5)/SCN)),k=i*SCN+j;
-    col[k*3]=p[0];col[k*3+1]=p[1];col[k*3+2]=p[2];if(scDiff(p,bg)>50){m[k]=1;cnt++;}
+function scInt(A,w,h){const I=new Float64Array((w+1)*(h+1)),W1=w+1;for(let y=0;y<h;y++){let s=0;for(let x=0;x<w;x++){s+=A[y*w+x];I[(y+1)*W1+x+1]=I[y*W1+x+1]+s;}}return I;}
+const scBox=(I,w,x,y,bw,bh)=>{const W1=w+1;return(I[(y+bh)*W1+x+bw]-I[y*W1+x+bw]-I[(y+bh)*W1+x]+I[y*W1+x])/(bw*bh);};
+// light/dark contrast minus how uneven each colour is: high only on a real board
+function scScore(vals){
+  let se=0,so=0,qe=0,qo=0;for(let i=0;i<64;i++){const a=vals[i];if(((i>>3)+(i&7))&1){so+=a;qo+=a*a;}else{se+=a;qe+=a*a;}}
+  const me=se/32,mo=so/32,sde=Math.sqrt(Math.max(0,qe/32-me*me)),sdo=Math.sqrt(Math.max(0,qo/32-mo*mo)),con=Math.abs(me-mo);
+  return{sc:con-.8*(sde+sdo),con,me,mo};
+}
+function scCoarse(ds){
+  const {A,Wd,Hd}=ds,I=scInt(A,Wd,Hd),vals=new Float32Array(64);let best=null;
+  for(let L=6;L*8+2<=Math.min(Wd,Hd);L+=.5){
+    const p=Math.max(1,Math.round(L*.2)),ins=Math.max(0,Math.round(L*.06)),mw=Wd-p+1,mh=Hd-p+1,M=new Float32Array(mw*mh);
+    for(let y=0;y<mh;y++)for(let x=0;x<mw;x++)M[y*mw+x]=scBox(I,Wd,x,y,p,p);
+    const off=[];for(let k=0;k<8;k++)off.push(Math.round(k*L));const Lr=Math.round(L),span=Math.round(8*L)+1;
+    for(let y=0;y+span<=Hd;y++)for(let x=0;x+span<=Wd;x++){
+      for(let r=0;r<8;r++){const yy=y+off[r];for(let c=0;c<8;c++){const xx=x+off[c];
+        vals[r*8+c]=(M[(yy+ins)*mw+Math.min(mw-1,xx+Lr-ins-p)]+M[Math.min(mh-1,yy+Lr-ins-p)*mw+xx+ins])*.5;}}
+      const s=scScore(vals);if(!best||s.sc>best.sc)best={sc:s.sc,con:s.con,x,y,L};
+    }
   }
-  return{m,col,cnt,bg,occ:cnt>=n*.07};
+  return best;
+}
+function scRefine(D,W,H,c,f){
+  const L0=c.L/f,X0=c.x/f,Y0=c.y/f,m=Math.ceil(1/f)+3;
+  const rx=Math.max(0,Math.floor(X0-m)),ry=Math.max(0,Math.floor(Y0-m)),rw=Math.min(W-rx,Math.ceil(8*(L0+3)+2*m+2)),rh=Math.min(H-ry,Math.ceil(8*(L0+3)+2*m+2));
+  const A=new Float32Array(rw*rh);for(let y=0;y<rh;y++)for(let x=0;x<rw;x++){const i=((y+ry)*W+x+rx)<<2;A[y*rw+x]=D[i]*.299+D[i+1]*.587+D[i+2]*.114;}
+  const I=scInt(A,rw,rh),vals=new Float32Array(64);let best=null;
+  for(let L=L0-3;L<=L0+3;L+=.25){
+    const p=Math.max(2,Math.round(L*.12)),ins=Math.max(1,Math.round(L*.03)),e=Math.round(L)-ins-p;
+    for(let dy=-m;dy<=m;dy++)for(let dx=-m;dx<=m;dx++){
+      const x=X0+dx-rx,y=Y0+dy-ry;if(x<0||y<0||x+8*L+1>rw||y+8*L+1>rh)continue;
+      for(let r=0;r<8;r++)for(let cc=0;cc<8;cc++){
+        const sx=Math.round(x+cc*L),sy=Math.round(y+r*L);
+        const v=[scBox(I,rw,sx+ins,sy+ins,p,p),scBox(I,rw,sx+e,sy+ins,p,p),scBox(I,rw,sx+ins,sy+e,p,p),scBox(I,rw,sx+e,sy+e,p,p)].sort((a,b)=>a-b);
+        vals[r*8+cc]=(v[1]+v[2])/2;   // middle two: ignores a coordinate label or highlight edge in one corner
+      }
+      const s=scScore(vals);if(!best||s.sc>best.sc)best={sc:s.sc,con:s.con,x:x+rx,y:y+ry,L};
+    }
+  }
+  if(!best||best.sc<8||best.con<15)return null;
+  // lock onto the square edges: across every inner grid line, each square's colour jumps to its neighbour's
+  const edge=(L,pos,vert)=>{let t=0;const w=2,h=Math.max(2,Math.round(L*.6)),o=Math.round(L*.2);
+    for(let k=1;k<8;k++){const b=Math.round(pos+k*L);for(let j=0;j<8;j++){const q=Math.round((vert?best.y-ry:best.x-rx)+j*L)+o;
+      if(vert){if(b-w<0||b+w>=rw||q+h>=rh)continue;t+=Math.abs(scBox(I,rw,b,q,w,h)-scBox(I,rw,b-w,q,w,h));}
+      else{if(b-w<0||b+w>=rh||q+h>=rw)continue;t+=Math.abs(scBox(I,rw,q,b,h,w)-scBox(I,rw,q,b-w,h,w));}}}return t;};
+  let al=null;
+  for(let L=best.L-1;L<=best.L+1;L+=.125){
+    let bx=null,by=null;
+    for(let d=-4;d<=4;d+=.5){const ex=edge(L,best.x-rx+d,true),ey=edge(L,best.y-ry+d,false);if(!bx||ex>bx.v)bx={v:ex,d};if(!by||ey>by.v)by={v:ey,d};}
+    if(!al||bx.v+by.v>al.v)al={v:bx.v+by.v,L,x:best.x+bx.d,y:best.y+by.d};
+  }
+  if(al){best.x=al.x;best.y=al.y;best.L=al.L;}
+  const G={x0:best.x,y0:best.y,L:best.L},acc=[[0,0,0,0],[0,0,0,0]];
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++)for(const[a,b]of[[.08,.08],[.92,.08],[.08,.92],[.92,.92]]){const p=scPx(D,W,G.x0+(c+a)*G.L,G.y0+(r+b)*G.L),k=(r+c)&1;acc[k][0]+=p[0];acc[k][1]+=p[1];acc[k][2]+=p[2];acc[k][3]++;}
+  const avg=k=>[0,1,2].map(i=>acc[k][i]/acc[k][3]),e=avg(0),o=avg(1);
+  G.light=scLum(e)>=scLum(o)?e:o;G.dark=G.light===e?o:e;G.evenLight=G.light===e;
+  return G;
+}
+function scFindBoard(D,W,H){const ds=scLumDS(D,W,H),c=scCoarse(ds);if(!c||c.sc<8||c.con<15)return null;return scRefine(D,W,H,c,ds.f);}
+
+/* ---- 2. read every square, averaged over small cells so wood grain or marble doesn't look like a piece ---- */
+function scRead(D,W,G){
+  const H=(D.length>>2)/W,bx=Math.max(0,Math.floor(G.x0)),by=Math.max(0,Math.floor(G.y0)),bw=Math.min(W-bx,Math.ceil(8*G.L)+2),bh=Math.min(H-by,Math.ceil(8*G.L)+2);
+  const W1=bw+1,IR=new Float64Array(W1*(bh+1)),IG=new Float64Array(W1*(bh+1)),IB=new Float64Array(W1*(bh+1));
+  for(let y=0;y<bh;y++){let r=0,g=0,b=0;for(let x=0;x<bw;x++){const i=((y+by)*W+x+bx)<<2;r+=D[i];g+=D[i+1];b+=D[i+2];const k=(y+1)*W1+x+1,u=y*W1+x+1;IR[k]=IR[u]+r;IG[k]=IG[u]+g;IB[k]=IB[u]+b;}}
+  const box=(x,y,w,h)=>{x=Math.max(0,Math.min(bw-1,x));y=Math.max(0,Math.min(bh-1,y));w=Math.max(1,Math.min(bw-x,w));h=Math.max(1,Math.min(bh-y,h));
+    const a=y*W1+x,b2=y*W1+x+w,c2=(y+h)*W1+x,d=(y+h)*W1+x+w,n=w*h;return[(IR[d]-IR[b2]-IR[c2]+IR[a])/n,(IG[d]-IG[b2]-IG[c2]+IG[a])/n,(IB[d]-IB[b2]-IB[c2]+IB[a])/n];};
+  const L=G.L,n=SCN*SCN,cs=L*.76/SCN,cw=Math.max(1,Math.round(cs)),p=Math.max(2,Math.round(L*.1)),ins=Math.max(1,Math.round(L*.03)),e=Math.round(L)-ins-p;
+  const raw=[];
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+    const sx=G.x0-bx+c*L,sy=G.y0-by+r*L,X=Math.round(sx),Y=Math.round(sy);
+    const cor=[box(X+ins,Y+ins,p,p),box(X+e,Y+ins,p,p),box(X+ins,Y+e,p,p),box(X+e,Y+e,p,p)];
+    let bi=0,bj=1,bd=1e9;for(let i=0;i<4;i++)for(let j=i+1;j<4;j++){const d=scDiff(cor[i],cor[j]);if(d<bd){bd=d;bi=i;bj=j;}}
+    const bg=[0,1,2].map(k=>(cor[bi][k]+cor[bj][k])/2),col=new Uint8Array(n*3),dif=new Float32Array(n);
+    for(let i=0;i<SCN;i++)for(let j=0;j<SCN;j++){const q=box(Math.floor(sx+L*.12+j*cs),Math.floor(sy+L*.12+i*cs),cw,cw),k=i*SCN+j;col[k*3]=q[0];col[k*3+1]=q[1];col[k*3+2]=q[2];dif[k]=scDiff(q,bg);}
+    raw.push({bg,col,dif,noise:Array.from(dif).sort((a,b)=>a-b)[Math.floor(n*.6)]});
+  }
+  // the threshold adapts to how textured the board is (measured on the quieter half of the squares)
+  const nz=raw.map(x=>x.noise).sort((a,b)=>a-b)[24],T=Math.max(40,nz*2.5+10);
+  const own=i=>{const r=i>>3,c=i&7;return((((r+c)&1)===0)===G.evenLight)?G.light:G.dark;};
+  // last-move highlights stand out from the board's normal square-to-square variation
+  const hd=raw.map((x,i)=>scDiff(x.bg,own(i))),hlT=Math.max(40,hd.slice().sort((a,b)=>a-b)[56]*1.6);
+  let match=0;const F=raw.map((x,i)=>{
+    const m=new Uint8Array(n);let cnt=0;for(let k=0;k<n;k++)if(x.dif[k]>T){m[k]=1;cnt++;}
+    const o=own(i),oth=o===G.light?G.dark:G.light;
+    if(scDiff(x.bg,o)<scDiff(x.bg,oth)||hd[i]>hlT)match++;
+    return{m,col:x.col,cnt,bg:x.bg,occ:cnt>=n*.07,hl:hd[i]>hlT};
+  });
+  return{F,match,T};
 }
 function scDist(f,T){
   let s=0;const n=SCN*SCN;
@@ -4103,29 +4146,35 @@ function scDist(f,T){
 }
 // screen square <-> board square
 const scBoardIdx=(r,c)=>SC.flip?(7-r)*8+(7-c):r*8+c;
-function scRead(D,W,G){
-  const F=[];let match=0;
-  for(let r=0;r<8;r++)for(let c=0;c<8;c++){const f=scFeat(D,W,G,r,c);F.push(f);if(scDiff(f.bg,(r+c)%2?G.dark:G.light)<45)match++;}
-  return{F,match};
-}
 const scStartLike=F=>F.every((f,i)=>{const r=i>>3;return(r<2||r>5)?f.occ:!f.occ;});
-// learn the piece pictures from a starting position (works with any chess.com board and piece theme)
-function scLearn(F){
-  const pieceLum=rows=>{let s=0,n=0;for(const r of rows)for(let c=0;c<8;c++){const f=F[r*8+c];for(let k=0;k<SCN*SCN;k++)if(f.m[k]){s+=scLum([f.col[k*3],f.col[k*3+1],f.col[k*3+2]]);n++;}}return n?s/n:0;};
+// Learn what the pieces look like (any piece design) from the starting position, or from the first few moves of a
+// game: squares on the four home rows that are still occupied hold their starting piece. Odd ones out are dropped.
+const scEarlyLike=F=>{let home=0,mid=0;F.forEach((f,i)=>{const r=i>>3;if(f.occ){if(r<2||r>5)home++;else mid++;}});return home>=26&&mid<=6;};
+function scTplOf(fs){
+  const n=SCN*SCN,P=new Float32Array(n),C=new Float32Array(n*3),N=new Float32Array(n);
+  for(const f of fs)for(let i=0;i<n;i++)if(f.m[i]){P[i]++;N[i]++;C[i*3]+=f.col[i*3];C[i*3+1]+=f.col[i*3+1];C[i*3+2]+=f.col[i*3+2];}
+  const T={P:[],C:[]};for(let i=0;i<n;i++){T.P.push(+(P[i]/fs.length).toFixed(2));for(let j=0;j<3;j++)T.C.push(N[i]?Math.round(C[i*3+j]/N[i]):0);}
+  return T;
+}
+const scTplFeat=T=>({m:Uint8Array.from(T.P,v=>v>.5?1:0),col:Uint8Array.from(T.C)});
+function scLearn(F,full){
+  const pieceLum=rows=>{let s=0,n=0;for(const r of rows)for(let c=0;c<8;c++){const f=F[r*8+c];if(!f.occ)continue;for(let k=0;k<SCN*SCN;k++)if(f.m[k]){s+=scLum([f.col[k*3],f.col[k*3+1],f.col[k*3+2]]);n++;}}return n?s/n:0;};
   const whiteBottom=pieceLum([6,7])>pieceLum([0,1]);
   SC.flip=!whiteBottom;SC.me=whiteBottom?'w':'b';
-  const start=SC_START.split(','),acc={};
-  for(const r of[0,1,6,7])for(let c=0;c<8;c++){
-    const code=start[scBoardIdx(r,c)],key=code+((r+c)%2?'d':'l'),f=F[r*8+c],n=SCN*SCN;
-    const a=acc[key]||(acc[key]={P:new Float32Array(n),C:new Float32Array(n*3),N:new Float32Array(n),k:0});a.k++;
-    for(let i=0;i<n;i++)if(f.m[i]){a.P[i]++;a.N[i]++;a.C[i*3]+=f.col[i*3];a.C[i*3+1]+=f.col[i*3+1];a.C[i*3+2]+=f.col[i*3+2];}
-  }
+  const start=SC_START.split(','),S={};
+  for(const r of[0,1,6,7])for(let c=0;c<8;c++){const f=F[r*8+c];if(!f.occ)continue;const key=start[scBoardIdx(r,c)]+((r+c)%2?'d':'l');(S[key]=S[key]||[]).push(f);}
   const tpl={};
-  for(const[key,a]of Object.entries(acc)){
-    const P=[],C=[];for(let i=0;i<SCN*SCN;i++){P.push(+(a.P[i]/a.k).toFixed(2));for(let j=0;j<3;j++)C.push(a.N[i]?Math.round(a.C[i*3+j]/a.N[i]):0);}
-    tpl[key]={P,C};
+  for(const[key,fs]of Object.entries(S)){
+    let use=fs;
+    if(fs.length>=3){const T0=scTplOf(fs);use=fs.filter(f=>scDist(f,T0)<.15);if(!use.length)continue;}
+    tpl[key]=scTplOf(use);
   }
-  SC.tpl=tpl;store.set('scTpl',tpl);
+  if(!full){
+    // the same piece on light and dark squares must look alike, otherwise something has moved onto a home square
+    for(const code of['wr','wn','wb','br','bn','bb']){const a=tpl[code+'l'],b=tpl[code+'d'];if(a&&b&&scDist(scTplFeat(a),b)>.25){delete tpl[code+'l'];delete tpl[code+'d'];}}
+    if(Object.keys(tpl).length<20&&SC.tpl)return;
+  }
+  SC.tpl=tpl;store.set('scTpl2',tpl);SC.badN=0;
 }
 function scClassify(F){
   const out=new Array(64).fill('');let bad=0;
@@ -4147,11 +4196,14 @@ function scSet(state,msg){if(SC.state===state&&SC.msg===(msg||''))return;SC.stat
 function scFrame(D,W,H){
   if(!SC.G){const now=Date.now();if(now-SC.findAt<900&&!SC.test)return;SC.findAt=now;SC.G=scFindBoard(D,W,H);if(!SC.G){scSet('find');return;}}
   const R=scRead(D,W,SC.G);
-  if(R.match<40){if(++SC.lost>4){SC.G=null;SC.lost=0;scSet('find');}return;}
+  if(R.match<48){if(++SC.lost>4){SC.G=null;SC.lost=0;scSet('find');}return;}
   SC.lost=0;
-  if(scStartLike(R.F))scLearn(R.F);
+  if(scStartLike(R.F))scLearn(R.F,true);
+  else if((!SC.tpl||SC.badN>=6)&&scEarlyLike(R.F))scLearn(R.F,false);
   if(!SC.tpl){scSet('learn');return;}
-  const {P,bad}=scClassify(R.F);if(bad)return;            // a piece mid-drag, move dots or a hover outline: wait
+  const {P,bad}=scClassify(R.F);
+  if(bad){if(++SC.badN>=12&&!SC.game)scSet('learn');return;}   // a piece mid-drag, move dots or a hover outline: wait
+  SC.badN=0;
   const key=P.join(',');
   if(key!==SC.pend){SC.pend=key;SC.pendN=1;if(!SC.test)return;}else if(++SC.pendN>2&&SC.game&&scKey(SC.game)===key)return;
   scSync(P,key,R);
@@ -4167,6 +4219,7 @@ function scSync(P,key,R){
   if(++SC.unk>=4){SC.game=null;scInit(P,R);}
 }
 // start following from the middle of a game: rebuild the position from the picture
+function scMoveNo(P){const st=SC_START.split(',');let d=0;P.forEach((c,i)=>{if(c!==st[i])d++;});return Math.max(1,Math.round(d/4)+1);}
 function scInit(P,R){
   const wp=[],bp=[];P.forEach((c,i)=>{if(c==='wp')wp.push(i>>3);if(c==='bp')bp.push(i>>3);});
   // which side is at the bottom? white pawns normally stand nearer white's side of the board
@@ -4177,8 +4230,8 @@ function scInit(P,R){
   let cr=(at('e1','wk')&&at('h1','wr')?'K':'')+(at('e1','wk')&&at('a1','wr')?'Q':'')+(at('e8','bk')&&at('h8','br')?'k':'')+(at('e8','bk')&&at('a8','br')?'q':'');
   // the last-move highlight tells whose turn it is: the piece standing on a highlighted square just moved
   let turn=null;
-  if(R)R.F.forEach((f,i)=>{const r=i>>3,c=i&7;if(turn||!f.occ)return;const exp=(r+c)%2?SC.G.dark:SC.G.light;if(scDiff(f.bg,exp)>45){const code=P[scBoardIdx(r,c)];if(code)turn=code[0]==='w'?'b':'w';}});
-  const make=t=>{const g=new Chess();return g.load(`${fen} ${t} ${cr||'-'} - 0 20`)?g:null;};
+  if(R)R.F.forEach((f,i)=>{const r=i>>3,c=i&7;if(turn||!f.occ||!f.hl)return;const code=P[scBoardIdx(r,c)];if(code)turn=code[0]==='w'?'b':'w';});
+  const mn=scMoveNo(P),make=t=>{const g=new Chess();return g.load(`${fen} ${t} ${cr||'-'} - 0 ${mn}`)?g:null;};
   if(!turn){if(!make('w')&&!make('b')){scSet('lost');return;}SC.askTurn=P.join(',');SC.game=null;scSet('turn');return;}
   const g=make(turn)||make(turn==='w'?'b':'w');if(!g){scSet('lost');return;}
   SC.game=g;SC.lastMove=null;SC.grade=null;SC.askTurn=null;scSet('play');scOnPos();
@@ -4186,7 +4239,7 @@ function scInit(P,R){
 function scSetTurn(t){
   if(!SC.askTurn)return;const P=SC.askTurn.split(',');SC.askTurn=null;
   let fen='';for(let r=0;r<8;r++){let e=0;for(let c=0;c<8;c++){const p=P[r*8+c];if(!p){e++;continue;}if(e){fen+=e;e=0;}fen+=p[0]==='w'?p[1].toUpperCase():p[1];}if(e)fen+=e;if(r<7)fen+='/';}
-  const g=new Chess();if(!g.load(`${fen} ${t} - - 0 20`)){scSet('lost');return;}
+  const g=new Chess();if(!g.load(`${fen} ${t} - - 0 ${scMoveNo(P)}`)){scSet('lost');return;}
   SC.game=g;scSet('play');scOnPos();
 }
 function scApply(ms){
@@ -4303,8 +4356,8 @@ function scRender(){
   let body='';
   const g=SC.game;
   if(!SC.stream)body='<div class="scmsg">Not watching. Press <b>Share chess.com tab</b> in ChessLab.</div>';
-  else if(SC.state==='find'||SC.state==='off')body='<div class="scmsg">👀 Looking for the board…<div class="muted">Open your game on chess.com (Play → Computer). Keep the whole board visible.</div></div>';
-  else if(SC.state==='learn')body='<div class="scmsg">♟ Found the board!<div class="muted">Start a <b>new game</b> so I can learn what your pieces look like. I only need to see the starting position once.</div></div>';
+  else if(SC.state==='find'||SC.state==='off')body='<div class="scmsg">👀 Looking for the board…<div class="muted">Open your game. Any site and any board or piece design works — just keep the whole board visible.</div></div>';
+  else if(SC.state==='learn')body='<div class="scmsg">♟ Found the board!<div class="muted">Now I need to learn your pieces: start a <b>new game</b> (or keep going if it only just started). I learn them from the first few moves, once for each piece design.</div></div>';
   else if(SC.state==='turn')body='<div class="scmsg">Whose move is it?<div class="row" style="justify-content:center;margin-top:8px;gap:6px"><button class="btn sm" data-sc="turn:me">My move</button><button class="btn ghost sm" data-sc="turn:opp">Bot\'s move</button></div></div>';
   else if(SC.state==='lost'||!g)body='<div class="scmsg">🤔 I lost track of the game.<div class="muted">It will pick up again by itself. Starting a new game always works.</div></div>';
   else{
