@@ -413,6 +413,40 @@ footer a{color:#8b92a0}
 .tvboard{box-shadow:none}
 .tvside{display:flex;justify-content:space-between;align-items:center;width:calc(var(--sq)*8);font-size:13px;padding:5px 2px}
 .tvmoves{width:calc(var(--sq)*8);font:12px 'IBM Plex Mono',monospace;color:var(--muted);margin-top:4px;min-height:32px}
+.scpick{display:flex;align-items:center;gap:6px;background:#1b1e24;border:1px solid var(--line);border-radius:8px;padding:4px 6px;font-size:12.5px}
+.scpick span{flex:1;text-align:center}
+.scplan{background:linear-gradient(90deg,#33290f,#1b1e24 85%);border:1px solid #f0b429;border-radius:8px;padding:7px 9px;line-height:1.45;font-size:13px}
+#pageGambits{max-width:1180px;margin:0 auto;padding:0 18px 40px;display:flex;flex-direction:column;gap:14px}
+.gbgrp{margin-bottom:10px}.gbgh{font:600 12px 'IBM Plex Mono',monospace;color:var(--muted);margin:6px 2px}
+.gbitem{border:1px solid var(--line);border-radius:10px;margin-bottom:6px;background:#1b1e24}
+.gbitem.picked{border-color:#f0b429}
+.gbrow{display:flex;align-items:center;gap:8px;padding:9px 12px;cursor:pointer;flex-wrap:wrap}
+.gbrow:hover{background:#232730}
+.gbside{font-size:18px}
+.gbtype{font-size:11px;border-radius:999px;padding:2px 8px;border:1px solid var(--line)}
+.gbtype.gambit{color:#f0b429;border-color:#7a5d14}.gbtype.trap{color:#e07a5f;border-color:#7a3b2c}
+.gbk{font:12px 'IBM Plex Mono',monospace}
+.gbstars{margin-left:auto;color:#f0b429;font-size:12px;letter-spacing:1px}
+.gbdue{font-size:11px;background:#e05545;color:#fff;border-radius:999px;padding:1px 7px}
+.gbbody{padding:2px 12px 12px}
+.gbline{font:12.5px 'IBM Plex Mono',monospace;line-height:1.8;color:var(--muted);border-top:1px dashed var(--line);padding:4px 0}
+.gbline i{font-style:normal;opacity:.6;margin-right:2px}.gbline span{color:var(--text)}
+.gbline .gbkey{background:#f0b429;color:#111;border-radius:4px;padding:0 4px;font-weight:700}.gbline .gbafter{color:#9cc4f2}
+.gbtr{border-color:#f0b429}
+.gbtrw{display:flex;gap:18px;align-items:flex-start;margin-top:10px;flex-wrap:wrap}
+.gbb{--sq:min(56px,calc((100vw - 70px) / 8));box-shadow:none;cursor:pointer;touch-action:manipulation}
+.gbtrside{flex:1;min-width:220px;display:flex;flex-direction:column;gap:10px}
+.gbmsg{background:#1b1e24;border-left:3px solid #f0b429;border-radius:0 8px 8px 0;padding:9px 11px;font-size:14px;min-height:40px}
+.gbmoves{font:12.5px 'IBM Plex Mono',monospace;color:var(--muted);line-height:1.7}
+.gbmoves i{font-style:normal;opacity:.6;margin:0 2px 0 4px}
+.gbstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-top:8px}
+.gbstats div{background:#1b1e24;border-radius:8px;padding:8px;text-align:center}.gbstats b{display:block;font-size:20px}.gbstats span{font-size:11.5px;color:var(--muted)}
+.gbby{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px}.gbby span{background:#1b1e24;border-radius:6px;padding:3px 8px}
+.gbgames{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.gbgame{display:flex;align-items:center;gap:10px;background:#1b1e24;border-radius:8px;padding:6px 10px;font-size:13px;flex-wrap:wrap}
+.gbgame .ic{width:14px;height:14px;font-size:7px;vertical-align:middle}
+.gbres{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;background:#333}
+.gbres.W{background:#3f6b2a}.gbres.L{background:#7a2e27}.gbres.D{background:#555}
 .sccheck{display:flex;gap:8px;align-items:center;font-size:13.5px;cursor:pointer}
 .sccheck input{width:17px;height:17px;accent-color:var(--accent)}
 .sc{display:flex;flex-direction:column;gap:8px;font-size:13.5px}
@@ -490,6 +524,7 @@ footer a{color:#8b92a0}
       <a href="#play" data-page="play">Play</a>
       <a href="#puzzles" data-page="puzzles">Puzzles</a>
       <a href="#analyze" data-page="analyze">Analyze</a>
+      <a href="#gambits" data-page="gambits">Gambits</a>
       <a href="#fun" data-page="fun">Fun Lab</a>
       <a href="#watch" data-page="watch">Watch</a>
       <a href="#friends" data-page="friends">Friends</a>
@@ -504,7 +539,8 @@ footer a{color:#8b92a0}
 <div class="tabs hidden"><button id="tabPlay" class="on">Play</button><button id="tabReview">Analyze</button><button id="tabFun">Fun</button></div>
 <div class="wrap">
   <section id="pageHome" class="page hidden"></section>
-  <section id="pageWatch" class="page hidden"></section>
+  <section id="pageGambits" class="page hidden"></section>
+<section id="pageWatch" class="page hidden"></section>
   <div class="main" id="pageBoard">
     <div class="boardcol">
       <div class="player" id="topPlayer"><div class="left"><span class="nm"></span><span class="caps"></span></div><span class="acc"></span></div>
@@ -627,6 +663,7 @@ footer a{color:#8b92a0}
           <div style="font-size:12.5px;margin:6px 0 2px">♟ Use the <b>Luca</b> piece set on chess.com (Settings → Board → Pieces: Luca). The coach only reads Luca pieces.</div>
           <div class="muted" style="font-size:12px;margin:4px 0 8px">Chess.com allows outside help only in games against bots. Using this against people breaks its fair-play rules and gets accounts closed.</div>
           <div class="row"><button class="btn" id="scStart" disabled>📺 Share chess.com tab</button><button class="btn ghost hidden" id="scFloat">🪟 Open floating coach</button><button class="btn ghost hidden" id="scStop">Stop</button></div>
+          <div class="row" style="margin-top:8px;gap:8px"><label class="muted" style="font-size:12.5px">🎯 Gambit to play</label><select id="scPick" style="flex:1;min-width:150px"></select></div>
           <div id="scPanel" class="hidden" style="margin-top:10px"></div>
         </div>
         <div id="msg" class="muted"></div>
@@ -3883,9 +3920,34 @@ const GAMBITS=[
   ['Marshall Attack','b','gambit','e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 O-O c3 d5| exd5 Nxd5 Nxe5 Nxe5 Rxe5 c6'],
   ["From's Gambit",'b','gambit','f4 e5| fxe5 d6 exd6 Bxd6 Nf3 g5'],
   ['Traxler Counterattack','b','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 Bc5 Nxf7 Bxf2+| Kxf2 Nxe4+ Kg1 Qh4 g3 Nxg3'],
+  ['Traxler Counterattack','b','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 Bc5 Nxf7 Bxf2+| Kf1 Qe7 Nxh8 d5'],
+  ['Evans Gambit','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 b4| Bxb4 c3 Ba5 d4 d6 Qb3 Qd7'],
+  ['Smith-Morra Gambit','w','gambit','e4 c5 d4 cxd4 c3| Nf6 e5 Nd5 Nf3 e6 cxd4 Nc6'],
+  ['Scotch Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 Bc4| Bc5 O-O d6 c3 Nf6 cxd4 Bb6'],
+  ["Queen's Gambit",'w','gambit','d4 d5 c4| dxc4 Nf3 Nf6 e3 e6 Bxc4 c5 O-O a6'],
+  ['Staunton Gambit','w','gambit','d4 f5 e4| fxe4 Nc3 Nf6 Bg5 e6 Nxe4 Be7 Bxf6 Bxf6'],
+  ['Sicilian Wing Gambit','w','gambit','e4 c5 b4| cxb4 a3 d5 exd5 Qxd5 Bb2 e5'],
+  ['Muzio Gambit','w','gambit','e4 e5 f4 exf4 Nf3 g5 Bc4 g4 O-O| gxf3 Qxf3 Qf6 e5 Qxe5 d3 Bh6 Nc3 Ne7'],
+  ['Cochrane Gambit','w','gambit','e4 e5 Nf3 Nf6 Nxe5 d6 Nxf7| Kxf7 d4 Nxe4 Bd3 d5 O-O'],
+  ['Danish Gambit','w','gambit','e4 e5 d4 exd4 c3| d5 exd5 Qxd5 cxd4 Nc6 Nf3 Bg4'],
+  ['Göring Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 c3| d5 exd5 Qxd5 cxd4 Bg4 Be2 Bb4+'],
+  ['Vienna Gambit','w','gambit','e4 e5 Nc3 Nf6 f4| exf4 e5 Qe7 Qe2 Ng8 Nf3 Nc6'],
+  ['Stafford Gambit','b','gambit','e4 e5 Nf3 Nf6 Nxe5 Nc6| Nxc6 dxc6 d3 Bc5'],
+  ['Belgrade Gambit','w','gambit','e4 e5 Nf3 Nc6 Nc3 Nf6 d4 exd4 Nd5| Nxe4 Qe2 Nf6 Nxf6+ Qxf6 Nxd4'],
+  ['Center Game','w','gambit','e4 e5 d4 exd4 Qxd4| Nc6 Qe3 Nf6 Nc3 Bb4 Bd2 O-O O-O-O Re8'],
+  ['Møller Attack','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d4| exd4 cxd4 Bb4+ Nc3 Nxe4 O-O Bxc3 d5'],
+  ['Max Lange Attack','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 O-O Nf6 d4 exd4 e5| d5 exf6 dxc4 Re1+ Be6 Ng5 Qd5 Nc3 Qf5 Nce4'],
+  ['Portuguese Gambit','b','gambit','e4 d5 exd5 Nf6 d4 Bg4| Nf3 Bxf3 gxf3 Qxd5'],
+  ['Blumenfeld Gambit','b','gambit','d4 Nf6 c4 e6 Nf3 c5 d5 b5| Bg5 exd5 cxd5 h6 Bh4 g5 Bg3 Nh5'],
+  ['Fajarowicz Gambit','b','gambit','d4 Nf6 c4 e5 dxe5 Ne4| Nf3 d6 exd6 Bxd6'],
+  ['Ulvestad Variation','b','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 d5 exd5 b5| Bf1 Nd4 c3 Nxd5'],
+  ["Fool's Mate",'b','trap','f3 e5 g4 Qh4#'],
+  ['Légal Trap','w','trap','e4 e5 Nf3 d6 Bc4 Bg4 Nc3 g6 Nxe5| Bxd1 Bxf7+ Ke7 Nd5#'],
+  ['Blackburne Shilling Trap','b','trap','e4 e5 Nf3 Nc6 Bc4 Nd4 Nxe5 Qg5 Nxf7 Qxg2| Rf1 Qxe4+ Be2 Nf3#'],
 ];
 const GBOOK=new Map(),GBAD=[];
 for(const [name,side,type,line] of GAMBITS){
+  {const t=new Chess();if(!line.replace(/\|/g,'').split(' ').every(x=>t.move(x))){GBAD.push(name+': '+line);continue;}}
   const g=new Chess(),raw=line.split(' '),ki=raw.findIndex(t=>t.endsWith('|')),key=ki<0?raw.length-1:ki,mv=raw.map(t=>t.replace('|','')),sac=mv[key];
   for(let i=0;i<mv.length;i++){
     const fen=g.fen(),k=fkey(fen),turn=g.turn(),m=g.move(mv[i]);if(!m){GBAD.push(name);break;}
@@ -3924,15 +3986,16 @@ async function hMoves(fen,depth,alive,moves,n){
   return r.lines.filter(Boolean).map(l=>{const w=lineToWhite(l,turn);return{uci:l.pv[0],e:{cp:w.cp,mate:w.mate,pv:l.pv}};});
 }
 // resolves to a plan {kind:'now'|'setup',brill,uci,reply,sac,pv,e,w}, null when nothing is worth it, undefined when cancelled
-async function brillHunt(fen,{budget=14000,alive=()=>true,onProg}={}){
-  const key=fen+'|'+budget;if(huntCache.has(key))return huntCache.get(key);
+async function brillHunt(fen,{budget=14000,alive=()=>true,onProg,pick=''}={}){
+  const key=fen+'|'+budget+'|'+pick;if(huntCache.has(key))return huntCache.get(key);
   const g=new Chess(fen);if(g.game_over())return null;
   const t0=Date.now(),s=g.turn()==='w'?1:-1,W=e=>winPct(s*e.cp),mating=e=>e.mate!==null&&e.mate!==undefined&&s*e.mate>0;
   const E0=await hEval(fen,12,alive);if(!E0)return undefined;
   const wBest=W(E0);let best=null;const take=c=>{if(!best||c.score>best.score)best=c;};
-  const bks=GBOOK.get(fkey(fen)),bk=bks&&bks[Math.floor(Math.random()*bks.length)];
+  // a picked gambit wins; if the position no longer fits it, any other gambit from the book that fits is suggested instead
+  const all=GBOOK.get(fkey(fen))||[],mine=pick?all.filter(x=>x.name===pick):[],bks=mine.length?mine:all,bk=bks.length?bks[Math.floor(Math.random()*bks.length)]:null;
   if(bk){const gb=new Chess(fen),pv=[];for(const sn of bk.rest){const m=gb.move(sn);if(!m)break;pv.push(m.from+m.to);}
-    take({kind:'book',brill:false,after:bk.after,name:bk.name,type:bk.type,also:bks.filter(x=>x!==bk).map(x=>x.name),sacSan:bk.sac,isSac:bk.isSac,uci:bk.uci,sac:bk.uci,pv,e:E0,w:wBest,score:1500});}
+    take({kind:'book',brill:false,related:!!(pick&&!mine.length),after:bk.after,name:bk.name,type:bk.type,also:bks.filter(x=>x!==bk).map(x=>x.name),sacSan:bk.sac,isSac:bk.isSac,uci:bk.uci,sac:bk.uci,pv,e:E0,w:wBest,score:1500});}
   const sacs=sacMoves(fen).slice(0,10).map(x=>x.uci),sacSet=new Set(sacs);
   if(sacs.length){
     const R=await hMoves(fen,10,alive,sacs);if(!R)return undefined;
@@ -4063,7 +4126,7 @@ $('newAnalysis').onclick=()=>{plies=[];evals=[];cls=[];headers={};T.root=null;T.
    starting position, follows the game move by move and coaches you on your turn: a hint step by step, the 2-3 best
    moves with reasons, and brilliant / gambit ideas. It floats over chess.com in a picture-in-picture window. */
 const SC={stream:null,video:null,cv:null,cx:null,timer:null,G:null,tpl:null,badN:0,flip:false,me:'w',game:null,
-  state:'off',msg:'',pend:'',pendN:0,unk:0,lost:0,findAt:0,root:null,pip:null,eng:null,tok:0,an:null,hunt:undefined,
+  state:'off',msg:'',pick:store.get('scPick',''),audio:store.get('scAudio','sound'),log:{grades:[],t:Date.now()},pend:'',pendN:0,unk:0,lost:0,findAt:0,root:null,pip:null,eng:null,tok:0,an:null,hunt:undefined,
   reveal:0,gem:false,grade:null,lastMove:null,askTurn:null,board:store.get('scBoard',true)};
 const SCN=16,SC_PN={p:'pawn',n:'knight',b:'bishop',r:'rook',q:'queen',k:'king'};
 const SC_START=(()=>{const B=new Chess().board(),o=[];for(const row of B)for(const p of row)o.push(p?p.color+p.type:'');return o.join(',');})();
@@ -4246,7 +4309,7 @@ function scFrame(D,W,H){
   scSync(P,key,R);
 }
 function scSync(P,key,R){
-  if(key===SC_START){if(!SC.game||scKey(SC.game)!==key||SC.game.history().length){SC.game=new Chess();SC.lastMove=null;SC.grade=null;SC.askTurn=null;scSet('play');scOnPos();}return;}
+  if(key===SC_START){if(!SC.game||scKey(SC.game)!==key||SC.game.history().length){scSaveGame();SC.game=new Chess();SC.log={grades:[],t:Date.now()};SC.lastMove=null;SC.grade=null;SC.askTurn=null;scSet('play');scOnPos();}return;}
   if(!SC.game){scInit(P,R);return;}
   const g=SC.game,cur=scKey(g);if(cur===key){SC.unk=0;return;}
   for(const m of g.moves({verbose:true})){g.move(m);const k=scKey(g);g.undo();if(k===key){SC.unk=0;scApply([m]);return;}}
@@ -4271,13 +4334,13 @@ function scInit(P,R){
   const mn=scMoveNo(P),make=t=>{const g=new Chess();return g.load(`${fen} ${t} ${cr||'-'} - 0 ${mn}`)?g:null;};
   if(!turn){if(!make('w')&&!make('b')){scSet('lost');return;}SC.askTurn=P.join(',');SC.game=null;scSet('turn');return;}
   const g=make(turn)||make(turn==='w'?'b':'w');if(!g){scSet('lost');return;}
-  SC.game=g;SC.lastMove=null;SC.grade=null;SC.askTurn=null;scSet('play');scOnPos();
+  SC.game=g;SC.lastMove=null;SC.grade=null;SC.askTurn=null;SC.log={grades:[],t:Date.now()};scSet('play');scOnPos();
 }
 function scSetTurn(t){
   if(!SC.askTurn)return;const P=SC.askTurn.split(',');SC.askTurn=null;
   let fen='';for(let r=0;r<8;r++){let e=0;for(let c=0;c<8;c++){const p=P[r*8+c];if(!p){e++;continue;}if(e){fen+=e;e=0;}fen+=p[0]==='w'?p[1].toUpperCase():p[1];}if(e)fen+=e;if(r<7)fen+='/';}
   const g=new Chess();if(!g.load(`${fen} ${t} - - 0 ${scMoveNo(P)}`)){scSet('lost');return;}
-  SC.game=g;scSet('play');scOnPos();
+  SC.game=g;SC.log={grades:[],t:Date.now()};scSet('play');scOnPos();
 }
 function scApply(ms){
   const g=SC.game;
@@ -4334,7 +4397,8 @@ const scPov=e=>{const s=SC.me==='w'?1:-1;return{cp:s*e.cp,mate:e.mate!==null&&e.
 function scWord(e){const p=scPov(e);if(p.mate!==null)return p.mate>0?'You have a forced mate':'They have a forced mate';const v=p.cp;return v>300?"You're winning":v>100?"You're better":v>-100?'About equal':v>-300?"You're worse":"You're losing";}
 function scOnPos(){
   SC.tok++;SC.an=null;SC.hunt=undefined;SC.threat=undefined;SC.reveal=3;SC.gem=true;if(SC.eng)SC.eng.stop();
-  const g=SC.game;if(g&&!g.game_over()&&g.turn()===SC.me)scAnalyze();
+  const g=SC.game;if(g&&g.game_over())scSaveGame();
+  if(g&&!g.game_over()&&g.turn()===SC.me)scAnalyze();
   scRender();
 }
 function scAnalyze(){
@@ -4347,7 +4411,8 @@ function scAnalyze(){
     return scThreat(fen,alive);
   }).then(t=>{
     if(!alive())return;SC.threat=t;scRender();
-    return brillHunt(fen,{budget:5000,alive});
+    scSpeakTurn(t);
+    return brillHunt(fen,{budget:5000,alive,pick:SC.pick});
   }).then(h=>{if(!alive()||h===undefined)return;SC.hunt=h;scRender();}).catch(()=>{});
 }
 // what would the bot do if it could move again right now? that is its threat
@@ -4371,7 +4436,9 @@ function scGrade(p){
     if(!SC.grade||SC.grade.key!==tok)return;
     const r=classifyCore(p,E0,E1,prev,true);let text='';
     try{text=templateComment(COACHES[SET.coach]?SET.coach:Object.keys(COACHES)[0],moveFacts(p,E0,E1,r),hashStr(tok));}catch(e){}
-    SC.grade={p,key:tok,r,text};scRender();
+    SC.grade={p,key:tok,r,text};scRender();SC.log.grades.push(r.c);
+    if(['brilliant','great'].includes(r.c))scBeep('brilliant');else if(['mistake','blunder','miss'].includes(r.c))scBeep('blunder');else if(r.c==='best')scBeep('good');
+    scSay(CLS[r.c].label+'.');
   }).catch(()=>{});
 }
 
@@ -4403,13 +4470,14 @@ function scRender(){
     const arrows=[];
     if(mine&&best){if(SC.reveal===2)arrows.push({uci:best.uci.slice(0,2)+best.uci.slice(0,2),c:SC_COL[0]});if(SC.reveal>=3)an.lines.slice(0,3).forEach((l,i)=>arrows.push({uci:l.uci,c:SC_COL[i]}));}
     if(mine&&SC.gem&&SC.hunt)arrows.push({uci:SC.hunt.uci,c:'#1fbfa6'});
+    {const pl=scPlan();if(mine&&pl&&pl.next)arrows.push({uci:pl.next.uci,c:'#f0b429'});}
     if(mine&&SC.threat&&SC.threat.uci)arrows.unshift({uci:SC.threat.uci,c:'#e05545'});
     const Gr=SC.grade;
     let h='';
     if(SC.board)h+=scMini(fen,arrows.filter(a=>a.uci.slice(0,2)!==a.uci.slice(2,4)));
     if(Gr)h+=`<div class="scgrade">${Gr.r?icon(Gr.r.c)+`<div><b style="color:${CLS[Gr.r.c].color}">${CLS[Gr.r.c].label}</b> · <b>${esc(Gr.p.san)}</b><div class="muted">${esc(Gr.text)}</div></div>`:`<span class="ic pend"></span><div class="muted">Checking your move ${esc(Gr.p.san)}…</div>`}</div>`;
     if(g.game_over())h+=`<div class="scturn">${g.in_checkmate()?(g.turn()===SC.me?'Checkmate — the bot won. Start a new game and try again!':'🏆 Checkmate — you won!'):'Draw.'}</div>`;
-    else if(!mine)h+=`<div class="scturn">⏳ Bot's move${SC.lastMove&&SC.lastMove.color===SC.me?'':'…'}</div>`;
+    else if(!mine)h+=scPlanHtml(fen,false)+`<div class="scturn">⏳ Bot's move${SC.lastMove&&SC.lastMove.color===SC.me?'':'…'}</div>`;
     else{
       const danger=scHang(fen,SC.me);
       h+=`<div class="scturn">🟢 Your move${best?` · <span class="muted">${scWord(best.e)} (${evalText(scPov(best.e))})</span>`:''}</div>`;
@@ -4422,6 +4490,7 @@ function scRender(){
         const W=an.lines.map(l=>({l,w:scWhy(fen,l.uci,l.e)})),bw=W[0].w,bm=bw.m;
         const hunt=SC.hunt,gemBtn=hunt===undefined?'💎 Looking…':hunt?'💎 Brilliant idea!':'💎 None here';
         h+=`<div class="scbtns"><button class="btn sm${SC.reveal>=1?' on':''}" data-sc="r1">💡 Idea</button><button class="btn sm${SC.reveal>=2?' on':''}" data-sc="r2">♞ Piece</button><button class="btn sm${SC.reveal>=3?' on':''}" data-sc="r3">✅ Best moves</button><button class="btn sm gembtn${hunt?' found':''}${SC.gem?' on':''}" data-sc="gem" ${hunt===undefined?'disabled':''}>${gemBtn}</button></div>`;
+        h+=scPlanHtml(fen,mine);
         if(SC.reveal>=1)h+=`<div class="scstep">💡 ${esc(SC_IDEA[bw.theme])}</div>`;
         if(SC.reveal>=2)h+=`<div class="scstep">♞ ${/[kq]/.test(bm.flags)?'Look at your <b>king</b>: castling is the move.':`Move your <b>${SC_PN[bm.piece]}</b> on <b>${bm.from}</b>.`}</div>`;
         if(SC.reveal>=3)h+=W.map(({l,w},i)=>`<div class="scmv"><span class="scn" style="background:${SC_COL[i]}">${i+1}</span><div><b>${esc(w.m.san)}</b> <span class="muted">${evalText(scPov(l.e))}</span><div class="scwhy">${esc(w.why.slice(0,2).join(' ')||'It keeps your position strongest.')}</div><div class="muted" style="font-size:11.5px">Likely: ${pvSan(fen,l.pv.slice(0,5),5,true)}</div></div></div>`).join('');
@@ -4431,12 +4500,14 @@ function scRender(){
     }
     body=h;
   }
-  el.innerHTML=`<div class="sc"><div class="schead">${dot}<b>♞ ChessLab Coach</b><span class="muted" style="font-size:11px;margin-left:auto">bot games only</span><button class="scx" data-sc="reset" title="Lost track? Look at the board again">↻</button><button class="scx" data-sc="board" title="Show or hide the mini board">${SC.board?'▣':'□'}</button></div>${body}</div>`;
+  el.innerHTML=`<div class="sc"><div class="schead">${dot}<b>♞ ChessLab Coach</b><span class="muted" style="font-size:11px;margin-left:auto">bot games only</span><button class="scx" data-sc="audio" title="Sound: off / dings / dings + voice">${{off:'🔇',sound:'🔔',voice:'🗣'}[SC.audio]}</button><button class="scx" data-sc="reset" title="Lost track? Look at the board again">↻</button><button class="scx" data-sc="board" title="Show or hide the mini board">${SC.board?'▣':'□'}</button></div>${SC.stream?scPickBar():''}${body}</div>`;
 }
 function scClick(e){
   const b=e.target.closest('[data-sc]');if(!b)return;const a=b.dataset.sc;
   if(a==='r1'||a==='r2'||a==='r3'){const n=+a[1];SC.reveal=SC.reveal>=n?n-1:n;}
   else if(a==='gem')SC.gem=!SC.gem;
+  else if(a.startsWith('pk:')){const L=scPickList(),i=L.indexOf(SC.pick);scSetPick(L[(i+(+a.slice(3))+L.length)%L.length]);return;}
+  else if(a==='audio'){SC.audio={off:'sound',sound:'voice',voice:'off'}[SC.audio];store.set('scAudio',SC.audio);if(SC.audio==='off')try{speechSynthesis.cancel();}catch(e){}else scBeep('good');}
   else if(a==='reset'){SC.game=null;SC.G=null;SC.pend='';SC.unk=0;SC.tok++;SC.state='find';}
   else if(a==='board'){SC.board=!SC.board;store.set('scBoard',SC.board);}
   else if(a==='turn:me')scSetTurn(SC.me);
@@ -4469,6 +4540,7 @@ async function scStart(){
   toast('documentPictureInPicture' in window?'Now press "Open floating coach", then go to your chess.com tab.':'Put ChessLab next to your chess.com window — the coach is in this card.',5000);
 }
 function scStop(keepUi){
+  if(!keepUi)scSaveGame();
   if(SC.timer)clearInterval(SC.timer);SC.timer=null;
   if(SC.stream)SC.stream.getTracks().forEach(t=>t.stop());SC.stream=null;SC.video=null;SC.tok++;if(SC.eng)SC.eng.stop();
   if(keepUi)return;
@@ -4493,6 +4565,213 @@ $('scStart').onclick=scStart;$('scStop').onclick=()=>scStop();$('scFloat').oncli
 $('scPanel').addEventListener('click',scClick);SC.root=$('scPanel');
 SC.tpl=store.get('scTpl4',null)||SC_LUCA;window.SC=SC;window.scFrame=scFrame;
 
+/* ---- 6. gambit picker: cycle the gambit you want to play; the coach steers toward it ---- */
+const GB=new Map();   // name -> {name,side,type,lines:[{mv,key}]}
+for(const[name,side,type,line]of GAMBITS){const raw=line.split(' '),ki=raw.findIndex(t=>t.endsWith('|')),mv=raw.map(t=>t.replace('|',''));
+  if(GBAD.includes(name+': '+line))continue;const e=GB.get(name)||{name,side,type,lines:[]};e.lines.push({mv,key:ki<0?mv.length-1:ki});GB.set(name,e);}
+const scPickList=()=>['',...[...GB.values()].filter(x=>!SC.stream||!SC.game||x.side===SC.me).map(x=>x.name)];
+function scSetPick(n){
+  SC.pick=n||'';store.set('scPick',SC.pick);for(const id of['scPick','gbPickSel'])if($(id))$(id).value=SC.pick;
+  if(SC.game&&SC.game.turn()===SC.me&&SC.an){SC.hunt=undefined;const tok=SC.tok;brillHunt(SC.game.fen(),{budget:5000,alive:()=>tok===SC.tok,pick:SC.pick}).then(h=>{if(tok===SC.tok&&h!==undefined){SC.hunt=h;scRender();}}).catch(()=>{});}
+  scRender();window.GBX&&GBX.render();
+}
+function scPickBar(){const e=GB.get(SC.pick);return `<div class="scpick"><button class="scx" data-sc="pk:-1" title="Previous gambit">◀</button><span>🎯 ${e?`<b>${esc(e.name)}</b> <span class="muted">${e.side==='w'?'(White)':'(Black)'}</span>`:'<span class="muted">Any gambit</span>'}</span><button class="scx" data-sc="pk:1" title="Next gambit">▶</button></div>`;}
+function uciOf(g,san){const x=new Chess(g.fen()),m=x.move(san);return m?m.from+m.to+(m.promotion||''):'';}
+// where are we in the picked gambit? next = the move to play now (my turn), wait = replies we hope for (bot's turn)
+function scPlan(){
+  const e=GB.get(SC.pick),g=SC.game;if(!e||!g)return null;
+  const h=g.history();if(!h.length&&g.fen()!==new Chess().fen())return{name:e.name,unknown:true};
+  if(e.side!==SC.me)return{name:e.name,wrongSide:true};
+  const live=e.lines.filter(l=>h.every((x,i)=>l.mv[i]===x));
+  if(!live.length)return{name:e.name,left:true};
+  const ahead=live.filter(l=>l.mv.length>h.length).sort((a,b)=>b.mv.length-a.mv.length);if(!ahead.length)return{name:e.name,done:true};
+  if(g.turn()===SC.me){const san=ahead[0].mv[h.length];return{name:e.name,next:{san,uci:uciOf(g,san),key:h.length===ahead[0].key,after:h.length>ahead[0].key},rest:ahead[0].mv.slice(h.length)};}
+  return{name:e.name,wait:[...new Set(ahead.map(l=>l.mv[h.length]))]};
+}
+function scPlanHtml(fen,mine){
+  const p=scPlan();if(!p)return '';const nm=`<b>${esc(p.name)}</b>`;
+  if(p.unknown)return `<div class="scplan">🎯 Started mid-game, so I can't follow the ${nm} from move 1. Start a new game to play it.</div>`;
+  if(p.wrongSide)return `<div class="scplan">🎯 The ${nm} is played by ${GB.get(p.name).side==='w'?'White':'Black'} — you're ${SC.me==='w'?'White':'Black'} this game. Pick another with ◀ ▶.</div>`;
+  if(p.done)return `<div class="scplan">✅ You played the whole ${nm} book line! From here the best moves below take over.</div>`;
+  if(p.left){const h=SC.hunt;const rel=h&&h.kind==='book'&&h.name!==p.name?`<br>💡 Related idea: the <b>${esc(h.name)}</b> fits this position — play <b>${esc(uciToSan(fen,h.uci))}</b>.`:'';return `<div class="scplan">↪️ The bot left the ${nm} line.${rel||' Back to the best moves below.'}</div>`;}
+  if(p.wait)return `<div class="scplan">🎯 ${nm}: hoping the bot plays ${p.wait.map(x=>`<b>${esc(x)}</b>`).join(' or ')}.</div>`;
+  if(p.next&&mine)return `<div class="scplan">🎯 ${nm}: play <b>${esc(p.next.san)}</b>${p.next.key?` — ${GB.get(p.name).type==='trap'?'the key move of the trap':'the gambit move'}!`:p.next.after?' — the main line after the gambit.':' — on the road to the gambit.'}<div class="muted" style="font-size:11.5px">Book line: ${p.rest.slice(0,8).map(esc).join(' ')}</div></div>`;
+  return '';
+}
+
+/* ---- 7. sounds and voice ---- */
+let scAC=null;
+function scBeep(kind){
+  if(SC.audio==='off')return;
+  try{scAC=scAC||new (window.AudioContext||window.webkitAudioContext)();const t=scAC.currentTime;
+    const notes={good:[[660,0],[880,.09]],brilliant:[[523,0],[659,.08],[784,.16],[1047,.24]],blunder:[[220,0],[160,.14]],threat:[[440,0],[440,.18]]}[kind]||[];
+    for(const[f,d]of notes){const o=scAC.createOscillator(),gn=scAC.createGain();o.type=kind==='blunder'?'sawtooth':'sine';o.frequency.value=f;gn.gain.setValueAtTime(.0001,t+d);gn.gain.exponentialRampToValueAtTime(.18,t+d+.02);gn.gain.exponentialRampToValueAtTime(.0001,t+d+.22);o.connect(gn).connect(scAC.destination);o.start(t+d);o.stop(t+d+.25);}
+  }catch(e){}
+}
+const scSpoken=san=>san.replace(/O-O-O/,'castles long').replace(/O-O/,'castles').replace(/^K/,'King ').replace(/^Q/,'Queen ').replace(/^R/,'Rook ').replace(/^B/,'Bishop ').replace(/^N/,'Knight ').replace(/x/,' takes ').replace(/=([QRBN])/,(m,p)=>' promotes to '+{Q:'queen',R:'rook',B:'bishop',N:'knight'}[p]).replace(/#/,' checkmate').replace(/\+/,' check');
+function scSay(text){if(SC.audio!=='voice'||!window.speechSynthesis||!text)return;try{const u=new SpeechSynthesisUtterance(text);u.rate=1.05;speechSynthesis.speak(u);}catch(e){}}
+function scSpeakTurn(t){
+  if(t&&!t.check)scBeep('threat');
+  if(SC.audio!=='voice')return;try{speechSynthesis.cancel();}catch(e){}
+  let s='';if(SC.lastMove&&SC.lastMove.color!==SC.me)s+='The bot played '+scSpoken(SC.lastMove.san)+'. ';
+  if(t&&t.check)s+="You're in check. ";else if(t&&t.san)s+=t.text.replace(t.san,scSpoken(t.san))+' ';
+  const pl=scPlan();if(pl&&pl.next)s+=`${pl.name}: play ${scSpoken(pl.next.san)}. `;
+  else if(SC.an&&SC.an.lines[0]){const w=scWhy(SC.an.fen,SC.an.lines[0].uci,SC.an.lines[0].e);s+=SC_IDEA[w.theme];}
+  scSay(s);
+}
+
+/* ---- 8. coached games are saved for the Gambits tab ---- */
+function scSaveGame(){
+  const g=SC.game;if(!g||g.history().length<6)return;
+  const key=g.fen()+'|'+SC.log.t;if(SC.log.saved===key)return;SC.log.saved=key;
+  let res='*';if(g.in_checkmate())res=g.turn()==='w'?'0-1':'1-0';else if(g.game_over())res='1/2-1/2';
+  const hist=g.history(),fromStart=g.history({verbose:true})[0]&&g.history({verbose:true})[0].before===undefined;
+  const gam=[...GB.values()].filter(e=>e.lines.some(l=>l.key<hist.length&&l.mv.slice(0,l.key+1).every((x,i)=>hist[i]===x))).map(e=>e.name);
+  g.header('Event','ChessLab coached game','White',SC.me==='w'?'You':'Bot','Black',SC.me==='b'?'You':'Bot','Result',res);
+  const games=store.get('scGames',[]);
+  games.unshift({t:SC.log.t,me:SC.me,res,pgn:g.pgn(),moves:hist.length,grades:SC.log.grades.slice(),gambit:gam[gam.length-1]||''});
+  store.set('scGames',games.slice(0,200));window.GBX&&GBX.render();
+}
+// the picker on the ChessLab page (Analyze → Screen coach card)
+$('scPick').innerHTML='<option value="">Any gambit (coach chooses)</option>'+['w','b'].map(sd=>`<optgroup label="${sd==='w'?'As White':'As Black'}">${[...GB.values()].filter(e=>e.side===sd).map(e=>`<option value="${esc(e.name)}">${esc(e.name)}</option>`).join('')}</optgroup>`).join('');
+$('scPick').value=SC.pick;$('scPick').onchange=e=>scSetPick(e.target.value);
+
+/* ===================== GAMBITS TAB: picker, explorer, trainer, coached games ===================== */
+window.GBX=(function(){
+  const ST={filter:'all',q:'',open:null,tr:null};
+  const srs=()=>store.get('gbSrs',{});           // name -> {box,due,reps,ok}
+  const BOX=[0,1,3,7,14,30,60];                     // days until the next review for each box
+  const isDue=n=>{const r=srs()[n];return !r||r.due<=Date.now();};
+  const stars=n=>{const r=srs()[n];const b=r?r.box:0;return '★'.repeat(b)+'☆'.repeat(Math.max(0,5-b));};
+  const fmtLine=(mv,key)=>mv.map((x,i)=>`${i%2===0?`<i>${i/2+1}.</i>`:''}<span class="${i===key?'gbkey':i>key?'gbafter':''}">${esc(x)}</span>`).join(' ');
+  const pgnOf=mv=>{const g=new Chess();mv.forEach(x=>g.move(x));return g.pgn();};
+
+  /* ---------- trainer: you play the gambit's side, the book plays the replies ---------- */
+  function trStart(name){
+    const e=GB.get(name);if(!e)return;
+    ST.tr={name,e,g:new Chess(),sel:null,last:null,miss:0,wrong:0,msg:'',done:false,hint:false,lines:e.lines.map((l,i)=>i)};
+    ST.open=null;render();trAuto();
+    const el=$('gbTrainer');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  const trLive=t=>{const h=t.g.history();return t.lines.filter(i=>{const l=t.e.lines[i].mv;return h.every((x,k)=>l[k]===x);});};
+  function trExpected(t){const h=t.g.history();return [...new Set(trLive(t).map(i=>t.e.lines[i].mv[h.length]).filter(Boolean))];}
+  function trAuto(){
+    const t=ST.tr;if(!t||t.done)return;
+    const exp=trExpected(t);
+    if(!exp.length){trFinish();return;}
+    if(t.g.turn()!==t.e.side){
+      setTimeout(()=>{if(ST.tr!==t)return;const san=exp[Math.floor(Math.random()*exp.length)],m=t.g.move(san);t.last=m;t.msg=`Opponent plays <b>${esc(san)}</b>.`;render();trAuto();},550);
+    }
+  }
+  function trFinish(){
+    const t=ST.tr;t.done=true;const S=srs(),r=S[t.name]||{box:0,due:0,reps:0,ok:0};
+    r.reps++;if(t.wrong===0){r.ok++;r.box=Math.min(BOX.length-1,r.box+1);}else r.box=0;
+    r.due=Date.now()+(r.box?BOX[r.box]*864e5:10*6e4);S[t.name]=r;store.set('gbSrs',S);
+    t.msg=t.wrong===0?`✅ Perfect! You know the <b>${esc(t.name)}</b>. Next review in ${BOX[r.box]} day${BOX[r.box]===1?'':'s'}.`
+      :`Done, with ${t.wrong} mistake${t.wrong>1?'s':''}. This one comes back for review in 10 minutes.`;
+    try{scBeep(t.wrong?'good':'brilliant');}catch(e){}
+    render();
+  }
+  function trSquare(sq){
+    const t=ST.tr;if(!t||t.done||t.g.turn()!==t.e.side)return;
+    const p=t.g.get(sq);
+    if(t.sel&&t.sel!==sq){
+      const x=new Chess(t.g.fen()),m=x.move({from:t.sel,to:sq,promotion:'q'});
+      if(m){
+        const exp=trExpected(t);
+        if(exp.includes(m.san)){t.g.move(m.san);t.last=m;t.sel=null;t.miss=0;t.hint=false;
+          const h=t.g.history(),key=trLive(t).some(i=>t.e.lines[i].key===h.length-1);
+          t.msg=key?`🔥 <b>${esc(m.san)}</b> — that's the ${t.e.type==='trap'?'key move of the trap':'gambit'}!`:`✓ <b>${esc(m.san)}</b> is right.`;
+          render();trAuto();return;}
+        t.sel=null;t.miss++;t.wrong++;t.msg=`✗ <b>${esc(m.san)}</b> isn't the book move here. ${t.miss>=2?`The move is <b>${esc(exp[0])}</b>.`:'Try again!'}`;t.hint=t.miss>=2;
+        try{scBeep('blunder');}catch(e){}render();return;
+      }
+    }
+    t.sel=p&&p.color===t.g.turn()&&t.sel!==sq?sq:null;render();
+  }
+  function trBoard(t){
+    const B=t.g.board(),fl=t.e.side==='b',dests=t.sel?t.g.moves({square:t.sel,verbose:true}).map(m=>m.to):[];
+    const exp=t.hint?trExpected(t):[],hm=exp[0]?new Chess(t.g.fen()).move(exp[0]):null;let h='';
+    for(let row=0;row<8;row++)for(let col=0;col<8;col++){const r=fl?7-row:row,f=fl?7-col:col,p=B[r][f],sq='abcdefgh'[f]+(8-r);
+      const hl=(t.last&&(t.last.from===sq||t.last.to===sq))||(hm&&(hm.from===sq||hm.to===sq));
+      h+=`<div class="sq ${(f+8-r)%2?'l':'d'}${hl?' hl':''}${t.sel===sq?' sel':''}" data-gq="${sq}">${p?`<div class="pc p-${p.color}${p.type.toUpperCase()}"></div>`:''}${dests.includes(sq)?(p?'<div class="ring"></div>':'<div class="dot"></div>'):''}</div>`;}
+    return `<div class="board gbb">${h}</div>`;
+  }
+  function trHtml(){
+    const t=ST.tr;if(!t)return '';
+    const h=t.g.history(),you=t.e.side==='w'?'White':'Black';
+    return `<div class="card gbtr" id="gbTrainer"><div class="row" style="justify-content:space-between"><h4>🎓 Training: ${esc(t.name)}</h4><button class="btn ghost sm" data-g="trstop">✕ Close</button></div>
+      <div class="gbtrw">${trBoard(t)}<div class="gbtrside">
+        <div class="muted" style="font-size:12.5px">You are <b>${you}</b>. Play the book moves; the opponent answers with the gambit's main replies.</div>
+        <div class="gbmsg">${t.msg||(t.g.turn()===t.e.side?'Your move — what does the '+esc(t.name)+' play here?':'Opponent is thinking…')}</div>
+        <div class="gbmoves">${h.map((x,i)=>(i%2?'':`<i>${i/2+1}.</i>`)+esc(x)).join(' ')||'—'}</div>
+        <div class="row" style="gap:6px;flex-wrap:wrap">${t.done?`<button class="btn sm" data-g="train:${esc(t.name)}">↻ Again</button><button class="btn sm" data-g="nextdue">⏭ Next due</button>`:`<button class="btn ghost sm" data-g="hint">💡 Hint</button><button class="btn ghost sm" data-g="train:${esc(t.name)}">↻ Restart</button>`}<button class="btn ghost sm" data-g="pick:${esc(t.name)}">🎯 Use in coach</button></div>
+        <div class="muted" style="font-size:12px">Memory: ${stars(t.name)} · mistakes this run: ${t.wrong}</div>
+      </div></div></div>`;
+  }
+
+  /* ---------- explorer ---------- */
+  function listHtml(){
+    const q=ST.q.trim().toLowerCase(),f=ST.filter;
+    let L=[...GB.values()].filter(e=>(f==='all'||(f==='w'&&e.side==='w')||(f==='b'&&e.side==='b')||(f==='trap'&&e.type==='trap')||(f==='gambit'&&e.type==='gambit')||(f==='due'&&isDue(e.name)))&&(!q||e.name.toLowerCase().includes(q)||e.lines.some(l=>l.mv.join(' ').toLowerCase().includes(q))));
+    const first=e=>e.lines[0].mv[0];
+    const groups={};for(const e of L){const k=`1.${first(e)}`;(groups[k]=groups[k]||[]).push(e);}
+    if(!L.length)return '<div class="muted" style="padding:10px">No gambits match.</div>';
+    return Object.entries(groups).sort((a,b)=>b[1].length-a[1].length).map(([k,es])=>`<div class="gbgrp"><div class="gbgh">${esc(k)} <span class="muted">· ${es.length}</span></div>${es.map(e=>{
+      const open=ST.open===e.name,key=e.lines[0].mv[e.lines[0].key];
+      return `<div class="gbitem${open?' open':''}${SC.pick===e.name?' picked':''}"><div class="gbrow" data-g="open:${esc(e.name)}"><span class="gbside ${e.side}">${e.side==='w'?'♔':'♚'}</span><b>${esc(e.name)}</b><span class="gbtype ${e.type}">${e.type}</span><span class="muted gbk">key: ${esc(key)}</span><span class="gbstars" title="How well you know it">${stars(e.name)}</span>${isDue(e.name)?'<span class="gbdue">due</span>':''}</div>
+        ${open?`<div class="gbbody">${e.lines.map(l=>`<div class="gbline">${fmtLine(l.mv,l.key)}</div>`).join('')}
+          <div class="row" style="gap:6px;margin-top:8px;flex-wrap:wrap"><button class="btn sm" data-g="train:${esc(e.name)}">🎓 Train it</button><button class="btn ghost sm" data-g="pick:${esc(e.name)}">${SC.pick===e.name?'✓ Picked for coach':'🎯 Pick for coach'}</button><button class="btn ghost sm" data-g="ana:${esc(e.name)}">⭐ Analyze line</button></div></div>`:''}</div>`;}).join('')}</div>`).join('');
+  }
+
+  /* ---------- coached games ---------- */
+  function gamesHtml(){
+    const G=store.get('scGames',[]);
+    if(!G.length)return `<div class="card"><h4>📚 Your coached games</h4><div class="muted" style="font-size:13px">Games the screen coach watches are saved here automatically, with your grades and the gambit you played.</div></div>`;
+    const res=g=>g.res==='*'?'·':((g.res==='1-0')===(g.me==='w')?'W':g.res==='1/2-1/2'?'D':'L');
+    const W=G.filter(g=>res(g)==='W').length,L=G.filter(g=>res(g)==='L').length,D=G.filter(g=>res(g)==='D').length;
+    const all=G.flatMap(g=>g.grades),good=all.filter(c=>['brilliant','great','best','excellent','good','book'].includes(c)).length,bl=all.filter(c=>c==='blunder').length;
+    const by={};for(const g of G)if(g.gambit){const b=by[g.gambit]=by[g.gambit]||{n:0,w:0,l:0};b.n++;if(res(g)==='W')b.w++;if(res(g)==='L')b.l++;}
+    const cnt=(g,c)=>g.grades.filter(x=>x===c).length;
+    return `<div class="card"><div class="row" style="justify-content:space-between"><h4>📚 Your coached games</h4><button class="btn ghost sm" data-g="clear">Clear all</button></div>
+      <div class="gbstats"><div><b>${G.length}</b><span>games</span></div><div><b style="color:#7cb342">${W}</b><span>wins</span></div><div><b>${D}</b><span>draws</span></div><div><b style="color:#e05545">${L}</b><span>losses</span></div><div><b>${all.length?Math.round(good/all.length*100)+'%':'–'}</b><span>good moves</span></div><div><b>${G.length?(bl/G.length).toFixed(1):'–'}</b><span>blunders / game</span></div></div>
+      ${Object.keys(by).length?`<div class="muted" style="font-size:12.5px;margin:8px 0 4px">By gambit</div><div class="gbby">${Object.entries(by).sort((a,b)=>b[1].n-a[1].n).map(([n,b])=>`<span><b>${esc(n)}</b> ${b.w}W ${b.l}L / ${b.n}</span>`).join('')}</div>`:''}
+      <div class="gbgames">${G.slice(0,40).map((g,i)=>`<div class="gbgame"><span class="gbres ${res(g)}">${res(g)}</span><span class="muted">${new Date(g.t).toLocaleDateString()} ${new Date(g.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}</span><span>${g.me==='w'?'♔ White':'♚ Black'} · ${Math.ceil(g.moves/2)} moves</span>${g.gambit?`<span class="gbtype gambit">${esc(g.gambit)}</span>`:''}<span class="muted" style="font-size:12px">${['brilliant','best','mistake','blunder'].map(c=>cnt(g,c)?`${icon(c)}${cnt(g,c)}`:'').join(' ')}</span><span style="margin-left:auto;display:flex;gap:4px"><button class="btn ghost sm" data-g="rev:${i}">⭐ Review</button><button class="btn ghost sm" data-g="del:${i}" title="Delete">🗑</button></span></div>`).join('')}</div></div>`;
+  }
+
+  function render(){
+    const el=$('pageGambits');if(!el||UI.page!=='gambits')return;
+    const due=[...GB.values()].filter(e=>isDue(e.name)).length;
+    el.innerHTML=`<div class="section-h" style="margin-top:6px"><div><h3 style="font-size:28px">🎯 Gambits</h3><div class="muted">${GB.size} gambits and traps. Pick one for the screen coach, train it, or browse every line.</div></div></div>
+      <div class="card gbpickc"><div class="row" style="gap:10px;flex-wrap:wrap"><b>Coach plays:</b><button class="btn ghost sm" data-g="pk:-1">◀</button><select id="gbPickSel"><option value="">Any gambit (coach chooses)</option>${['w','b'].map(sd=>`<optgroup label="${sd==='w'?'As White':'As Black'}">${[...GB.values()].filter(e=>e.side===sd).map(e=>`<option value="${esc(e.name)}">${esc(e.name)}</option>`).join('')}</optgroup>`).join('')}</select><button class="btn ghost sm" data-g="pk:1">▶</button>
+        <button class="btn sm" data-g="nextdue" style="margin-left:auto">🎓 Train ${due} due</button></div></div>
+      ${trHtml()}
+      <div class="card"><div class="row" style="gap:6px;flex-wrap:wrap;margin-bottom:10px"><input type="text" id="gbQ" placeholder="Search gambits or moves (e.g. Falkbeer, Nxf7)" value="${esc(ST.q)}" style="flex:1;min-width:180px">${[['all','All'],['w','As White'],['b','As Black'],['gambit','Gambits'],['trap','Traps'],['due','Due']].map(([v,l])=>`<button class="chip${ST.filter===v?' on':''}" data-g="f:${v}">${l}</button>`).join('')}</div><div id="gbList">${listHtml()}</div></div>
+      ${gamesHtml()}`;
+    $('gbPickSel').value=SC.pick;
+    $('gbPickSel').onchange=e=>scSetPick(e.target.value);
+    const q=$('gbQ');q.oninput=()=>{ST.q=q.value;$('gbList').innerHTML=listHtml();};
+  }
+  document.addEventListener('click',e=>{
+    if(UI.page!=='gambits')return;
+    const s=e.target.closest('[data-gq]');if(s){trSquare(s.dataset.gq);return;}
+    const b=e.target.closest('[data-g]');if(!b)return;const a=b.dataset.g,v=a.slice(a.indexOf(':')+1);
+    if(a.startsWith('open:')){ST.open=ST.open===v?null:v;$('gbList').innerHTML=listHtml();}
+    else if(a.startsWith('f:')){ST.filter=v;render();}
+    else if(a.startsWith('train:'))trStart(v);
+    else if(a.startsWith('pick:')){scSetPick(SC.pick===v?'':v);toast(SC.pick?`The coach will steer you toward the ${SC.pick}.`:'The coach is back to any gambit.',2500);}
+    else if(a.startsWith('pk:')){const L=['',...GB.keys()],i=L.indexOf(SC.pick);scSetPick(L[(i+(+v)+L.length)%L.length]);}
+    else if(a.startsWith('ana:')){const e2=GB.get(v);if(e2)openReview(pgnOf(e2.lines[0].mv));}
+    else if(a==='trstop'){ST.tr=null;render();}
+    else if(a==='hint'){const t=ST.tr;if(t){t.hint=true;t.wrong++;t.msg=`💡 Play <b>${esc(trExpected(t)[0]||'')}</b>.`;render();}}
+    else if(a==='nextdue'){const d=[...GB.values()].filter(x=>isDue(x.name)&&(!ST.tr||x.name!==ST.tr.name));if(d.length)trStart(d[Math.floor(Math.random()*d.length)].name);else toast('Nothing is due — you know them all for now! 🎉',3000);}
+    else if(a.startsWith('rev:')){const g=store.get('scGames',[])[+v];if(g)openReview(g.pgn);}
+    else if(a.startsWith('del:')){const G=store.get('scGames',[]);G.splice(+v,1);store.set('scGames',G);render();}
+    else if(a==='clear'){if(b.dataset.sure){store.set('scGames',[]);render();}else{b.dataset.sure='1';b.textContent='Click again to delete all';}}
+  });
+  return{render,trStart};
+})();
+
 /* ===================== TABS / NAV / KEYS ===================== */
 function openReview(pgnText){ if(pgnText) $('pgn').value=pgnText; if(location.hash!=='#analyze'){location.hash='analyze';} setTab('review'); UI.page='analyze'; runAnalysis(); bumpStat('reviews'); }
 window.openReview=openReview;
@@ -4510,21 +4789,22 @@ function setTab(t){
 function refresh(){if(UI.page==='home'||UI.page==='watch')return;UI.tab==='play'?(playRender(),renderPlayCoach()):UI.tab==='fun'?(window.Fun&&Fun.render()):UI.tab==='puzzles'?(window.Puzzles&&Puzzles.render()):UI.tab==='friends'?(window.Friends&&Friends.render()):reviewRender();}
 $('tabPlay').onclick=()=>location.hash='play';$('tabReview').onclick=()=>location.hash='analyze';$('tabFun').onclick=()=>location.hash='fun';
 /* ===================== PAGES / ROUTING ===================== */
-const PAGES=['home','play','puzzles','analyze','fun','watch','friends'];
+const PAGES=['home','play','puzzles','analyze','gambits','fun','watch','friends'];
 function showPage(p){
   UI.page=p;
   document.querySelectorAll('#navlinks a').forEach(a=>a.classList.toggle('on',a.dataset.page===p));
-  $('pageHome').classList.toggle('hidden',p!=='home'); $('pageWatch').classList.toggle('hidden',p!=='watch');
-  $('pageBoard').classList.toggle('hidden',p==='home'||p==='watch');
+  $('pageHome').classList.toggle('hidden',p!=='home'); $('pageWatch').classList.toggle('hidden',p!=='watch'); $('pageGambits').classList.toggle('hidden',p!=='gambits');
+  $('pageBoard').classList.toggle('hidden',p==='home'||p==='watch'||p==='gambits');
   if(p==='home'){ if(liveEngine) liveEngine.stop(); renderHome(); }
   else if(p==='watch'){ if(liveEngine) liveEngine.stop(); window.Watch&&Watch.render(); }
+  else if(p==='gambits'){ if(liveEngine) liveEngine.stop(); window.GBX&&GBX.render(); }
   else if(UI.tab!==(p==='analyze'?'review':p)||p==='puzzles'||p==='friends') setTab(p==='analyze'?'review':p);
   window.scrollTo(0,0);
 }
 function route(){ let p=(location.hash||'#home').slice(1); if(!PAGES.includes(p)) p='home'; showPage(p); }
 window.addEventListener('hashchange',route);
 function step(d){
-  if(UI.page==='home'||UI.page==='watch') return;
+  if(UI.page==='home'||UI.page==='watch'||UI.page==='gambits') return;
   if(UI.tab==='fun'){window.Fun&&Fun.step(d);return;}
   if(UI.tab==='puzzles'||UI.tab==='friends'){const M=UI.tab==='puzzles'?window.Puzzles:window.Friends;M&&M.step&&M.step(d);return;}
   if(UI.tab==='review'){navRev(d);return;}
