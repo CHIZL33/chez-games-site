@@ -413,6 +413,66 @@ footer a{color:#8b92a0}
 .tvboard{box-shadow:none}
 .tvside{display:flex;justify-content:space-between;align-items:center;width:calc(var(--sq)*8);font-size:13px;padding:5px 2px}
 .tvmoves{width:calc(var(--sq)*8);font:12px 'IBM Plex Mono',monospace;color:var(--muted);margin-top:4px;min-height:32px}
+.scpick{display:flex;align-items:center;gap:6px;background:#1b1e24;border:1px solid var(--line);border-radius:8px;padding:4px 6px;font-size:12.5px}
+.scpick span{flex:1;text-align:center}
+.scplan{background:linear-gradient(90deg,#33290f,#1b1e24 85%);border:1px solid #f0b429;border-radius:8px;padding:7px 9px;line-height:1.45;font-size:13px}
+#pageGambits{max-width:1180px;margin:0 auto;padding:0 18px 40px;display:flex;flex-direction:column;gap:14px}
+.gbgrp{margin-bottom:10px}.gbgh{font:600 12px 'IBM Plex Mono',monospace;color:var(--muted);margin:6px 2px}
+.gbitem{border:1px solid var(--line);border-radius:10px;margin-bottom:6px;background:#1b1e24}
+.gbitem.picked{border-color:#f0b429}
+.gbrow{display:flex;align-items:center;gap:8px;padding:9px 12px;cursor:pointer;flex-wrap:wrap}
+.gbrow:hover{background:#232730}
+.gbside{font-size:18px}
+.gbtype{font-size:11px;border-radius:999px;padding:2px 8px;border:1px solid var(--line)}
+.gbtype.gambit{color:#f0b429;border-color:#7a5d14}.gbtype.trap{color:#e07a5f;border-color:#7a3b2c}
+.gbk{font:12px 'IBM Plex Mono',monospace}
+.gbstars{margin-left:auto;color:#f0b429;font-size:12px;letter-spacing:1px}
+.gbdue{font-size:11px;background:#e05545;color:#fff;border-radius:999px;padding:1px 7px}
+.gbbody{padding:2px 12px 12px}
+.gbline{font:12.5px 'IBM Plex Mono',monospace;line-height:1.8;color:var(--muted);border-top:1px dashed var(--line);padding:4px 0}
+.gbline i{font-style:normal;opacity:.6;margin-right:2px}.gbline span{color:var(--text)}
+.gbline .gbkey{background:#f0b429;color:#111;border-radius:4px;padding:0 4px;font-weight:700}.gbline .gbafter{color:#9cc4f2}
+.gbtr{border-color:#f0b429}
+.gbtrw{display:flex;gap:18px;align-items:flex-start;margin-top:10px;flex-wrap:wrap}
+.gbb{--sq:min(56px,calc((100vw - 70px) / 8));box-shadow:none;cursor:pointer;touch-action:manipulation}
+.gbtrside{flex:1;min-width:220px;display:flex;flex-direction:column;gap:10px}
+.gbmsg{background:#1b1e24;border-left:3px solid #f0b429;border-radius:0 8px 8px 0;padding:9px 11px;font-size:14px;min-height:40px}
+.gbmoves{font:12.5px 'IBM Plex Mono',monospace;color:var(--muted);line-height:1.7}
+.gbmoves i{font-style:normal;opacity:.6;margin:0 2px 0 4px}
+.gbstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-top:8px}
+.gbstats div{background:#1b1e24;border-radius:8px;padding:8px;text-align:center}.gbstats b{display:block;font-size:20px}.gbstats span{font-size:11.5px;color:var(--muted)}
+.gbby{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px}.gbby span{background:#1b1e24;border-radius:6px;padding:3px 8px}
+.gbgames{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.gbgame{display:flex;align-items:center;gap:10px;background:#1b1e24;border-radius:8px;padding:6px 10px;font-size:13px;flex-wrap:wrap}
+.gbgame .ic{width:14px;height:14px;font-size:7px;vertical-align:middle}
+.gbres{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;background:#333}
+.gbres.W{background:#3f6b2a}.gbres.L{background:#7a2e27}.gbres.D{background:#555}
+.sccheck{display:flex;gap:8px;align-items:center;font-size:13.5px;cursor:pointer}
+.sccheck input{width:17px;height:17px;accent-color:var(--accent)}
+.sc{display:flex;flex-direction:column;gap:8px;font-size:13.5px}
+.scpip{margin:0;padding:10px;background:var(--bg,#16181d);overflow:auto}
+.schead{display:flex;align-items:center;gap:7px}
+.scdot{width:9px;height:9px;border-radius:50%;background:#666;flex:none}
+.scdot.on{background:#3ecf6a;box-shadow:0 0 8px #3ecf6a}
+.scx{background:none;border:1px solid var(--line);border-radius:6px;color:var(--text);cursor:pointer;padding:1px 6px}
+.scmsg{background:var(--panel2,#262a33);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;line-height:1.5}
+.scmsg .muted{font-size:12.5px;margin-top:4px}
+.scbw{position:relative;--sq:min(28px,calc((100vw - 24px) / 8));width:calc(var(--sq)*8);align-self:center}
+.scb{box-shadow:none}
+.scarr{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4}
+.scgrade{display:flex;gap:8px;align-items:flex-start;background:var(--panel2,#262a33);border-radius:8px;padding:7px 9px;font-size:12.5px;line-height:1.4}
+.scgrade .ic{flex:none;margin-top:1px}
+.scturn{font-weight:600}
+.scwarn{background:#3a2420;border:1px solid #a5513f;border-radius:8px;padding:6px 9px;font-size:12.5px}
+.scbtns{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.scbtns .btn{min-height:34px;padding:6px 4px;font-size:12.5px}
+.scbtns .btn:not(.on){background:#1b1e24;color:var(--text);border:1px solid var(--line)}
+.scbtns .gembtn.found:not(.on){border-color:var(--brilliant);color:#7fe3d3;box-shadow:0 0 10px #1fbfa633}
+.scstep{background:#1b1e24;border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:7px 9px;line-height:1.45}
+.scmv{display:flex;gap:8px;align-items:flex-start;background:#1b1e24;border-radius:8px;padding:7px 9px;line-height:1.4}
+.scn{flex:none;width:20px;height:20px;border-radius:50%;color:#fff;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+.scwhy{font-size:12.5px;margin:2px 0}
+.scgem{border:1px solid var(--brilliant);background:linear-gradient(90deg,#14302d,#1b1e24 80%);border-radius:8px;padding:8px 10px;line-height:1.45}
 .modesel{padding:3px 6px;font-size:12px;margin-right:auto;margin-left:6px}
 .card.gem{border:1px solid #2f7f73;background:linear-gradient(90deg,#14302d,#272b34 75%)}
 .card.gem.found{border-color:var(--brilliant);box-shadow:0 0 14px #1fbfa633}
@@ -464,6 +524,7 @@ footer a{color:#8b92a0}
       <a href="#play" data-page="play">Play</a>
       <a href="#puzzles" data-page="puzzles">Puzzles</a>
       <a href="#analyze" data-page="analyze">Analyze</a>
+      <a href="#gambits" data-page="gambits">Gambits</a>
       <a href="#fun" data-page="fun">Fun Lab</a>
       <a href="#watch" data-page="watch">Watch</a>
       <a href="#friends" data-page="friends">Friends</a>
@@ -478,7 +539,8 @@ footer a{color:#8b92a0}
 <div class="tabs hidden"><button id="tabPlay" class="on">Play</button><button id="tabReview">Analyze</button><button id="tabFun">Fun</button></div>
 <div class="wrap">
   <section id="pageHome" class="page hidden"></section>
-  <section id="pageWatch" class="page hidden"></section>
+  <section id="pageGambits" class="page hidden"></section>
+<section id="pageWatch" class="page hidden"></section>
   <div class="main" id="pageBoard">
     <div class="boardcol">
       <div class="player" id="topPlayer"><div class="left"><span class="nm"></span><span class="caps"></span></div><span class="acc"></span></div>
@@ -593,6 +655,16 @@ footer a{color:#8b92a0}
             <input type="text" id="fenIn" placeholder="Paste a FEN (optional)" style="flex:1;min-width:180px" spellcheck="false" autocomplete="off">
             <button class="btn" id="freeBoard">Open board</button>
           </div>
+        </div>
+        <div class="card">
+          <b>🖥 Screen coach for bot games</b>
+          <div class="muted" style="font-size:12.5px;margin:2px 0 8px">Watches your game against a bot on chess.com (or any site, any board design) and teaches you on every move: a hint step by step, the 2–3 best moves and why, and brilliant ideas. It floats over the game in a small window.</div>
+          <label class="sccheck"><input type="checkbox" id="scOk"> I'm playing a <b>bot</b> (computer), not a person.</label>
+          <div style="font-size:12.5px;margin:6px 0 2px">♟ Use the <b>Luca</b> piece set on chess.com (Settings → Board → Pieces: Luca). The coach only reads Luca pieces.</div>
+          <div class="muted" style="font-size:12px;margin:4px 0 8px">Chess.com allows outside help only in games against bots. Using this against people breaks its fair-play rules and gets accounts closed.</div>
+          <div class="row"><button class="btn" id="scStart" disabled>📺 Share chess.com tab</button><button class="btn ghost hidden" id="scFloat">🪟 Open floating coach</button><button class="btn ghost hidden" id="scStop">Stop</button></div>
+          <div class="row" style="margin-top:8px;gap:8px"><label class="muted" style="font-size:12.5px">🎯 Gambit to play</label><select id="scPick" style="flex:1;min-width:150px"></select></div>
+          <div id="scPanel" class="hidden" style="margin-top:10px"></div>
         </div>
         <div id="msg" class="muted"></div>
       </div>
@@ -3762,26 +3834,125 @@ let huntEng=null,huntTok=0,huntFor=null,huntRes=null,huntMsg='';
 const getHunt=()=>huntEng||(huntEng=new Engine()),huntCache=new Map(),GEM_FLOOR=35,GEM_COMP=10,GEM_SETUP=4;
 // Famous sacrificial gambits and traps. Engines dislike most of them, so they can't be found by evaluation — when the
 // position is on one of these lines, the hunt follows it. [name, side that sacrifices, moves, the sacrifice]
+// [name, side that plays it, 'gambit' (a sacrifice) or 'trap' (a trick the opponent can fall into), moves]
+// The last move of each line is its key move. Several lines can share a position: the hunt picks one of them.
 const GAMBITS=[
-  ['Alien Gambit','w','e4 c6 d4 d5 Nc3 dxe4 Nxe4 Nf6 Ng5 h6 Nxf7','Nxf7'],
-  ['Fried Liver Attack','w','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 d5 exd5 Nxd5 Nxf7','Nxf7'],
-  ['Cochrane Gambit','w','e4 e5 Nf3 Nf6 Nxe5 d6 Nxf7','Nxf7'],
-  ['Halloween Gambit','w','e4 e5 Nf3 Nc6 Nc3 Nf6 Nxe5','Nxe5'],
-  ['Légal Trap','w','e4 e5 Nf3 d6 Bc4 Bg4 Nc3 g6 Nxe5','Nxe5'],
-  ['Jerome Gambit','w','e4 e5 Nf3 Nc6 Bc4 Bc5 Bxf7+','Bxf7+'],
-  ['Muzio Gambit','w','e4 e5 f4 exf4 Nf3 g5 Bc4 g4 O-O','O-O'],
-  ['ICBM Gambit','w','e4 d5 Nf3 dxe4 Ng5 Nf6 d3 exd3 Bxd3 h6 Nxf7','Nxf7'],
-  ['Traxler Counterattack','b','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 Bc5 Nxf7 Bxf2+','Bxf2+'],
-  ['Fishing Pole Trap','b','e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Ng4 h3 h5','h5'],
-  ['Blackburne Shilling Gambit','b','e4 e5 Nf3 Nc6 Bc4 Nd4','Nd4'],
-  ['Stafford Gambit','b','e4 e5 Nf3 Nf6 Nxe5 Nc6','Nc6'],
+  // white sacrifices
+  ['Alien Gambit','w','gambit','e4 c6 d4 d5 Nc3 dxe4 Nxe4 Nf6 Ng5 h6 Nxf7'],
+  ['Fried Liver Attack','w','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 d5 exd5 Nxd5 Nxf7'],
+  ['Cochrane Gambit','w','gambit','e4 e5 Nf3 Nf6 Nxe5 d6 Nxf7'],
+  ['Halloween Gambit','w','gambit','e4 e5 Nf3 Nc6 Nc3 Nf6 Nxe5'],
+  ['Jerome Gambit','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 Bxf7+'],
+  ['Muzio Gambit','w','gambit','e4 e5 f4 exf4 Nf3 g5 Bc4 g4 O-O'],
+  ['ICBM Gambit','w','gambit','e4 d5 Nf3 dxe4 Ng5 Nf6 d3 exd3 Bxd3 h6 Nxf7'],
+  ['Evans Gambit','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 b4'],
+  ["King's Gambit",'w','gambit','e4 e5 f4'],
+  ['Danish Gambit','w','gambit','e4 e5 d4 exd4 c3'],
+  ['Smith-Morra Gambit','w','gambit','e4 c5 d4 cxd4 c3'],
+  ['Scotch Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 Bc4'],
+  ['Göring Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 c3'],
+  ['Vienna Gambit','w','gambit','e4 e5 Nc3 Nf6 f4'],
+  ['Urusov Gambit','w','gambit','e4 e5 Bc4 Nf6 d4'],
+  ['Blackmar-Diemer Gambit','w','gambit','d4 d5 e4 dxe4 Nc3 Nf6 f3'],
+  ['Staunton Gambit','w','gambit','d4 f5 e4'],
+  ["Queen's Gambit",'w','gambit','d4 d5 c4'],
+  ['Sicilian Wing Gambit','w','gambit','e4 c5 b4'],
+  ['Tennison Gambit','w','gambit','e4 d5 Nf3 dxe4 Ng5'],
+  ['Damiano Punisher','w','gambit','e4 e5 Nf3 f6 Nxe5'],
+  // white traps
+  ['Légal Trap','w','trap','e4 e5 Nf3 d6 Bc4 Bg4 Nc3 g6 Nxe5'],
+  ["Scholar's Mate",'w','trap','e4 e5 Bc4 Nc6 Qh5 Nf6 Qxf7#'],
+  ['Caro-Kann Smothered Mate','w','trap','e4 c6 d4 d5 Nc3 dxe4 Nxe4 Nd7 Qe2 Ngf6 Nd6#'],
+  ['Petrov Queen Trap','w','trap','e4 e5 Nf3 Nf6 Nxe5 Nxe4 Qe2 Nf6 Nc6+'],
+  ['Mortimer Punisher','w','trap','e4 e5 Nf3 Nc6 Bb5 d6 d4 Bd7 Nc3 Nf6 O-O Be7 Bxc6 Bxc6 dxe5 dxe5 Qxd8+'],
+  // black sacrifices
+  ['Traxler Counterattack','b','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 Bc5 Nxf7 Bxf2+'],
+  ['Stafford Gambit','b','gambit','e4 e5 Nf3 Nf6 Nxe5 Nc6'],
+  ['Englund Gambit','b','gambit','d4 e5'],
+  ['Albin Countergambit','b','gambit','d4 d5 c4 e5'],
+  ['Budapest Gambit','b','gambit','d4 Nf6 c4 e5'],
+  ['Benko Gambit','b','gambit','d4 Nf6 c4 c5 d5 b5'],
+  ['Elephant Gambit','b','gambit','e4 e5 Nf3 d5'],
+  ['Latvian Gambit','b','gambit','e4 e5 Nf3 f5'],
+  ['Rousseau Gambit','b','gambit','e4 e5 Nf3 Nc6 Bc4 f5'],
+  ['Schliemann Gambit','b','gambit','e4 e5 Nf3 Nc6 Bb5 f5'],
+  ['Falkbeer Countergambit','b','gambit','e4 e5 f4 d5'],
+  ["From's Gambit",'b','gambit','f4 e5'],
+  ['Icelandic Gambit','b','gambit','e4 d5 exd5 Nf6 c4 e6'],
+  ['Marshall Attack','b','gambit','e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 O-O c3 d5'],
+  // black traps
+  ['Fishing Pole Trap','b','trap','e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Ng4 h3 h5'],
+  ['Blackburne Shilling Trap','b','trap','e4 e5 Nf3 Nc6 Bc4 Nd4 Nxe5 Qg5 Nxf7 Qxg2'],
+  ['Englund Gambit Trap','b','trap','d4 e5 dxe5 Nc6 Nf3 Qe7 Bf4 Qb4+ Bd2 Qxb2 Bc3 Bb4 Qd2 Bxc3 Qxc3 Qc1#'],
+  ['Lasker Trap','b','trap','d4 d5 c4 e5 dxe5 d4 e3 Bb4+ Bd2 dxe3 Bxb4 exf2+ Ke2 fxg1=N+'],
+  ['Kieninger Trap','b','trap','d4 Nf6 c4 e5 dxe5 Ng4 Nf3 Nc6 Bf4 Bb4+ Nbd2 Qe7 a3 Ngxe5 axb4 Nd3#'],
+  ['Siberian Trap','b','trap','e4 c5 d4 cxd4 c3 dxc3 Nxc3 Nc6 Nf3 e6 Bc4 Qc7 O-O Nf6 Qe2 Ng4 h3 Nd4'],
+  ['Elephant Trap','b','trap','d4 d5 c4 e6 Nc3 Nf6 Bg5 Nbd7 cxd5 exd5 Nxd5 Nxd5'],
+  ["Noah's Ark Trap",'b','trap','e4 e5 Nf3 Nc6 Bb5 a6 Ba4 d6 d4 b5 Bb3 Nxd4 Nxd4 exd4 Qxd4 c5'],
+  ['Stafford Queen Trap','b','trap','e4 e5 Nf3 Nf6 Nxe5 Nc6 Nxc6 dxc6 d3 Bc5 Bg5 Nxe4 Bxd8 Bxf2+ Ke2 Bg4#'],
+  // what comes after the gambit: '|' marks the key move, the moves after it are the main follow-up lines
+  ["King's Gambit",'w','gambit','e4 e5 f4| exf4 Nf3 g5 h4 g4 Ne5'],
+  ["King's Gambit",'w','gambit','e4 e5 f4| exf4 Nf3 d6 d4 g5 h4 g4 Ng1'],
+  ['Evans Gambit','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 b4| Bxb4 c3 Ba5 d4 exd4 O-O'],
+  ['Danish Gambit','w','gambit','e4 e5 d4 exd4 c3| dxc3 Bc4 cxb2 Bxb2'],
+  ['Smith-Morra Gambit','w','gambit','e4 c5 d4 cxd4 c3| dxc3 Nxc3 Nc6 Nf3 d6 Bc4 e6 O-O'],
+  ['Scotch Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 Bc4| Nf6 e5 d5 Bb5 Ne4 Nxd4'],
+  ['Göring Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 c3| dxc3 Nxc3 Bb4 Bc4'],
+  ['Vienna Gambit','w','gambit','e4 e5 Nc3 Nf6 f4| d5 fxe5 Nxe4 Nf3'],
+  ["Queen's Gambit",'w','gambit','d4 d5 c4| dxc4 e3 Nf6 Bxc4'],
+  ["Queen's Gambit",'w','gambit','d4 d5 c4| e6 Nc3 Nf6 Bg5'],
+  ['Blackmar-Diemer Gambit','w','gambit','d4 d5 e4 dxe4 Nc3 Nf6 f3| exf3 Nxf3'],
+  ['Fried Liver Attack','w','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 d5 exd5 Nxd5 Nxf7| Kxf7 Qf3+ Ke6 Nc3'],
+  ['Halloween Gambit','w','gambit','e4 e5 Nf3 Nc6 Nc3 Nf6 Nxe5| Nxe5 d4 Ng6 e5 Ng8 Bc4'],
+  ['Jerome Gambit','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 Bxf7+| Kxf7 Nxe5+ Nxe5 d4'],
+  ['Cochrane Gambit','w','gambit','e4 e5 Nf3 Nf6 Nxe5 d6 Nxf7| Kxf7 Nc3 c5 Bc4+ Be6'],
+  ['Falkbeer Countergambit','b','gambit','e4 e5 f4 d5| exd5 e4 d3 Nf6 dxe4 Nxe4'],
+  ['Falkbeer Countergambit','b','gambit','e4 e5 f4 d5| exd5 exf4 Nf3 Nf6'],
+  ['Falkbeer Countergambit','b','gambit','e4 e5 f4 d5| Nf3 dxe4 Nxe5 Bd6'],
+  ['Falkbeer Countergambit','b','gambit','e4 e5 f4 d5| fxe5 dxe4 Nc3 Nc6'],
+  ['Albin Countergambit','b','gambit','d4 d5 c4 e5| dxe5 d4 Nf3 Nc6'],
+  ['Budapest Gambit','b','gambit','d4 Nf6 c4 e5| dxe5 Ng4 Nf3 Nc6 Bf4 Bb4+'],
+  ['Benko Gambit','b','gambit','d4 Nf6 c4 c5 d5 b5| cxb5 a6 bxa6 Bxa6'],
+  ['Elephant Gambit','b','gambit','e4 e5 Nf3 d5| exd5 e4 Qe2 Nf6'],
+  ['Latvian Gambit','b','gambit','e4 e5 Nf3 f5| Nxe5 Qf6 d4 d6 Nc4 fxe4'],
+  ['Schliemann Gambit','b','gambit','e4 e5 Nf3 Nc6 Bb5 f5| Nc3 fxe4 Nxe4 d5'],
+  ['Icelandic Gambit','b','gambit','e4 d5 exd5 Nf6 c4 e6| dxe6 Bxe6'],
+  ['Marshall Attack','b','gambit','e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 O-O c3 d5| exd5 Nxd5 Nxe5 Nxe5 Rxe5 c6'],
+  ["From's Gambit",'b','gambit','f4 e5| fxe5 d6 exd6 Bxd6 Nf3 g5'],
+  ['Traxler Counterattack','b','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 Bc5 Nxf7 Bxf2+| Kxf2 Nxe4+ Kg1 Qh4 g3 Nxg3'],
+  ['Traxler Counterattack','b','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 Bc5 Nxf7 Bxf2+| Kf1 Qe7 Nxh8 d5'],
+  ['Evans Gambit','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 b4| Bxb4 c3 Ba5 d4 d6 Qb3 Qd7'],
+  ['Smith-Morra Gambit','w','gambit','e4 c5 d4 cxd4 c3| Nf6 e5 Nd5 Nf3 e6 cxd4 Nc6'],
+  ['Scotch Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 Bc4| Bc5 O-O d6 c3 Nf6 cxd4 Bb6'],
+  ["Queen's Gambit",'w','gambit','d4 d5 c4| dxc4 Nf3 Nf6 e3 e6 Bxc4 c5 O-O a6'],
+  ['Staunton Gambit','w','gambit','d4 f5 e4| fxe4 Nc3 Nf6 Bg5 e6 Nxe4 Be7 Bxf6 Bxf6'],
+  ['Sicilian Wing Gambit','w','gambit','e4 c5 b4| cxb4 a3 d5 exd5 Qxd5 Bb2 e5'],
+  ['Muzio Gambit','w','gambit','e4 e5 f4 exf4 Nf3 g5 Bc4 g4 O-O| gxf3 Qxf3 Qf6 e5 Qxe5 d3 Bh6 Nc3 Ne7'],
+  ['Cochrane Gambit','w','gambit','e4 e5 Nf3 Nf6 Nxe5 d6 Nxf7| Kxf7 d4 Nxe4 Bd3 d5 O-O'],
+  ['Danish Gambit','w','gambit','e4 e5 d4 exd4 c3| d5 exd5 Qxd5 cxd4 Nc6 Nf3 Bg4'],
+  ['Göring Gambit','w','gambit','e4 e5 Nf3 Nc6 d4 exd4 c3| d5 exd5 Qxd5 cxd4 Bg4 Be2 Bb4+'],
+  ['Vienna Gambit','w','gambit','e4 e5 Nc3 Nf6 f4| exf4 e5 Qe7 Qe2 Ng8 Nf3 Nc6'],
+  ['Stafford Gambit','b','gambit','e4 e5 Nf3 Nf6 Nxe5 Nc6| Nxc6 dxc6 d3 Bc5'],
+  ['Belgrade Gambit','w','gambit','e4 e5 Nf3 Nc6 Nc3 Nf6 d4 exd4 Nd5| Nxe4 Qe2 Nf6 Nxf6+ Qxf6 Nxd4'],
+  ['Center Game','w','gambit','e4 e5 d4 exd4 Qxd4| Nc6 Qe3 Nf6 Nc3 Bb4 Bd2 O-O O-O-O Re8'],
+  ['Møller Attack','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d4| exd4 cxd4 Bb4+ Nc3 Nxe4 O-O Bxc3 d5'],
+  ['Max Lange Attack','w','gambit','e4 e5 Nf3 Nc6 Bc4 Bc5 O-O Nf6 d4 exd4 e5| d5 exf6 dxc4 Re1+ Be6 Ng5 Qd5 Nc3 Qf5 Nce4'],
+  ['Portuguese Gambit','b','gambit','e4 d5 exd5 Nf6 d4 Bg4| Nf3 Bxf3 gxf3 Qxd5'],
+  ['Blumenfeld Gambit','b','gambit','d4 Nf6 c4 e6 Nf3 c5 d5 b5| Bg5 exd5 cxd5 h6 Bh4 g5 Bg3 Nh5'],
+  ['Fajarowicz Gambit','b','gambit','d4 Nf6 c4 e5 dxe5 Ne4| Nf3 d6 exd6 Bxd6'],
+  ['Ulvestad Variation','b','gambit','e4 e5 Nf3 Nc6 Bc4 Nf6 Ng5 d5 exd5 b5| Bf1 Nd4 c3 Nxd5'],
+  ["Fool's Mate",'b','trap','f3 e5 g4 Qh4#'],
+  ['Légal Trap','w','trap','e4 e5 Nf3 d6 Bc4 Bg4 Nc3 g6 Nxe5| Bxd1 Bxf7+ Ke7 Nd5#'],
+  ['Blackburne Shilling Trap','b','trap','e4 e5 Nf3 Nc6 Bc4 Nd4 Nxe5 Qg5 Nxf7 Qxg2| Rf1 Qxe4+ Be2 Nf3#'],
 ];
-const GBOOK=new Map();
-for(const [name,side,line,sac] of GAMBITS){
-  const g=new Chess(),mv=line.split(' ');
+const GBOOK=new Map(),GBAD=[];
+for(const [name,side,type,line] of GAMBITS){
+  {const t=new Chess();if(!line.replace(/\|/g,'').split(' ').every(x=>t.move(x))){GBAD.push(name+': '+line);continue;}}
+  const g=new Chess(),raw=line.split(' '),ki=raw.findIndex(t=>t.endsWith('|')),key=ki<0?raw.length-1:ki,mv=raw.map(t=>t.replace('|','')),sac=mv[key];
   for(let i=0;i<mv.length;i++){
-    const fen=g.fen(),k=fkey(fen),turn=g.turn(),m=g.move(mv[i]);if(!m)break;
-    if(turn===side&&!GBOOK.has(k))GBOOK.set(k,{name,sac,uci:m.from+m.to,rest:mv.slice(i),isSac:i===mv.length-1});
+    const fen=g.fen(),k=fkey(fen),turn=g.turn(),m=g.move(mv[i]);if(!m){GBAD.push(name);break;}
+    if(turn!==side)continue;
+    const a=GBOOK.get(k)||[];if(!a.some(x=>x.name===name))a.push({name,type,sac,uci:m.from+m.to+(m.promotion||''),rest:mv.slice(i),isSac:i===key,after:i>key});GBOOK.set(k,a);
   }
 }
 // what the piece on sq stands to lose if the opponent simply takes it
@@ -3815,15 +3986,16 @@ async function hMoves(fen,depth,alive,moves,n){
   return r.lines.filter(Boolean).map(l=>{const w=lineToWhite(l,turn);return{uci:l.pv[0],e:{cp:w.cp,mate:w.mate,pv:l.pv}};});
 }
 // resolves to a plan {kind:'now'|'setup',brill,uci,reply,sac,pv,e,w}, null when nothing is worth it, undefined when cancelled
-async function brillHunt(fen,{budget=14000,alive=()=>true,onProg}={}){
-  const key=fen+'|'+budget;if(huntCache.has(key))return huntCache.get(key);
+async function brillHunt(fen,{budget=14000,alive=()=>true,onProg,pick=''}={}){
+  const key=fen+'|'+budget+'|'+pick;if(huntCache.has(key))return huntCache.get(key);
   const g=new Chess(fen);if(g.game_over())return null;
   const t0=Date.now(),s=g.turn()==='w'?1:-1,W=e=>winPct(s*e.cp),mating=e=>e.mate!==null&&e.mate!==undefined&&s*e.mate>0;
   const E0=await hEval(fen,12,alive);if(!E0)return undefined;
   const wBest=W(E0);let best=null;const take=c=>{if(!best||c.score>best.score)best=c;};
-  const bk=GBOOK.get(fkey(fen));
+  // a picked gambit wins; if the position no longer fits it, any other gambit from the book that fits is suggested instead
+  const all=GBOOK.get(fkey(fen))||[],mine=pick?all.filter(x=>x.name===pick):[],bks=mine.length?mine:all,bk=bks.length?bks[Math.floor(Math.random()*bks.length)]:null;
   if(bk){const gb=new Chess(fen),pv=[];for(const sn of bk.rest){const m=gb.move(sn);if(!m)break;pv.push(m.from+m.to);}
-    take({kind:'book',brill:false,name:bk.name,sacSan:bk.sac,isSac:bk.isSac,uci:bk.uci,sac:bk.uci,pv,e:E0,w:wBest,score:1500});}
+    take({kind:'book',brill:false,related:!!(pick&&!mine.length),after:bk.after,name:bk.name,type:bk.type,also:bks.filter(x=>x!==bk).map(x=>x.name),sacSan:bk.sac,isSac:bk.isSac,uci:bk.uci,sac:bk.uci,pv,e:E0,w:wBest,score:1500});}
   const sacs=sacMoves(fen).slice(0,10).map(x=>x.uci),sacSet=new Set(sacs);
   if(sacs.length){
     const R=await hMoves(fen,10,alive,sacs);if(!R)return undefined;
@@ -3841,7 +4013,7 @@ async function brillHunt(fen,{budget=14000,alive=()=>true,onProg}={}){
       const g1=new Chess(fen);if(!uciMove(g1,c.uci)||g1.game_over())continue;const f1=g1.fen();
       const reps=await hMoves(f1,10,alive,null,3);if(!reps)return undefined;
       for(let k=0;k<reps.length;k++){
-        const rp=reps[k];if(k&&s*(rp.e.cp-reps[0].e.cp)>15)break;      // only the reply the opponent should play (or one just as good)
+        const rp=reps[k];if(k&&s*(rp.e.cp-reps[0].e.cp)>5)break;      // only the reply the opponent should actually play
         const g2=new Chess(f1);if(!uciMove(g2,rp.uci)||g2.game_over())continue;const f2=g2.fen();
         const sc=sacMoves(f2).slice(0,10).map(x=>x.uci);if(!sc.length)continue;
         const R=await hMoves(f2,10,alive,sc);if(!R)return undefined;
@@ -3853,17 +4025,26 @@ async function brillHunt(fen,{budget=14000,alive=()=>true,onProg}={}){
   }
   huntCache.set(key,best);return best;
 }
+function gemWhat(fen,r){
+  const sacSan=(()=>{if(r.kind!=='setup')return uciToSan(fen,r.sac);const g=new Chess(fen);uciMove(g,r.uci);uciMove(g,r.reply);return uciToSan(g.fen(),r.sac);})();
+  if(r.kind==='book'){
+    const trap=r.type==='trap',also=r.also&&r.also.length?`<div class="muted" style="font-size:12px;margin-top:3px">Also from here: ${r.also.slice(0,4).map(esc).join(', ')}${r.also.length>4?'…':''}</div>`:'';
+    if(r.after)return `<b>${esc(uciToSan(fen,r.uci))}</b> — keep going with the <b>${esc(r.name)}</b>: this is its main line after <b>${esc(r.sacSan)}</b>`+also;
+    return (r.isSac?`<b>${esc(r.sacSan)}${trap?'!':'!?'}</b> — the ${trap?'key move':'sacrifice'} of the <b>${esc(r.name)}</b>`
+      :`<b>${esc(uciToSan(fen,r.uci))}</b> — heading for the <b>${esc(r.name)}</b> (${trap?'the trap':'its sacrifice'}: <b>${esc(r.sacSan)}</b>)`)+also;
+  }
+  return r.kind==='now'?`<b>${esc(sacSan)}${r.brill?'!!':'!?'}</b> — a ${r.brill?'brilliant':'gambit'} sacrifice you can play right now`
+    :`<b>${esc(uciToSan(fen,r.uci))}</b> sets up <b>${esc(sacSan)}${r.brill?'!!':'!?'}</b> — a ${r.brill?'brilliant':'gambit'} sacrifice next move if they answer <b>${esc((()=>{const g=new Chess(fen);uciMove(g,r.uci);return uciToSan(g.fen(),r.reply);})())}</b>`;
+}
+const gemTag=r=>r.kind==='book'?(r.type==='trap'?'📖 famous trap':'📖 famous gambit · risky'):r.brill?'sound':'gambit · some risk';
 function drawGem(fen){
   const el=$('gemCard');el.classList.toggle('hidden',SET.anaMode!=='brill');if(SET.anaMode!=='brill')return;
   const r=huntRes,head=t=>`<div class="row" style="justify-content:space-between;margin-bottom:4px"><b style="font-size:13px">💎 Brilliant hunt</b><span class="muted" style="font-size:12px">${t}</span></div>`;
   if(r===undefined){el.className='card gem scan';el.innerHTML=head(esc(huntMsg||'looking for sacrifices…'))+'<div class="muted" style="font-size:12.5px">Checking every move for a sacrifice it could set up…</div>';return;}
   if(!r){el.className='card gem';el.innerHTML=head('nothing here')+'<div class="muted" style="font-size:12.5px">No real sacrifice to play or set up here with natural moves. Make a move and I\'ll look again.</div>';return;}
-  const turn=new Chess(fen).turn(),ev={cp:r.e.cp,mate:r.e.mate,over:r.e.over},sacSan=(()=>{if(r.kind!=='setup')return uciToSan(fen,r.sac);const g=new Chess(fen);uciMove(g,r.uci);uciMove(g,r.reply);return uciToSan(g.fen(),r.sac);})();
-  const what=r.kind==='book'?(r.isSac?`<b>${esc(r.sacSan)}!?</b> — the sacrifice of the <b>${esc(r.name)}</b>`:`<b>${esc(uciToSan(fen,r.uci))}</b> — heading for the <b>${esc(r.name)}</b> and its sacrifice <b>${esc(r.sacSan)}!?</b>`)
-    :r.kind==='now'?`<b>${esc(sacSan)}${r.brill?'!!':'!?'}</b> — a ${r.brill?'brilliant':'gambit'} sacrifice you can play right now`
-    :`<b>${esc(uciToSan(fen,r.uci))}</b> sets up <b>${esc(sacSan)}${r.brill?'!!':'!?'}</b> — a ${r.brill?'brilliant':'gambit'} sacrifice next move if they answer <b>${esc((()=>{const g=new Chess(fen);uciMove(g,r.uci);return uciToSan(g.fen(),r.reply);})())}</b>`;
+  const ev={cp:r.e.cp,mate:r.e.mate,over:r.e.over},what=gemWhat(fen,r);
   el.className='card gem found';
-  el.innerHTML=head(r.kind==='book'?'📖 famous gambit · risky':r.brill?'sound':'gambit · some risk')+`<div style="font-size:13.5px">${what}</div><div class="lines" style="margin-top:6px"><div class="ln" data-uci="${r.uci}" title="Click to play it on the board"><span class="ev ${ev.cp>=0?'w':'b'}">${evalText(ev)}</span><span class="mv">${pvSan(fen,r.pv,9,true)}</span></div></div>`;
+  el.innerHTML=head(gemTag(r))+`<div style="font-size:13.5px">${what}</div><div class="lines" style="margin-top:6px"><div class="ln" data-uci="${r.uci}" title="Click to play it on the board"><span class="ev ${ev.cp>=0?'w':'b'}">${evalText(ev)}</span><span class="mv">${pvSan(fen,r.pv,9,true)}</span></div></div>`;
 }
 function startHunt(){
   if(SET.anaMode!=='brill'){if(huntFor){huntFor=null;huntTok++;}drawGem('');return;}
@@ -3940,6 +4121,657 @@ $('fenIn').addEventListener('keydown',e=>{if(e.key==='Enter')openBoard($('fenIn'
 $('cancel').onclick=()=>{cancelFlag=true;if(anaEngine)anaEngine.stop();};
 $('newAnalysis').onclick=()=>{plies=[];evals=[];cls=[];headers={};T.root=null;T.cur=null;T.free=false;T.gen++;liveTok++;if(liveEngine)liveEngine.stop();showR('inputView');reviewRender();};
 
+/* ===================== SCREEN COACH (chess.com bot games) =====================
+   You share your chess.com tab; ChessLab finds the board in the picture, learns what your pieces look like from the
+   starting position, follows the game move by move and coaches you on your turn: a hint step by step, the 2-3 best
+   moves with reasons, and brilliant / gambit ideas. It floats over chess.com in a picture-in-picture window. */
+const SC={stream:null,video:null,cv:null,cx:null,timer:null,G:null,tpl:null,badN:0,flip:false,me:'w',game:null,
+  state:'off',msg:'',pick:store.get('scPick',''),audio:store.get('scAudio','sound'),log:{grades:[],t:Date.now()},pend:'',pendN:0,unk:0,lost:0,findAt:0,root:null,pip:null,eng:null,tok:0,an:null,hunt:undefined,
+  reveal:0,gem:false,grade:null,lastMove:null,askTurn:null,board:store.get('scBoard',true)};
+const SCN=16,SC_PN={p:'pawn',n:'knight',b:'bishop',r:'rook',q:'queen',k:'king'};
+const SC_START=(()=>{const B=new Chess().board(),o=[];for(const row of B)for(const p of row)o.push(p?p.color+p.type:'');return o.join(',');})();
+const scPx=(D,W,x,y)=>{const i=((y|0)*W+(x|0))<<2;return[D[i],D[i+1],D[i+2]];};
+const scDiff=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1])+Math.abs(a[2]-b[2]);
+const scLum=c=>c[0]*.299+c[1]*.587+c[2]*.114;
+
+/* ---- 1. find the board. Works on any board design, flat or textured (wood, marble…): a chessboard is the only
+   8×8 grid whose square corners alternate light/dark. Corners are used because pieces never reach them. ---- */
+function scLumDS(D,W,H){
+  const f=Math.min(1,320/W),Wd=Math.max(1,Math.floor(W*f)),Hd=Math.max(1,Math.floor(H*f)),A=new Float32Array(Wd*Hd),bx=W/Wd,by=H/Hd;
+  for(let y=0;y<Hd;y++){const y0=Math.floor(y*by),y1=Math.max(y0+1,Math.floor((y+1)*by));
+    for(let x=0;x<Wd;x++){const x0=Math.floor(x*bx),x1=Math.max(x0+1,Math.floor((x+1)*bx));let s=0,n=0;
+      for(let yy=y0;yy<y1;yy++)for(let xx=x0;xx<x1;xx++){const i=(yy*W+xx)<<2;s+=D[i]*.299+D[i+1]*.587+D[i+2]*.114;n++;}A[y*Wd+x]=s/n;}}
+  return{A,Wd,Hd,f:Wd/W};
+}
+function scInt(A,w,h){const I=new Float64Array((w+1)*(h+1)),W1=w+1;for(let y=0;y<h;y++){let s=0;for(let x=0;x<w;x++){s+=A[y*w+x];I[(y+1)*W1+x+1]=I[y*W1+x+1]+s;}}return I;}
+const scBox=(I,w,x,y,bw,bh)=>{const W1=w+1;return(I[(y+bh)*W1+x+bw]-I[y*W1+x+bw]-I[(y+bh)*W1+x]+I[y*W1+x])/(bw*bh);};
+// light/dark contrast minus how uneven each colour is: high only on a real board
+function scScore(vals){
+  let se=0,so=0,qe=0,qo=0;for(let i=0;i<64;i++){const a=vals[i];if(((i>>3)+(i&7))&1){so+=a;qo+=a*a;}else{se+=a;qe+=a*a;}}
+  const me=se/32,mo=so/32,sde=Math.sqrt(Math.max(0,qe/32-me*me)),sdo=Math.sqrt(Math.max(0,qo/32-mo*mo)),con=Math.abs(me-mo);
+  return{sc:con-.8*(sde+sdo),con,me,mo};
+}
+function scCoarse(ds){
+  const {A,Wd,Hd}=ds,I=scInt(A,Wd,Hd),vals=new Float32Array(64);let best=null;
+  for(let L=6;L*8+2<=Math.min(Wd,Hd);L+=.5){
+    const p=Math.max(1,Math.round(L*.2)),ins=Math.max(0,Math.round(L*.06)),mw=Wd-p+1,mh=Hd-p+1,M=new Float32Array(mw*mh);
+    for(let y=0;y<mh;y++)for(let x=0;x<mw;x++)M[y*mw+x]=scBox(I,Wd,x,y,p,p);
+    const off=[];for(let k=0;k<8;k++)off.push(Math.round(k*L));const Lr=Math.round(L),span=Math.round(8*L)+1;
+    for(let y=0;y+span<=Hd;y++)for(let x=0;x+span<=Wd;x++){
+      for(let r=0;r<8;r++){const yy=y+off[r];for(let c=0;c<8;c++){const xx=x+off[c];
+        vals[r*8+c]=(M[(yy+ins)*mw+Math.min(mw-1,xx+Lr-ins-p)]+M[Math.min(mh-1,yy+Lr-ins-p)*mw+xx+ins])*.5;}}
+      const s=scScore(vals);if(!best||s.sc>best.sc)best={sc:s.sc,con:s.con,x,y,L};
+    }
+  }
+  return best;
+}
+function scRefine(D,W,H,c,f){
+  const L0=c.L/f,X0=c.x/f,Y0=c.y/f,m=Math.ceil(1/f)+3;
+  const rx=Math.max(0,Math.floor(X0-m)),ry=Math.max(0,Math.floor(Y0-m)),rw=Math.min(W-rx,Math.ceil(8*(L0+3)+2*m+2)),rh=Math.min(H-ry,Math.ceil(8*(L0+3)+2*m+2));
+  const A=new Float32Array(rw*rh);for(let y=0;y<rh;y++)for(let x=0;x<rw;x++){const i=((y+ry)*W+x+rx)<<2;A[y*rw+x]=D[i]*.299+D[i+1]*.587+D[i+2]*.114;}
+  const I=scInt(A,rw,rh),vals=new Float32Array(64);let best=null;
+  for(let L=L0-3;L<=L0+3;L+=.25){
+    const p=Math.max(2,Math.round(L*.12)),ins=Math.max(1,Math.round(L*.03)),e=Math.round(L)-ins-p;
+    for(let dy=-m;dy<=m;dy++)for(let dx=-m;dx<=m;dx++){
+      const x=X0+dx-rx,y=Y0+dy-ry;if(x<0||y<0||x+8*L+1>rw||y+8*L+1>rh)continue;
+      for(let r=0;r<8;r++)for(let cc=0;cc<8;cc++){
+        const sx=Math.round(x+cc*L),sy=Math.round(y+r*L);
+        const v=[scBox(I,rw,sx+ins,sy+ins,p,p),scBox(I,rw,sx+e,sy+ins,p,p),scBox(I,rw,sx+ins,sy+e,p,p),scBox(I,rw,sx+e,sy+e,p,p)].sort((a,b)=>a-b);
+        vals[r*8+cc]=(v[1]+v[2])/2;   // middle two: ignores a coordinate label or highlight edge in one corner
+      }
+      const s=scScore(vals);if(!best||s.sc>best.sc)best={sc:s.sc,con:s.con,x:x+rx,y:y+ry,L};
+    }
+  }
+  if(!best||best.sc<8||best.con<15)return null;
+  // lock onto the square edges: across every inner grid line, each square's colour jumps to its neighbour's
+  const edge=(L,pos,vert)=>{let t=0;const w=2,h=Math.max(2,Math.round(L*.6)),o=Math.round(L*.2);
+    for(let k=1;k<8;k++){const b=Math.round(pos+k*L);for(let j=0;j<8;j++){const q=Math.round((vert?best.y-ry:best.x-rx)+j*L)+o;
+      if(vert){if(b-w<0||b+w>=rw||q+h>=rh)continue;t+=Math.abs(scBox(I,rw,b,q,w,h)-scBox(I,rw,b-w,q,w,h));}
+      else{if(b-w<0||b+w>=rh||q+h>=rw)continue;t+=Math.abs(scBox(I,rw,q,b,h,w)-scBox(I,rw,q,b-w,h,w));}}}return t;};
+  let al=null;
+  for(let L=best.L-1;L<=best.L+1;L+=.125){
+    let bx=null,by=null;
+    for(let d=-4;d<=4;d+=.5){const ex=edge(L,best.x-rx+d,true),ey=edge(L,best.y-ry+d,false);if(!bx||ex>bx.v)bx={v:ex,d};if(!by||ey>by.v)by={v:ey,d};}
+    if(!al||bx.v+by.v>al.v)al={v:bx.v+by.v,L,x:best.x+bx.d,y:best.y+by.d};
+  }
+  if(al){best.x=al.x;best.y=al.y;best.L=al.L;}
+  const G={x0:best.x,y0:best.y,L:best.L},acc=[[0,0,0,0],[0,0,0,0]];
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++)for(const[a,b]of[[.08,.08],[.92,.08],[.08,.92],[.92,.92]]){const p=scPx(D,W,G.x0+(c+a)*G.L,G.y0+(r+b)*G.L),k=(r+c)&1;acc[k][0]+=p[0];acc[k][1]+=p[1];acc[k][2]+=p[2];acc[k][3]++;}
+  const avg=k=>[0,1,2].map(i=>acc[k][i]/acc[k][3]),e=avg(0),o=avg(1);
+  G.light=scLum(e)>=scLum(o)?e:o;G.dark=G.light===e?o:e;G.evenLight=G.light===e;
+  return G;
+}
+function scFindBoard(D,W,H){const ds=scLumDS(D,W,H),c=scCoarse(ds);if(!c||c.sc<8||c.con<15)return null;return scRefine(D,W,H,c,ds.f);}
+
+/* ---- 2. read every square, averaged over small cells so wood grain or marble doesn't look like a piece ---- */
+function scRead(D,W,G){
+  const H=(D.length>>2)/W,bx=Math.max(0,Math.floor(G.x0)),by=Math.max(0,Math.floor(G.y0)),bw=Math.min(W-bx,Math.ceil(8*G.L)+2),bh=Math.min(H-by,Math.ceil(8*G.L)+2);
+  const W1=bw+1,IR=new Float64Array(W1*(bh+1)),IG=new Float64Array(W1*(bh+1)),IB=new Float64Array(W1*(bh+1));
+  for(let y=0;y<bh;y++){let r=0,g=0,b=0;for(let x=0;x<bw;x++){const i=((y+by)*W+x+bx)<<2;r+=D[i];g+=D[i+1];b+=D[i+2];const k=(y+1)*W1+x+1,u=y*W1+x+1;IR[k]=IR[u]+r;IG[k]=IG[u]+g;IB[k]=IB[u]+b;}}
+  const box=(x,y,w,h)=>{x=Math.max(0,Math.min(bw-1,x));y=Math.max(0,Math.min(bh-1,y));w=Math.max(1,Math.min(bw-x,w));h=Math.max(1,Math.min(bh-y,h));
+    const a=y*W1+x,b2=y*W1+x+w,c2=(y+h)*W1+x,d=(y+h)*W1+x+w,n=w*h;return[(IR[d]-IR[b2]-IR[c2]+IR[a])/n,(IG[d]-IG[b2]-IG[c2]+IG[a])/n,(IB[d]-IB[b2]-IB[c2]+IB[a])/n];};
+  const L=G.L,n=SCN*SCN,cs=L*.76/SCN,cw=Math.max(1,Math.round(cs)),p=Math.max(2,Math.round(L*.08)),ins=Math.max(3,Math.round(L*.08)),e=Math.round(L)-ins-p;   // inset past chess.com's hover outline
+  const raw=[];
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+    const sx=G.x0-bx+c*L,sy=G.y0-by+r*L,X=Math.round(sx),Y=Math.round(sy);
+    const cor=[box(X+ins,Y+ins,p,p),box(X+e,Y+ins,p,p),box(X+ins,Y+e,p,p),box(X+e,Y+e,p,p)];
+    let bi=0,bj=1,bd=1e9;for(let i=0;i<4;i++)for(let j=i+1;j<4;j++){const d=scDiff(cor[i],cor[j]);if(d<bd){bd=d;bi=i;bj=j;}}
+    const bg=[0,1,2].map(k=>(cor[bi][k]+cor[bj][k])/2),col=new Uint8Array(n*3),dif=new Float32Array(n);
+    for(let i=0;i<SCN;i++)for(let j=0;j<SCN;j++){const q=box(Math.floor(sx+L*.12+j*cs),Math.floor(sy+L*.12+i*cs),cw,cw),k=i*SCN+j;col[k*3]=q[0];col[k*3+1]=q[1];col[k*3+2]=q[2];dif[k]=scDiff(q,bg);}
+    raw.push({bg,col,dif,noise:Array.from(dif).sort((a,b)=>a-b)[Math.floor(n*.6)]});
+  }
+  // the threshold adapts to how textured the board is (measured on the quieter half of the squares)
+  const nz=raw.map(x=>x.noise).sort((a,b)=>a-b)[24],T=Math.max(40,nz*2.5+10);
+  const own=i=>{const r=i>>3,c=i&7;return((((r+c)&1)===0)===G.evenLight)?G.light:G.dark;};
+  // last-move highlights stand out from the board's normal square-to-square variation
+  const hd=raw.map((x,i)=>scDiff(x.bg,own(i))),hlT=Math.max(40,hd.slice().sort((a,b)=>a-b)[56]*1.6);
+  let match=0;const F=raw.map((x,i)=>{
+    // Luca pieces are white or grey; wood grain and highlights are brown/yellow, so only colourless cells count
+    const m=new Uint8Array(n);let cnt=0;for(let k=0;k<n;k++){const c0=x.col[k*3],c1=x.col[k*3+1],c2=x.col[k*3+2];if(x.dif[k]>T&&Math.max(c0,c1,c2)-Math.min(c0,c1,c2)<50){m[k]=1;cnt++;}}
+    const o=own(i),oth=o===G.light?G.dark:G.light;
+    if(scDiff(x.bg,o)<scDiff(x.bg,oth)||hd[i]>hlT)match++;
+    return{m,col:x.col,cnt,bg:x.bg,occ:cnt>=n*.07,hl:hd[i]>hlT};
+  });
+  return{F,match,T};
+}
+function scDist(f,T){
+  let s=0;const n=SCN*SCN;
+  for(let k=0;k<n;k++){const P=T.P[k],m=f.m[k];s+=Math.abs(m-P);
+    if(m&&P>.5){const i=k*3;s+=.8*(Math.abs(f.col[i]-T.C[i])+Math.abs(f.col[i+1]-T.C[i+1])+Math.abs(f.col[i+2]-T.C[i+2]))/765;}}
+  return s/n;
+}
+// screen square <-> board square
+const scBoardIdx=(r,c)=>SC.flip?(7-r)*8+(7-c):r*8+c;
+const scStartLike=F=>F.every((f,i)=>{const r=i>>3;return(r<2||r>5)?f.occ:!f.occ;});
+// Learn what the pieces look like (any piece design) from the starting position, or from the first few moves of a
+// game: squares on the four home rows that are still occupied hold their starting piece. Odd ones out are dropped.
+const scEarlyLike=F=>{let home=0,mid=0;F.forEach((f,i)=>{const r=i>>3;if(f.occ){if(r<2||r>5)home++;else mid++;}});return home>=26&&mid<=6;};
+function scTplOf(fs){
+  const n=SCN*SCN,P=new Float32Array(n),C=new Float32Array(n*3),N=new Float32Array(n);
+  for(const f of fs)for(let i=0;i<n;i++)if(f.m[i]){P[i]++;N[i]++;C[i*3]+=f.col[i*3];C[i*3+1]+=f.col[i*3+1];C[i*3+2]+=f.col[i*3+2];}
+  const T={P:[],C:[]};for(let i=0;i<n;i++){T.P.push(+(P[i]/fs.length).toFixed(2));for(let j=0;j<3;j++)T.C.push(N[i]?Math.round(C[i*3+j]/N[i]):0);}
+  return T;
+}
+const scTplFeat=T=>({m:Uint8Array.from(T.P,v=>v>.5?1:0),col:Uint8Array.from(T.C)});
+// The coach only works with chess.com's Luca piece set, which is built in here, so it can start in the middle of a game.
+const SC_LUCA={"brl":{"P":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,87,71,51,0,0,0,101,80,53,86,70,49,86,70,50,86,70,49,0,0,0,88,73,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,85,85,61,59,58,69,67,66,94,91,90,97,94,93,98,95,94,63,61,60,95,92,91,88,74,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,85,85,94,91,90,94,91,90,94,91,90,94,91,90,101,98,97,102,99,98,102,99,98,90,76,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,85,85,94,91,90,94,91,90,94,91,90,94,91,90,100,97,96,102,99,98,102,99,98,89,75,56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,42,41,41,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,76,76,80,77,77,80,77,77,80,77,77,80,77,77,80,77,77,58,54,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,50,49,49,77,74,74,77,74,74,77,74,74,76,74,74,65,64,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,52,52,83,80,80,83,80,80,85,82,82,91,88,88,77,75,74,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,57,57,83,80,80,85,82,82,93,90,89,94,91,90,84,81,80,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,68,68,83,80,80,93,90,89,94,91,90,94,91,90,94,91,90,92,75,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83,79,79,89,86,85,94,91,90,94,91,90,94,91,90,94,91,90,66,60,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,63,53,39,62,60,60,68,66,66,68,66,66,68,66,66,68,66,66,68,66,66,54,52,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,74,72,71,83,80,79,83,80,79,83,80,79,83,80,79,83,80,79,83,80,79,83,80,79,83,80,79,82,80,79,78,66,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,49,44,39,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,43,43,43,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,52,47,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,55,54,53,0,0,0,0,0,0]},"bnd":{"P":[0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,61,60,59,57,56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,66,66,94,91,90,67,65,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,47,43,76,73,72,77,75,74,94,91,90,91,88,87,82,79,79,82,80,79,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,67,66,78,76,75,89,87,86,94,91,90,78,75,74,83,81,80,94,91,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,55,55,76,74,73,78,75,74,94,91,90,94,91,90,88,86,85,80,77,77,94,91,90,74,73,72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,48,44,77,75,74,80,78,77,77,75,74,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,97,94,93,64,56,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,53,52,81,78,77,84,82,81,81,79,78,90,87,86,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,103,101,100,74,71,70,0,0,0,0,0,0,0,0,0,0,0,0,76,74,73,82,80,79,81,78,77,86,84,83,78,75,75,94,91,90,94,91,90,91,88,87,85,82,82,86,83,83,87,85,84,83,80,80,0,0,0,0,0,0,0,0,0,0,0,0,87,84,84,78,76,75,76,74,73,77,75,74,93,90,89,94,91,90,88,85,84,69,67,67,69,67,67,69,67,67,82,79,79,56,54,54,0,0,0,0,0,0,0,0,0,0,0,0,87,84,84,77,74,74,78,75,75,90,87,86,94,91,90,94,91,90,84,81,80,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,84,81,81,93,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,67,64,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83,80,80,91,89,88,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,65,58,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,77,74,74,87,84,83,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,104,102,101,65,58,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,66,66,83,80,80,93,90,89,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,102,100,99,103,101,101,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,54,52,83,80,80,86,83,83,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,102,99,98,110,108,107,86,85,84,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,82,79,79,83,80,80,93,90,89,94,91,90,94,91,90,94,91,90,94,91,90,103,101,100,110,108,107,110,108,107,71,68,66,0,0,0,0,0,0]},"bbl":{"P":[0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,83,62,70,68,67,78,76,76,72,69,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83,71,57,90,87,86,92,89,88,81,79,78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83,70,55,76,74,73,78,76,75,73,72,70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,93,77,57,76,74,74,93,90,89,94,91,90,96,93,92,75,73,71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,69,69,86,83,83,94,91,90,94,91,90,94,91,90,99,96,95,71,66,61,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,61,56,83,80,80,92,89,88,94,91,90,94,91,90,89,86,85,74,66,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,109,89,63,79,76,76,84,81,81,94,91,90,94,91,90,90,88,87,86,73,55,110,89,61,71,69,68,76,74,72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,63,60,60,83,80,80,86,83,83,94,91,90,83,80,80,89,73,53,69,64,58,91,88,87,94,91,90,105,103,102,101,83,60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,67,67,83,80,80,87,84,84,94,91,90,94,91,90,69,68,67,94,91,90,94,91,90,94,91,90,102,100,99,87,78,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,68,68,83,80,80,86,83,83,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,100,98,97,87,78,66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,62,60,59,83,80,80,83,80,80,93,90,89,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,100,98,97,104,84,59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,76,56,81,78,78,83,80,80,89,86,85,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,78,76,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,71,63,53,66,64,64,66,64,64,73,71,70,73,71,70,73,71,70,73,71,70,73,71,70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,61,59,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,109,91,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,61,59,59,62,61,61,62,61,61,62,61,61,62,61,61,62,61,61,49,48,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,62,56,62,61,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,62,61,60,0,0,0,0,0,0,0,0,0]},"bqd":{"P":[0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,59,54,53,96,94,93,109,107,106,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,62,62,94,91,90,96,93,92,66,53,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,45,41,64,63,62,65,63,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,59,52,49,69,67,66,77,75,74,89,86,85,81,80,79,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,54,53,77,75,74,77,75,74,88,86,85,94,91,90,110,107,106,103,101,100,68,54,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,67,47,40,66,64,64,66,64,64,69,68,67,78,76,75,78,76,75,85,82,82,89,87,86,83,81,81,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,49,43,77,75,74,52,51,51,79,76,76,70,68,68,50,49,49,90,89,88,87,86,85,57,57,56,90,89,88,90,88,87,67,65,65,88,86,86,0,0,0,0,0,0,67,46,38,75,73,72,85,82,81,87,84,84,87,84,84,86,83,83,87,84,84,94,92,91,94,91,91,90,87,87,93,90,90,94,92,91,91,88,88,92,89,89,59,58,57,0,0,0,0,0,0,65,46,38,82,79,79,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,73,71,71,0,0,0,0,0,0,0,0,0,0,0,0,63,61,61,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,87,84,84,90,87,86,91,88,87,93,90,89,68,54,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,77,77,83,80,80,83,80,80,85,82,82,93,90,89,94,91,90,94,91,90,94,91,90,94,91,90,71,69,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,66,66,83,80,80,88,85,84,94,91,89,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,64,56,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,50,50,69,67,67,73,71,70,73,71,70,73,71,70,73,71,70,73,71,70,73,71,70,73,71,70,66,46,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,74,72,71,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,60,57,55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,46,42,62,61,61,62,61,61,62,61,61,62,61,61,62,61,61,62,61,61,62,61,61,62,61,61,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,59,59,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,57,53,51,0,0,0,0,0,0,0,0,0]},"bkl":{"P":[0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,84,81,81,94,91,90,78,67,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,56,55,83,81,80,93,90,89,75,73,73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,74,55,76,74,73,93,90,89,67,60,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,78,77,83,81,80,60,55,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,64,63,74,72,71,74,72,71,74,72,71,81,71,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,105,85,60,84,76,67,70,68,66,70,69,69,73,72,72,74,72,72,72,71,70,69,68,67,81,74,66,96,82,62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,75,74,73,103,101,100,103,101,100,103,100,99,102,100,99,102,100,99,102,100,99,102,100,99,102,100,99,103,101,100,104,102,101,95,93,92,0,0,0,0,0,0,0,0,0,0,0,0,81,79,78,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,0,0,0,0,0,0,0,0,0,0,0,0,68,64,60,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,86,84,83,0,0,0,0,0,0,0,0,0,0,0,0,107,87,61,85,83,82,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,92,89,88,64,61,60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,63,60,59,88,85,85,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,89,86,86,80,77,77,111,92,67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,94,80,62,83,80,80,85,82,82,89,86,86,93,90,89,93,90,89,91,88,87,87,84,84,83,80,80,66,64,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,64,64,66,64,64,66,64,64,66,64,64,66,64,64,66,64,64,66,64,64,66,64,64,63,57,51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,63,58,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,78,76,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,52,52,62,61,61,62,61,61,62,61,61,62,61,61,62,61,61,62,61,61,56,55,55,100,82,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,61,55,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,62,61,60,0,0,0,0,0,0,0,0,0]},"bbd":{"P":[0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,54,51,70,68,67,78,76,76,67,63,62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,62,62,90,87,86,92,89,88,81,79,78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,53,52,76,74,73,78,76,75,72,70,70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,84,81,81,93,90,89,94,91,90,96,93,92,73,71,70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,69,69,90,87,86,94,91,90,94,91,90,94,91,90,99,96,95,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,67,67,83,80,80,94,91,90,94,91,90,94,91,90,89,86,85,61,53,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83,80,80,84,81,81,94,91,90,94,91,90,90,88,87,0,0,0,0,0,0,87,85,84,74,72,72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,61,59,59,83,80,80,86,83,83,94,91,90,83,80,80,58,42,36,61,55,53,91,88,87,94,91,90,105,103,102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,67,67,83,80,80,87,84,84,94,91,90,94,91,90,69,68,67,94,91,90,94,91,90,94,91,90,102,100,99,70,60,56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,68,68,83,80,80,86,83,83,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,100,98,97,70,60,56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,58,58,83,80,80,83,80,80,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,100,98,97,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83,80,80,83,80,80,92,89,88,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,78,76,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,53,53,66,64,64,67,65,65,73,71,70,73,71,70,73,71,70,73,71,70,67,65,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,75,73,72,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,84,82,81,82,80,79,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,43,37,61,59,59,62,61,61,62,61,61,62,61,61,62,61,61,62,61,61,55,45,42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,51,49,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,61,60,60,62,60,59,0,0,0,0,0,0,0,0,0]},"bnl":{"P":[0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,111,90,63,69,65,62,61,59,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,93,79,60,82,80,79,94,91,90,68,66,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,63,60,76,73,72,82,79,79,94,91,90,91,88,87,82,79,79,82,80,79,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,103,84,58,75,73,72,78,76,75,90,87,86,94,91,90,78,75,74,83,81,80,94,91,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,56,55,76,74,73,78,75,74,94,91,90,94,91,90,88,86,85,80,77,77,94,91,90,78,70,59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,74,64,52,77,75,74,78,75,74,77,75,74,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,100,98,97,75,68,59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54,53,52,81,78,77,76,74,73,81,79,78,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,103,101,100,72,67,60,0,0,0,0,0,0,0,0,0,0,0,0,76,74,73,82,80,79,82,80,79,86,84,83,90,87,86,94,91,90,94,91,90,91,88,87,85,82,82,86,83,83,87,85,84,68,65,65,0,0,0,0,0,0,0,0,0,0,0,0,87,84,84,78,76,75,86,83,82,77,75,74,93,90,89,94,91,90,88,85,84,69,67,67,69,67,67,74,71,71,82,79,79,71,62,52,0,0,0,0,0,0,0,0,0,0,0,0,87,84,84,77,74,74,78,76,75,90,87,86,94,91,90,94,91,90,84,81,80,0,0,0,0,0,0,78,67,53,81,71,59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,84,81,81,93,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,69,67,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,83,80,80,91,89,88,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,75,68,60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,77,74,74,87,84,83,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,104,102,101,100,81,56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,66,66,83,80,80,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,102,100,99,86,85,84,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,63,57,83,80,80,90,87,86,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,102,99,98,110,108,107,86,85,84,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,103,85,62,82,79,79,84,81,80,93,90,89,94,91,90,94,91,90,94,91,90,94,91,90,103,101,100,110,108,107,110,108,107,87,76,61,0,0,0,0,0,0]},"brd":{"P":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,37,31,0,0,0,52,36,30,53,37,31,53,37,31,51,36,30,0,0,0,53,37,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,63,38,28,94,91,90,60,59,58,80,78,77,94,91,90,97,94,93,85,82,81,62,61,60,102,99,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,102,99,98,102,99,98,102,99,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,94,91,90,94,91,90,94,91,90,94,91,90,94,91,90,102,99,98,102,99,98,102,99,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,51,51,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,51,49,49,61,38,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,49,38,34,79,76,76,80,77,77,80,77,77,80,77,77,80,77,77,80,77,77,50,37,33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,50,49,49,77,74,74,77,74,74,77,74,74,76,74,74,65,64,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,53,52,52,83,80,80,83,80,80,85,82,82,93,90,89,77,75,74,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,57,57,83,80,80,85,82,82,93,90,89,94,91,90,84,81,80,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70,68,68,86,83,82,93,90,89,94,91,90,94,91,90,94,91,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,56,37,30,83,79,79,92,89,88,94,91,90,94,91,90,94,91,90,94,91,90,59,38,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,39,38,62,60,60,68,66,66,68,66,66,68,66,66,68,66,66,68,66,66,44,40,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,74,72,71,83,80,79,83,80,79,83,80,79,83,80,79,83,80,79,83,80,79,83,80,79,83,80,79,82,80,79,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,36,35,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,57,55,55,43,42,42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,52,51,50,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,54,53,53,51,49,48,0,0,0,0,0,0]},"bpd":{"P":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0.33,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0.67,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0.67,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0.33,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0.33,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0.67,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0.33,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0.33,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0.33,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,67,66,94,91,90,94,91,90,93,90,90,65,53,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,59,55,54,93,90,89,94,91,90,94,91,90,94,91,90,97,95,94,69,46,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,75,72,72,93,90,89,94,91,90,94,91,90,94,91,90,98,96,95,68,63,61,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,78,76,76,91,88,87,94,91,90,94,91,90,94,91,90,94,92,91,67,65,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,63,62,62,85,82,82,94,91,90,94,91,90,94,91,90,96,94,93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,76,45,33,62,59,59,72,70,70,77,75,75,77,75,74,63,50,46,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,68,43,34,61,58,57,75,73,72,76,74,74,74,72,71,61,48,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,50,47,82,79,79,85,82,82,87,84,84,87,84,84,87,85,84,88,85,84,74,72,72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,48,44,60,57,57,59,57,57,59,57,57,59,57,57,59,57,57,59,57,57,57,54,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,63,63,82,79,79,82,79,79,81,78,78,67,47,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,59,53,51,83,80,80,87,84,83,91,88,87,94,91,90,82,80,79,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,62,49,45,88,85,84,93,90,89,94,91,90,94,91,90,94,91,90,94,91,90,74,71,70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,78,46,35,76,73,73,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,62,53,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,51,50,61,60,59,61,60,59,61,60,59,61,60,59,61,60,59,61,60,59,61,60,59,61,60,59,61,60,59,72,46,37,0,0,0,0,0,0]},"bpl":{"P":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0.5,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0.5,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,72,70,69,94,91,90,94,91,90,91,88,88,85,73,59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,63,60,57,94,91,90,94,91,90,94,91,90,94,91,90,97,95,94,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,75,72,72,94,91,90,94,91,90,94,91,90,94,91,90,98,96,95,91,79,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,78,76,76,92,89,88,94,91,90,94,91,90,94,91,90,94,92,91,84,75,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,62,62,86,83,83,94,91,90,94,91,90,94,91,90,96,94,93,98,84,65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,62,61,72,70,70,77,75,75,76,74,74,84,73,59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,61,60,75,73,72,76,74,74,73,71,70,85,73,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,62,59,56,82,79,79,86,83,83,87,84,84,87,84,84,87,85,84,88,85,84,72,70,69,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,67,61,53,61,58,58,59,57,57,59,57,57,59,57,57,59,57,57,60,58,57,57,55,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,69,66,66,82,79,79,82,79,79,80,77,77,103,86,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,67,62,57,83,80,80,87,84,83,91,88,87,94,91,90,82,80,79,114,95,69,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,75,68,58,88,85,84,93,90,89,94,91,90,94,91,90,94,91,90,94,91,90,73,71,68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,78,78,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,83,80,80,75,68,59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,66,61,56,61,60,59,61,60,59,61,60,59,61,60,59,61,60,59,61,60,59,61,60,59,61,60,59,61,60,59,0,0,0,0,0,0,0,0,0]},"wpl":{"P":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0.67,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,131,104,158,141,116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,188,185,179,254,254,254,255,255,255,230,230,228,150,136,116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,161,156,147,254,254,254,255,255,255,255,255,255,255,255,255,235,235,233,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,223,222,221,253,253,253,255,255,255,255,255,255,255,255,255,255,255,255,158,148,133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,223,222,221,249,249,249,255,255,255,255,255,255,255,255,255,255,255,255,159,149,134,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,161,156,147,237,237,237,254,254,254,255,255,255,255,255,255,235,235,233,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,175,172,165,201,200,197,211,210,207,210,208,205,150,136,115,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,169,165,158,205,203,200,208,206,203,202,200,195,148,133,111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,148,138,122,234,234,234,240,240,240,243,243,243,244,244,244,244,244,244,244,244,244,208,206,204,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,142,129,109,166,163,157,164,161,155,164,160,155,164,160,155,164,160,155,167,163,157,159,154,147,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,201,200,197,235,235,235,235,235,235,238,238,238,150,136,116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,155,147,135,235,235,235,243,243,243,250,250,250,255,255,255,223,222,220,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,172,166,156,253,253,253,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,233,232,231,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,215,215,213,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,158,148,132,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,148,140,127,166,163,156,166,162,156,166,162,156,166,162,156,166,162,156,166,162,156,166,162,156,166,162,156,167,163,157,0,0,0,0,0,0,0,0,0]},"wpd":{"P":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,125,101,87,135,114,102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,193,190,185,254,254,254,255,255,255,224,223,221,132,115,103,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,158,152,145,254,254,254,255,255,255,255,255,255,255,255,255,235,235,233,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,223,222,221,254,254,254,255,255,255,255,255,255,255,255,255,255,255,255,142,127,116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,223,222,221,250,250,250,255,255,255,255,255,255,255,255,255,255,255,255,141,127,116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,158,151,144,238,238,238,254,254,254,255,255,255,255,255,255,235,235,233,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,178,174,169,201,200,197,211,210,207,208,206,203,131,115,103,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,170,166,161,205,203,200,208,206,203,199,197,192,130,113,101,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,149,142,135,234,234,234,241,241,241,243,243,243,244,244,244,244,244,244,244,244,244,200,199,195,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,128,117,106,165,162,156,164,161,155,164,160,155,164,160,155,164,160,155,166,162,156,155,150,143,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,207,206,204,235,235,235,235,235,235,238,238,238,133,117,106,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,148,139,131,236,236,236,243,243,243,250,250,250,255,255,255,223,222,220,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,183,179,173,253,253,253,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,229,227,226,117,92,79,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,228,228,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,236,144,132,124,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,141,132,122,166,162,156,166,162,156,166,162,156,166,162,156,166,162,156,166,162,156,166,162,156,166,162,156,166,163,156,0,0,0,0,0,0,0,0,0]},"wrd":{"P":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,161,157,150,117,93,79,128,113,102,165,161,154,165,161,154,160,155,148,114,82,66,156,150,143,124,102,89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,244,243,242,182,179,173,200,197,193,255,255,255,255,255,255,247,247,247,178,175,169,241,240,239,133,115,103,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,244,243,242,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,134,115,103,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,235,234,232,245,245,244,245,245,244,245,245,244,245,245,244,245,245,244,245,245,244,245,245,244,130,112,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,145,140,132,178,176,171,178,176,171,178,176,171,178,176,171,178,176,171,178,176,171,178,175,170,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,184,182,177,185,182,178,185,182,178,185,182,178,185,182,178,185,183,178,130,117,107,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,162,159,152,221,221,219,221,221,219,221,221,219,221,220,219,195,194,190,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,171,168,162,235,235,235,234,234,234,244,244,244,254,254,254,222,221,218,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,185,183,179,235,235,235,245,245,245,255,255,255,255,255,255,241,241,240,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,206,205,203,236,236,236,254,254,254,255,255,255,255,255,255,254,254,254,113,91,78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,235,235,236,249,249,249,255,255,255,255,255,255,255,255,255,255,255,255,166,161,154,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,96,83,188,186,182,199,197,193,199,197,193,199,197,193,199,197,193,199,197,193,168,164,157,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,223,222,220,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,245,244,243,135,119,108,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,127,118,108,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,148,144,136,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,171,167,161,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,213,0,0,0,0,0,0]},"wnl":{"P":[0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,174,169,161,155,149,140,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,159,151,139,213,211,208,255,255,255,181,178,172,167,155,138,149,137,118,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,145,132,111,214,212,209,219,218,215,255,255,255,248,248,247,228,228,225,211,209,206,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,195,193,188,219,218,215,245,245,244,255,255,255,219,218,215,231,230,228,243,242,242,151,133,106,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,181,178,172,218,217,214,218,216,214,255,255,255,255,255,255,254,254,253,241,240,239,255,255,255,216,215,212,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,145,132,113,218,216,213,225,224,221,218,216,213,254,254,254,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,154,144,128,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,170,167,161,228,227,225,234,233,232,232,231,229,240,239,238,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,222,221,219,0,0,0,0,0,0,0,0,0,0,0,0,215,213,211,230,229,227,225,224,221,238,237,236,219,218,215,255,255,255,255,255,255,249,249,249,240,240,240,241,241,241,243,243,243,235,235,235,0,0,0,0,0,0,0,0,0,0,0,0,244,244,244,218,217,214,217,215,213,221,219,217,255,255,255,255,255,255,220,218,216,158,152,142,158,152,142,156,152,143,225,225,224,134,122,105,0,0,0,0,0,0,0,0,0,0,0,0,242,242,242,223,223,220,231,230,228,255,255,255,255,255,255,255,255,255,247,247,246,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,237,237,237,254,254,254,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,183,179,172,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,235,235,235,249,249,249,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,175,171,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,220,219,217,242,242,242,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,241,241,240,152,143,128,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,185,182,178,235,235,235,252,252,252,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,244,244,244,234,234,234,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,160,152,139,235,235,235,242,242,242,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,244,244,244,235,235,235,194,191,187,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,223,222,221,235,235,235,249,249,249,255,255,255,255,255,255,255,255,255,255,255,255,241,241,241,235,235,235,235,235,235,192,190,187,0,0,0,0,0,0]},"wbd":{"P":[0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,124,103,90,192,189,184,194,191,187,161,154,147,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,118,95,82,202,200,197,204,203,199,167,163,157,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,123,107,95,209,208,205,213,212,209,182,178,172,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,115,95,83,218,217,215,254,254,254,255,255,255,255,255,255,179,174,169,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,225,224,223,244,244,244,255,255,255,255,255,255,255,255,255,253,253,253,145,138,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,156,149,142,235,235,235,251,251,251,255,255,255,255,255,255,241,241,240,142,131,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,124,105,93,233,233,233,238,238,238,255,255,255,255,255,255,216,215,211,0,0,0,130,115,104,232,231,229,204,202,198,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,173,169,163,235,235,235,242,242,242,255,255,255,226,225,223,114,91,77,155,146,138,247,247,246,255,255,255,252,252,251,119,95,81,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,201,200,197,235,235,235,242,242,242,255,255,255,255,255,255,236,235,234,255,255,255,255,255,255,255,255,255,255,255,255,148,137,128,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,195,193,189,235,235,235,240,240,240,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,141,127,117,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,169,166,160,235,235,235,235,235,235,254,254,254,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,251,251,250,109,86,73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,217,216,214,235,235,235,242,242,242,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,167,161,154,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,117,106,188,186,182,188,186,182,199,197,192,199,197,193,199,197,193,199,197,193,198,196,191,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,171,167,160,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,245,245,245,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,173,171,165,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,140,136,127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,167,163,156,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,216,214,212,116,90,75,0,0,0,0,0,0]},"wql":{"P":[0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,158,152,141,255,255,255,254,254,254,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,174,172,166,255,255,255,255,255,255,152,135,110,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,133,119,99,179,176,170,178,175,170,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,156,147,133,209,208,206,233,233,233,247,246,246,202,199,195,149,131,106,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,198,196,193,235,235,235,235,235,235,252,252,252,255,255,255,255,255,255,254,254,254,163,156,144,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,138,118,90,199,197,194,199,197,194,209,208,206,213,212,209,213,212,209,225,224,221,213,212,209,199,197,193,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,160,151,138,248,248,249,190,187,183,255,255,255,232,231,230,177,174,169,255,255,255,250,250,249,185,182,178,253,253,253,254,254,254,208,206,204,251,250,250,0,0,0,0,0,0,0,0,0,208,207,203,237,237,237,241,241,241,243,243,243,238,238,238,237,237,237,243,243,243,243,243,243,237,237,237,241,241,241,243,243,243,238,238,238,239,239,239,157,153,145,0,0,0,0,0,0,0,0,0,222,221,220,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,237,237,237,240,240,240,183,181,175,0,0,0,0,0,0,0,0,0,0,0,0,162,155,144,235,235,235,235,235,235,235,235,235,235,235,235,235,235,235,242,242,242,250,250,250,254,254,254,255,255,255,246,246,245,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,227,227,235,235,235,235,235,235,240,240,240,253,253,253,255,255,255,255,255,255,255,255,255,255,255,255,194,192,187,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,184,181,177,235,235,235,250,250,250,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,158,144,123,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,146,141,131,193,191,187,199,197,193,199,197,193,199,197,193,199,197,193,199,197,193,199,197,193,199,197,193,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,215,213,210,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,166,161,152,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,136,123,103,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,213,212,209,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,174,170,164,0,0,0,0,0,0,0,0,0]},"wkd":{"P":[0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,228,227,225,255,255,255,123,105,92,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,181,178,172,255,255,255,255,255,255,252,252,252,116,87,73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,121,101,88,207,205,202,254,254,253,129,117,106,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,219,218,215,226,224,222,126,117,107,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,211,209,206,241,241,241,241,241,240,243,243,242,147,136,126,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,90,76,154,142,133,166,161,154,173,170,164,179,175,170,179,176,170,176,173,167,170,166,160,156,147,138,128,108,96,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,232,231,229,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,254,254,254,117,96,84,0,0,0,0,0,0,0,0,0,222,221,218,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,142,131,121,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,218,216,214,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,229,228,227,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,157,149,142,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,168,163,157,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,239,238,238,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,110,86,73,236,236,236,245,245,245,253,253,253,255,255,255,255,255,255,255,255,255,250,250,250,237,237,237,173,170,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,186,184,180,186,184,180,186,184,180,190,188,184,191,189,185,187,185,181,186,184,180,186,184,180,130,120,111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,153,146,138,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,225,224,222,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,150,146,139,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,159,156,149,107,83,70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,167,163,156,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,216,214,211,111,86,72,0,0,0,0,0,0]},"wbl":{"P":[0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,156,146,133,192,189,184,194,191,187,165,159,149,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,154,146,133,202,200,197,204,203,199,169,165,158,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,159,152,142,209,208,205,213,212,209,183,179,173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,147,128,102,237,236,236,254,254,254,255,255,255,255,255,255,181,177,170,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,147,129,103,225,224,223,251,251,251,255,255,255,255,255,255,255,255,255,253,253,253,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,199,197,194,235,235,235,255,255,255,255,255,255,255,255,255,241,241,240,155,145,130,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,149,132,108,235,235,235,238,238,238,255,255,255,255,255,255,216,215,211,0,0,0,150,137,117,250,249,249,204,202,198,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,174,170,164,235,235,235,242,242,242,255,255,255,226,225,223,137,118,91,162,154,142,247,247,246,255,255,255,252,252,251,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,201,200,197,235,235,235,242,242,242,255,255,255,255,255,255,236,235,234,255,255,255,255,255,255,255,255,255,255,255,255,162,151,135,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,195,193,189,235,235,235,240,240,240,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,160,147,127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,171,168,161,235,235,235,235,235,235,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,251,251,250,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,234,234,234,235,235,235,249,249,249,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,171,166,157,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,156,152,145,188,186,182,190,188,184,199,197,192,199,197,193,199,197,193,199,197,193,181,178,172,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,217,215,212,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,238,237,236,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,131,112,84,173,171,165,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,130,117,97,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,167,163,156,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,216,214,212,0,0,0,0,0,0,0,0,0]},"wnd":{"P":[0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,106,82,68,170,165,158,152,147,139,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,153,144,135,238,238,236,255,255,255,181,177,172,148,135,125,132,118,107,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,163,156,149,214,212,209,229,228,226,255,255,255,248,248,247,228,228,225,211,209,206,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,115,91,77,213,212,208,219,218,215,246,246,245,255,255,255,219,218,215,231,230,228,243,242,242,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,181,178,172,218,217,214,218,216,214,255,255,255,255,255,255,254,254,253,241,240,239,255,255,255,167,161,154,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,115,104,218,216,213,220,218,215,218,216,213,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,250,250,250,144,132,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,170,167,161,228,227,225,218,217,214,232,231,229,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,177,173,167,0,0,0,0,0,0,0,0,0,0,0,0,215,213,211,230,229,227,228,227,225,238,237,236,246,246,245,255,255,255,255,255,255,249,249,249,240,240,240,241,241,241,243,243,243,192,190,186,0,0,0,0,0,0,0,0,0,0,0,0,244,244,244,218,217,214,230,230,228,221,219,217,255,255,255,255,255,255,220,218,216,153,147,139,153,147,139,180,178,173,225,225,224,107,84,70,0,0,0,0,0,0,0,0,0,0,0,0,242,242,242,223,223,220,231,230,228,255,255,255,255,255,255,255,255,255,247,247,246,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,237,237,237,254,254,254,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,181,177,171,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,235,235,235,249,249,249,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,173,169,163,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,220,219,217,242,242,242,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,241,241,240,115,91,78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,185,182,178,235,235,235,254,254,254,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,244,244,244,218,217,216,115,91,78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,151,143,135,235,235,235,248,248,248,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,244,244,244,235,235,235,193,191,187,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,223,222,221,235,235,235,249,249,249,255,255,255,255,255,255,255,255,255,255,255,255,241,241,241,235,235,235,235,235,235,149,141,133,0,0,0,0,0,0]},"wrl":{"P":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0],"C":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,167,162,155,142,122,93,146,140,131,167,162,155,167,162,155,143,137,128,0,0,0,167,162,155,144,126,99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,254,254,254,182,179,173,225,224,222,255,255,255,255,255,255,221,220,217,178,175,169,255,255,255,156,139,113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,156,138,113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,245,245,244,245,245,244,245,245,244,245,245,244,245,245,244,245,245,244,245,245,244,245,245,244,154,137,111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,169,166,160,178,176,171,178,176,171,178,176,171,178,176,171,178,176,171,178,176,171,164,161,155,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,184,182,177,185,182,178,185,182,178,185,182,178,185,182,178,185,183,178,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,162,159,152,221,221,219,221,221,219,221,221,219,221,221,219,195,194,190,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,171,168,162,235,235,235,234,234,234,244,244,244,255,255,255,222,221,218,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,185,183,179,235,235,235,245,245,245,255,255,255,255,255,255,241,241,240,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,206,205,203,240,240,240,254,254,254,255,255,255,255,255,255,254,254,254,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,147,130,106,235,235,236,254,254,254,255,255,255,255,255,255,255,255,255,255,255,255,146,126,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,139,133,124,188,186,182,199,197,193,199,197,193,199,197,193,199,197,193,199,197,193,141,134,123,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,223,222,220,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,246,245,245,245,244,243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,135,126,112,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,178,175,170,148,144,136,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,207,205,201,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,218,216,214,198,196,192,0,0,0,0,0,0]}};
+function scLucaDist(tpl){const ks=Object.keys(SC_LUCA).filter(k=>tpl[k]);if(ks.length<4)return 1;return ks.reduce((t,k)=>t+scDist(scTplFeat(tpl[k]),SC_LUCA[k]),0)/ks.length;}
+function scLearn(F,full){
+  const pieceLum=rows=>{let s=0,n=0;for(const r of rows)for(let c=0;c<8;c++){const f=F[r*8+c];if(!f.occ)continue;for(let k=0;k<SCN*SCN;k++)if(f.m[k]){s+=scLum([f.col[k*3],f.col[k*3+1],f.col[k*3+2]]);n++;}}return n?s/n:0;};
+  const whiteBottom=pieceLum([6,7])>pieceLum([0,1]);
+  SC.flip=!whiteBottom;SC.me=whiteBottom?'w':'b';
+  const start=SC_START.split(','),S={};
+  for(const r of[0,1,6,7])for(let c=0;c<8;c++){const f=F[r*8+c];if(!f.occ)continue;const key=start[scBoardIdx(r,c)]+((r+c)%2?'d':'l');(S[key]=S[key]||[]).push(f);}
+  const tpl={};
+  for(const[key,fs]of Object.entries(S)){
+    let use=fs;
+    if(fs.length>=3){const T0=scTplOf(fs);use=fs.filter(f=>scDist(f,T0)<.15);if(!use.length)continue;}
+    tpl[key]=scTplOf(use);
+  }
+  if(!full){
+    // the same piece on light and dark squares must look alike, otherwise something has moved onto a home square
+    for(const code of['wr','wn','wb','br','bn','bb']){const a=tpl[code+'l'],b=tpl[code+'d'];if(a&&b&&scDist(scTplFeat(a),b)>.25){delete tpl[code+'l'];delete tpl[code+'d'];}}
+    if(Object.keys(tpl).length<20&&SC.tpl)return;
+  }
+  SC.lucaD=scLucaDist(tpl);if(!SC.lucaSkip&&SC.lucaD>.2){SC.tpl=null;SC.notLuca=true;return;}
+  SC.notLuca=false;SC.tpl=tpl;store.set('scTpl4',tpl);SC.badN=0;
+}
+function scClassify(F){
+  const out=new Array(64).fill('');let bad=0;
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+    const f=F[r*8+c];if(!f.occ)continue;
+    const bg=(r+c)%2?'d':'l',ob=bg==='d'?'l':'d';let best=null,bd=1e9;
+    for(const code of['wp','wn','wb','wr','wq','wk','bp','bn','bb','br','bq','bk']){
+      const A=SC.tpl[code+bg],B=SC.tpl[code+ob];if(!A&&!B)continue;const d=Math.min(A?scDist(f,A):9,B?scDist(f,B):9);if(d<bd){bd=d;best=code;}
+    }
+    if(bd>.3){if(f.cnt<SCN*SCN*.25)continue;bad++;continue;}   // faint and unlike any piece: wood grain, not a piece
+    out[scBoardIdx(r,c)]=best;
+  }
+  return{P:out,bad};
+}
+const scKey=g=>{const o=[];for(const row of g.board())for(const p of row)o.push(p?p.color+p.type:'');return o.join(',');};
+
+/* ---- 3. follow the game ---- */
+function scSet(state,msg){if(SC.state===state&&SC.msg===(msg||''))return;SC.state=state;SC.msg=msg||'';scRender();}
+function scFrame(D,W,H){
+  if(!SC.G){const now=Date.now();if(now-SC.findAt<900&&!SC.test)return;SC.findAt=now;SC.G=scFindBoard(D,W,H);if(!SC.G){scSet('find');return;}}
+  const R=scRead(D,W,SC.G);
+  if(R.match<48){if(++SC.lost>4){SC.G=null;SC.lost=0;scSet('find');}return;}
+  SC.lost=0;
+  if(scStartLike(R.F))scLearn(R.F,true);
+  else if((!SC.tpl||SC.badN>=6)&&scEarlyLike(R.F))scLearn(R.F,false);
+  if(!SC.tpl){scSet(SC.notLuca?'luca':'learn');return;}
+  const {P,bad}=scClassify(R.F);
+  if(bad){if(++SC.badN>=12&&!SC.game)scSet('lost');return;}   // a piece mid-drag, move dots or a hover outline: wait
+  SC.badN=0;
+  const key=P.join(',');
+  if(key!==SC.pend){SC.pend=key;SC.pendN=1;if(!SC.test)return;}else if(++SC.pendN>2&&SC.game&&scKey(SC.game)===key)return;
+  scSync(P,key,R);
+}
+function scSync(P,key,R){
+  if(key===SC_START){if(!SC.game||scKey(SC.game)!==key||SC.game.history().length){scSaveGame();SC.game=new Chess();SC.log={grades:[],t:Date.now()};SC.lastMove=null;SC.grade=null;SC.askTurn=null;scSet('play');scOnPos();}return;}
+  if(!SC.game){scInit(P,R);return;}
+  const g=SC.game,cur=scKey(g);if(cur===key){SC.unk=0;return;}
+  for(const m of g.moves({verbose:true})){g.move(m);const k=scKey(g);g.undo();if(k===key){SC.unk=0;scApply([m]);return;}}
+  for(const m1 of g.moves({verbose:true})){g.move(m1);
+    for(const m2 of g.moves({verbose:true})){g.move(m2);const k=scKey(g);g.undo();if(k===key){g.undo();SC.unk=0;scApply([m1,m2]);return;}}
+    g.undo();}
+  if(++SC.unk>=4){SC.game=null;scInit(P,R);}
+}
+// start following from the middle of a game: rebuild the position from the picture
+function scMoveNo(P){const st=SC_START.split(',');let d=0;P.forEach((c,i)=>{if(c!==st[i])d++;});return Math.max(1,Math.round(d/4)+1);}
+function scInit(P,R){
+  const wp=[],bp=[];P.forEach((c,i)=>{if(c==='wp')wp.push(i>>3);if(c==='bp')bp.push(i>>3);});
+  // which side is at the bottom? white pawns normally stand nearer white's side of the board
+  const avg=a=>a.reduce((x,y)=>x+y,0)/(a.length||1);
+  if(wp.length&&bp.length&&avg(wp)<avg(bp)){SC.flip=!SC.flip;SC.me=SC.flip?'b':'w';P=P.slice().reverse();}
+  let fen='';for(let r=0;r<8;r++){let e=0;for(let c=0;c<8;c++){const p=P[r*8+c];if(!p){e++;continue;}if(e){fen+=e;e=0;}fen+=p[0]==='w'?p[1].toUpperCase():p[1];}if(e)fen+=e;if(r<7)fen+='/';}
+  const at=(sq,code)=>P[(8-+sq[1])*8+sq.charCodeAt(0)-97]===code;
+  let cr=(at('e1','wk')&&at('h1','wr')?'K':'')+(at('e1','wk')&&at('a1','wr')?'Q':'')+(at('e8','bk')&&at('h8','br')?'k':'')+(at('e8','bk')&&at('a8','br')?'q':'');
+  // the last-move highlight tells whose turn it is: the piece standing on a highlighted square just moved
+  let turn=null;
+  if(R)R.F.forEach((f,i)=>{const r=i>>3,c=i&7;if(turn||!f.occ||!f.hl)return;const code=P[scBoardIdx(r,c)];if(code)turn=code[0]==='w'?'b':'w';});
+  const mn=scMoveNo(P),make=t=>{const g=new Chess();return g.load(`${fen} ${t} ${cr||'-'} - 0 ${mn}`)?g:null;};
+  if(!turn){if(!make('w')&&!make('b')){scSet('lost');return;}SC.askTurn=P.join(',');SC.game=null;scSet('turn');return;}
+  const g=make(turn)||make(turn==='w'?'b':'w');if(!g){scSet('lost');return;}
+  SC.game=g;SC.lastMove=null;SC.grade=null;SC.askTurn=null;SC.log={grades:[],t:Date.now()};scSet('play');scOnPos();
+}
+function scSetTurn(t){
+  if(!SC.askTurn)return;const P=SC.askTurn.split(',');SC.askTurn=null;
+  let fen='';for(let r=0;r<8;r++){let e=0;for(let c=0;c<8;c++){const p=P[r*8+c];if(!p){e++;continue;}if(e){fen+=e;e=0;}fen+=p[0]==='w'?p[1].toUpperCase():p[1];}if(e)fen+=e;if(r<7)fen+='/';}
+  const g=new Chess();if(!g.load(`${fen} ${t} - - 0 ${scMoveNo(P)}`)){scSet('lost');return;}
+  SC.game=g;SC.log={grades:[],t:Date.now()};scSet('play');scOnPos();
+}
+function scApply(ms){
+  const g=SC.game;
+  for(const m of ms){const fb=g.fen();g.move(m);const fa=g.fen();SC.lastMove=m;if(m.color===SC.me)scGrade(makePly(m,fb,fa));}
+  scSet('play');scOnPos();
+}
+
+/* ---- 4. coach ---- */
+function scHang(fen,color){
+  const B=new Chess(fen).board(),out=[];
+  for(let r=0;r<8;r++)for(let f=0;f<8;f++){const p=B[r][f];if(!p||p.color!==color)continue;const sq='abcdefgh'[f]+(8-r),v=pieceHang(B,sq,color);if(v)out.push({sq,t:p.type,v});}
+  return out.sort((a,b)=>b.v-a.v);
+}
+// why a move is good, in plain words; theme = the hint for step 1
+function scWhy(fen,uci,e){
+  const g=new Chess(fen),me=g.turn(),opp=me==='w'?'b':'w',s=me==='w'?1:-1;
+  const m=uciMove(g,uci);if(!m)return{theme:'quiet',why:[]};
+  const fa=g.fen(),Ba=g.board(),why=[];let theme=null;const set=t=>{if(!theme)theme=t;};
+  const mate=e&&e.mate!==null&&e.mate!==undefined&&s*e.mate>0?Math.abs(e.mate):0;
+  if(m.san.includes('#')){set('mate1');why.push("It's checkmate!");}
+  else if(mate){set('mate');why.push(`It starts a forced checkmate in ${mate}.`);}
+  if(m.promotion){set('promote');why.push(`Your pawn turns into a ${SC_PN[m.promotion]}.`);}
+  if(m.captured){
+    const back=pieceHang(Ba,m.to,me);
+    const g2=new Chess(fa),recap=g2.moves({verbose:true}).some(x=>x.to===m.to);
+    if(!recap){set('win');why.push(`It wins their ${SC_PN[m.captured]} for free.`);}
+    else if(VAL[m.captured]>VAL[m.piece]){set('win');why.push(`Your ${SC_PN[m.piece]} takes their ${SC_PN[m.captured]}, which is worth more.`);}
+    else{if(VAL[m.captured]>=3)set('trade');why.push(VAL[m.captured]===VAL[m.piece]?`It trades off their active ${SC_PN[m.captured]}.`:`It takes their ${SC_PN[m.captured]}${back?'':' safely'}.`);}
+  }
+  const fake=fa.split(' ');fake[1]=me;fake[3]='-';const gx=new Chess();let hits=[];
+  if(gx.load(fake.join(' ')))hits=gx.moves({square:m.to,verbose:true}).filter(x=>x.captured&&x.captured!=='k'&&VAL[x.captured]>=3).map(x=>({t:x.captured,sq:x.to}));
+  if(m.san.includes('+'))hits.unshift({t:'k',sq:''});
+  if(hits.length>=2&&!m.san.includes('#')){set('fork');why.push(`It's a fork: it attacks their ${hits.slice(0,2).map(h=>SC_PN[h.t]+(h.sq?' on '+h.sq:'')).join(' and ')} at once.`);}
+  const hb=scHang(fen,me),ha=scHang(fa,me);
+  if(hb.some(h=>h.sq===m.from)&&!ha.some(h=>h.sq===m.to)){set('save');why.push(`It moves your ${SC_PN[m.piece]} out of danger.`);}
+  else if(hb.length&&ha.length<hb.length){set('protect');why.push(`It protects your ${SC_PN[hb[0].t]} on ${hb[0].sq}.`);}
+  const ob=scHang(fen,opp).length,oa=scHang(fa,opp);
+  if(oa.length>ob&&!m.captured&&hits.length<2){set('attack');why.push(`It attacks their ${SC_PN[oa[0].t]} on ${oa[0].sq}.`);}
+  if(m.san.includes('+')&&!m.san.includes('#')&&hits.length<2){set('check');why.push("It's check, so they have to answer it.");}
+  if(/[kq]/.test(m.flags)){set('castle');why.push('It castles: your king gets safe and your rook joins the game.');}
+  const moveNo=+fen.split(' ')[5]||1,home=me==='w'?'1':'8';
+  if((m.piece==='n'||m.piece==='b')&&m.from[1]===home&&moveNo<=15){set('develop');why.push(`It brings your ${SC_PN[m.piece]} into the game.`);}
+  if(m.piece==='p'&&['d4','e4','d5','e5','c4','c5','f4','f5'].includes(m.to)&&moveNo<=10){set('centre');why.push('It grabs space in the centre.');}
+  set('quiet');
+  return{theme,why,m,fa};
+}
+const SC_IDEA={mate1:'You have checkmate in one move! Look at every check.',mate:'There is a forced checkmate for you. Start with forcing moves: checks first.',
+  promote:'One of your pawns can become a queen.',win:'You can win material: one of their pieces is not protected well enough.',
+  fork:'Look for a fork: one move that attacks two of their pieces at once.',save:'One of your pieces is under attack. Deal with that first!',
+  protect:'Something of yours needs protecting.',attack:'You can attack one of their pieces and make the bot react.',check:'A check is strong here.',
+  castle:'Time to get your king safe.',trade:'A trade is good here: swap off one of their most active pieces.',develop:"Bring another piece into the game. Don't move the same piece twice.",centre:'Fight for the centre with a pawn.',
+  quiet:'No tactic right now. Find your worst piece and improve it.'};
+const scPov=e=>{const s=SC.me==='w'?1:-1;return{cp:s*e.cp,mate:e.mate!==null&&e.mate!==undefined?s*e.mate:null};};
+function scWord(e){const p=scPov(e);if(p.mate!==null)return p.mate>0?'You have a forced mate':'They have a forced mate';const v=p.cp;return v>300?"You're winning":v>100?"You're better":v>-100?'About equal':v>-300?"You're worse":"You're losing";}
+function scOnPos(){
+  SC.tok++;SC.an=null;SC.hunt=undefined;SC.threat=undefined;SC.reveal=3;SC.gem=true;if(SC.eng)SC.eng.stop();
+  const g=SC.game;if(g&&g.game_over())scSaveGame();
+  if(g&&!g.game_over()&&g.turn()===SC.me)scAnalyze();
+  scRender();
+}
+function scAnalyze(){
+  const tok=SC.tok,fen=SC.game.fen(),turn=fen.split(' ')[1],alive=()=>tok===SC.tok;
+  SC.eng=SC.eng||new Engine();
+  SC.eng.search(fen,{depth:14,multipv:3,cancelled:()=>!alive()}).then(r=>{
+    if(!alive())return;
+    SC.an={fen,lines:r.lines.filter(Boolean).map(l=>{const w=lineToWhite(l,turn);return{uci:l.pv[0],pv:l.pv,e:{cp:w.cp,mate:w.mate}};}).filter(l=>l.uci)};
+    scRender();
+    return scThreat(fen,alive);
+  }).then(t=>{
+    if(!alive())return;SC.threat=t;scRender();
+    scSpeakTurn(t);
+    return brillHunt(fen,{budget:5000,alive,pick:SC.pick});
+  }).then(h=>{if(!alive()||h===undefined)return;SC.hunt=h;scRender();}).catch(()=>{});
+}
+// what would the bot do if it could move again right now? that is its threat
+async function scThreat(fen,alive){
+  const g=new Chess(fen);if(g.in_check())return{check:true};
+  const f=fen.split(' ');f[1]=f[1]==='w'?'b':'w';f[3]='-';const g2=new Chess();if(!g2.load(f.join(' '))||g2.game_over())return null;
+  const r=await SC.eng.search(g2.fen(),{depth:11,multipv:1,cancelled:()=>!alive()});
+  if(!alive()||!r.lines[0])return undefined;
+  const l=r.lines[0],w=lineToWhite(l,g2.turn()),m=uciMove(new Chess(g2.fen()),l.pv[0]);if(!m)return null;
+  const pov=scPov({cp:w.cp,mate:w.mate}),best=SC.an&&SC.an.lines[0],now=best?scPov(best.e):null;
+  if(pov.mate!==null&&pov.mate<0)return{san:m.san,uci:l.pv[0],text:Math.abs(pov.mate)===1?`The bot threatens ${m.san} — checkmate!`:`The bot threatens ${m.san}, starting a checkmate in ${Math.abs(pov.mate)}.`};
+  if(m.captured&&VAL[m.captured]>=3){const g3=new Chess(g2.fen());g3.move(m);const recap=g3.moves({verbose:true}).some(x=>x.to===m.to);
+    if(!recap||VAL[m.captured]>VAL[m.piece])return{san:m.san,uci:l.pv[0],text:`The bot threatens ${m.san}, winning your ${SC_PN[m.captured]}.`};}
+  if(now&&now.mate===null&&pov.mate===null&&now.cp-pov.cp>250)return{san:m.san,uci:l.pv[0],text:`The bot threatens ${m.san}.`};
+  return null;
+}
+function scGrade(p){
+  const prev=SC.grade&&SC.grade.r?{c:SC.grade.r.c,ply:SC.grade.p}:null,tok=p.fenBefore+p.uci;
+  SC.grade={p,key:tok};
+  Promise.all([evalFen(p.fenBefore,12),evalFen(p.fenAfter,12)]).then(([E0,E1])=>{
+    if(!SC.grade||SC.grade.key!==tok)return;
+    const r=classifyCore(p,E0,E1,prev,true);let text='';
+    try{text=templateComment(COACHES[SET.coach]?SET.coach:Object.keys(COACHES)[0],moveFacts(p,E0,E1,r),hashStr(tok));}catch(e){}
+    SC.grade={p,key:tok,r,text};scRender();SC.log.grades.push(r.c);
+    if(['brilliant','great'].includes(r.c))scBeep('brilliant');else if(['mistake','blunder','miss'].includes(r.c))scBeep('blunder');else if(r.c==='best')scBeep('good');
+    scSay(CLS[r.c].label+'.');
+  }).catch(()=>{});
+}
+
+/* ---- 5. the coach window ---- */
+function scMini(fen,arrows){
+  const B=new Chess(fen).board(),fl=SC.me==='b';let h='';
+  for(let row=0;row<8;row++)for(let col=0;col<8;col++){const r=fl?7-row:row,f=fl?7-col:col,p=B[r][f],sq='abcdefgh'[f]+(8-r);
+    const hl=SC.lastMove&&(SC.lastMove.from===sq||SC.lastMove.to===sq);
+    h+=`<div class="sq ${(f+8-r)%2?'l':'d'}${hl?' hl':''}">${p?`<div class="pc p-${p.color}${p.type.toUpperCase()}"></div>`:''}</div>`;}
+  const xy=sq=>{const f=sq.charCodeAt(0)-97,r=8-+sq[1];return fl?[7-f+.5,7-r+.5]:[f+.5,r+.5];};
+  let svg='';for(const a of arrows){const[x1,y1]=xy(a.uci.slice(0,2)),[x2,y2]=xy(a.uci.slice(2,4)),dx=x2-x1,dy=y2-y1,d=Math.hypot(dx,dy)||1,ux=dx/d,uy=dy/d,ex=x2-ux*.35,ey=y2-uy*.35;
+    svg+=`<line x1="${x1}" y1="${y1}" x2="${ex}" y2="${ey}" stroke="${a.c}" stroke-width=".16" stroke-linecap="round" opacity=".85"/><polygon points="${x2},${y2} ${ex-uy*.28},${ey+ux*.28} ${ex+uy*.28},${ey-ux*.28}" fill="${a.c}" opacity=".85"/>`;}
+  return `<div class="scbw"><div class="board scb">${h}</div><svg class="scarr" viewBox="0 0 8 8">${svg}</svg></div>`;
+}
+const SC_COL=['#5fbf4a','#4f8fd6','#b06cd8'];
+function scRender(){
+  const el=SC.root;if(!el)return;
+  const dot=`<span class="scdot ${SC.stream?'on':''}"></span>`;
+  let body='';
+  const g=SC.game;
+  if(!SC.stream)body='<div class="scmsg">Not watching. Press <b>Share chess.com tab</b> in ChessLab.</div>';
+  else if(SC.state==='find'||SC.state==='off')body='<div class="scmsg">👀 Looking for the board…<div class="muted">Open your game. Any site and any board or piece design works — just keep the whole board visible.</div></div>';
+  else if(SC.state==='luca')body='<div class="scmsg">♟ Please switch to the <b>Luca</b> pieces<div class="muted">The coach only reads chess.com\'s Luca piece set. On chess.com open Settings → Board, set <b>Pieces</b> to <b>Luca</b>, then start a new game.</div></div>';
+  else if(SC.state==='learn')body='<div class="scmsg">♟ Found the board!<div class="muted">Now I need to learn your pieces: start a <b>new game</b> (or keep going if it only just started). I learn them from the first few moves, once for each piece design.</div></div>';
+  else if(SC.state==='turn')body='<div class="scmsg">Whose move is it?<div class="row" style="justify-content:center;margin-top:8px;gap:6px"><button class="btn sm" data-sc="turn:me">My move</button><button class="btn ghost sm" data-sc="turn:opp">Bot\'s move</button></div></div>';
+  else if(SC.state==='lost'||!g)body='<div class="scmsg">🤔 I lost track of the game.<div class="muted">It will pick up again by itself. Starting a new game always works.</div></div>';
+  else{
+    const mine=g.turn()===SC.me,fen=g.fen(),an=SC.an&&SC.an.fen===fen?SC.an:null,best=an&&an.lines[0];
+    const arrows=[];
+    if(mine&&best){if(SC.reveal===2)arrows.push({uci:best.uci.slice(0,2)+best.uci.slice(0,2),c:SC_COL[0]});if(SC.reveal>=3)an.lines.slice(0,3).forEach((l,i)=>arrows.push({uci:l.uci,c:SC_COL[i]}));}
+    if(mine&&SC.gem&&SC.hunt)arrows.push({uci:SC.hunt.uci,c:'#1fbfa6'});
+    {const pl=scPlan();if(mine&&pl&&pl.next)arrows.push({uci:pl.next.uci,c:'#f0b429'});}
+    if(mine&&SC.threat&&SC.threat.uci)arrows.unshift({uci:SC.threat.uci,c:'#e05545'});
+    const Gr=SC.grade;
+    let h='';
+    if(SC.board)h+=scMini(fen,arrows.filter(a=>a.uci.slice(0,2)!==a.uci.slice(2,4)));
+    if(Gr)h+=`<div class="scgrade">${Gr.r?icon(Gr.r.c)+`<div><b style="color:${CLS[Gr.r.c].color}">${CLS[Gr.r.c].label}</b> · <b>${esc(Gr.p.san)}</b><div class="muted">${esc(Gr.text)}</div></div>`:`<span class="ic pend"></span><div class="muted">Checking your move ${esc(Gr.p.san)}…</div>`}</div>`;
+    if(g.game_over())h+=`<div class="scturn">${g.in_checkmate()?(g.turn()===SC.me?'Checkmate — the bot won. Start a new game and try again!':'🏆 Checkmate — you won!'):'Draw.'}</div>`;
+    else if(!mine)h+=scPlanHtml(fen,false)+`<div class="scturn">⏳ Bot's move${SC.lastMove&&SC.lastMove.color===SC.me?'':'…'}</div>`;
+    else{
+      const danger=scHang(fen,SC.me);
+      h+=`<div class="scturn">🟢 Your move${best?` · <span class="muted">${scWord(best.e)} (${evalText(scPov(best.e))})</span>`:''}</div>`;
+      if(SC.lastMove&&SC.lastMove.color!==SC.me)h+=`<div class="muted" style="font-size:12.5px">The bot played <b>${esc(SC.lastMove.san)}</b>.</div>`;
+      if(SC.threat&&SC.threat.check)h+='<div class="scwarn">⚠️ You\'re in check!</div>';
+      else if(SC.threat)h+=`<div class="scwarn">🎯 ${esc(SC.threat.text)}</div>`;
+      if(danger.length&&!(SC.threat&&SC.threat.text&&/winning your/.test(SC.threat.text)))h+=`<div class="scwarn">⚠️ Your ${SC_PN[danger[0].t]} on ${danger[0].sq} is under attack${danger.length>1?` (and ${danger.length-1} more piece${danger.length>2?'s':''})`:''}.</div>`;
+      if(!best)h+='<div class="muted" style="margin-top:6px">Thinking…</div>';
+      else{
+        const W=an.lines.map(l=>({l,w:scWhy(fen,l.uci,l.e)})),bw=W[0].w,bm=bw.m;
+        const hunt=SC.hunt,gemBtn=hunt===undefined?'💎 Looking…':hunt?'💎 Brilliant idea!':'💎 None here';
+        h+=`<div class="scbtns"><button class="btn sm${SC.reveal>=1?' on':''}" data-sc="r1">💡 Idea</button><button class="btn sm${SC.reveal>=2?' on':''}" data-sc="r2">♞ Piece</button><button class="btn sm${SC.reveal>=3?' on':''}" data-sc="r3">✅ Best moves</button><button class="btn sm gembtn${hunt?' found':''}${SC.gem?' on':''}" data-sc="gem" ${hunt===undefined?'disabled':''}>${gemBtn}</button></div>`;
+        h+=scPlanHtml(fen,mine);
+        if(SC.reveal>=1)h+=`<div class="scstep">💡 ${esc(SC_IDEA[bw.theme])}</div>`;
+        if(SC.reveal>=2)h+=`<div class="scstep">♞ ${/[kq]/.test(bm.flags)?'Look at your <b>king</b>: castling is the move.':`Move your <b>${SC_PN[bm.piece]}</b> on <b>${bm.from}</b>.`}</div>`;
+        if(SC.reveal>=3)h+=W.map(({l,w},i)=>`<div class="scmv"><span class="scn" style="background:${SC_COL[i]}">${i+1}</span><div><b>${esc(w.m.san)}</b> <span class="muted">${evalText(scPov(l.e))}</span><div class="scwhy">${esc(w.why.slice(0,2).join(' ')||'It keeps your position strongest.')}</div><div class="muted" style="font-size:11.5px">Likely: ${pvSan(fen,l.pv.slice(0,5),5,true)}</div></div></div>`).join('');
+        if(SC.gem&&hunt)h+=`<div class="scgem"><div class="muted" style="font-size:11.5px">${esc(gemTag(hunt))}</div>${gemWhat(fen,hunt)}<div class="muted" style="font-size:11.5px;margin-top:3px">Line: ${pvSan(fen,hunt.pv.slice(0,6),6,true)}</div></div>`;
+        if(SC.gem&&hunt===null)h+='<div class="scgem muted">No brilliant idea here. Play the best move instead.</div>';
+      }
+    }
+    body=h;
+  }
+  el.innerHTML=`<div class="sc"><div class="schead">${dot}<b>♞ ChessLab Coach</b><span class="muted" style="font-size:11px;margin-left:auto">bot games only</span><button class="scx" data-sc="audio" title="Sound: off / dings / dings + voice">${{off:'🔇',sound:'🔔',voice:'🗣'}[SC.audio]}</button><button class="scx" data-sc="reset" title="Lost track? Look at the board again">↻</button><button class="scx" data-sc="board" title="Show or hide the mini board">${SC.board?'▣':'□'}</button></div>${SC.stream?scPickBar():''}${body}</div>`;
+}
+function scClick(e){
+  const b=e.target.closest('[data-sc]');if(!b)return;const a=b.dataset.sc;
+  if(a==='r1'||a==='r2'||a==='r3'){const n=+a[1];SC.reveal=SC.reveal>=n?n-1:n;}
+  else if(a==='gem')SC.gem=!SC.gem;
+  else if(a.startsWith('pk:')){const L=scPickList(),i=L.indexOf(SC.pick);scSetPick(L[(i+(+a.slice(3))+L.length)%L.length]);return;}
+  else if(a==='audio'){SC.audio={off:'sound',sound:'voice',voice:'off'}[SC.audio];store.set('scAudio',SC.audio);if(SC.audio==='off')try{speechSynthesis.cancel();}catch(e){}else scBeep('good');}
+  else if(a==='reset'){SC.game=null;SC.G=null;SC.pend='';SC.unk=0;SC.tok++;SC.state='find';}
+  else if(a==='board'){SC.board=!SC.board;store.set('scBoard',SC.board);}
+  else if(a==='turn:me')scSetTurn(SC.me);
+  else if(a==='turn:opp')scSetTurn(SC.me==='w'?'b':'w');
+  scRender();
+}
+function scStepVideo(){
+  const v=SC.video;if(!v||v.readyState<2||!v.videoWidth)return;
+  const W=v.videoWidth,H=v.videoHeight;if(SC.cv.width!==W||SC.cv.height!==H){SC.cv.width=W;SC.cv.height=H;}
+  SC.cx.drawImage(v,0,0,W,H);scFrame(SC.cx.getImageData(0,0,W,H).data,W,H);
+}
+async function scStart(){
+  if(!$('scOk').checked){toast('Tick the box first: this is only for games against chess.com bots.');return;}
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getDisplayMedia){toast('This browser can\'t share a tab. Use Chrome or Edge on a computer.',4500);return;}
+  let cc=null;try{cc=new CaptureController();}catch(e){}
+  const opts={video:{displaySurface:'browser',frameRate:5},audio:false,preferCurrentTab:false,selfBrowserSurface:'exclude',surfaceSwitching:'include',monitorTypeSurfaces:'exclude'};
+  if(cc)opts.controller=cc;
+  let stream;
+  try{stream=await navigator.mediaDevices.getDisplayMedia(opts);}catch(e){toast(e&&e.name==='NotAllowedError'?'Sharing was cancelled or is blocked on this computer.':'Could not start sharing.',4000);return;}
+  try{cc&&cc.setFocusBehavior('no-focus-change');}catch(e){}
+  scStop(true);SC.stream=stream;
+  SC.video=document.createElement('video');SC.video.muted=true;SC.video.playsInline=true;SC.video.srcObject=stream;SC.video.play().catch(()=>{});
+  SC.cv=document.createElement('canvas');SC.cx=SC.cv.getContext('2d',{willReadFrequently:true});
+  SC.G=null;SC.game=null;SC.pend='';SC.state='find';
+  stream.getVideoTracks()[0].addEventListener('ended',()=>scStop());
+  SC.timer=setInterval(scStepVideo,400);
+  $('scPanel').classList.remove('hidden');if(!SC.pip)SC.root=$('scPanel');
+  $('scFloat').classList.toggle('hidden',!('documentPictureInPicture' in window));$('scStop').classList.remove('hidden');$('scStart').textContent='📺 Share a different tab';
+  scRender();
+  toast('documentPictureInPicture' in window?'Now press "Open floating coach", then go to your chess.com tab.':'Put ChessLab next to your chess.com window — the coach is in this card.',5000);
+}
+function scStop(keepUi){
+  if(!keepUi)scSaveGame();
+  if(SC.timer)clearInterval(SC.timer);SC.timer=null;
+  if(SC.stream)SC.stream.getTracks().forEach(t=>t.stop());SC.stream=null;SC.video=null;SC.tok++;if(SC.eng)SC.eng.stop();
+  if(keepUi)return;
+  if(SC.pip){try{SC.pip.close();}catch(e){}SC.pip=null;}
+  SC.root=$('scPanel');$('scFloat').classList.add('hidden');$('scStop').classList.add('hidden');$('scStart').textContent='📺 Share chess.com tab';scRender();
+}
+async function scFloat(){
+  if(SC.pip){SC.pip.focus();return;}
+  let w;try{w=await documentPictureInPicture.requestWindow({width:340,height:620});}catch(e){toast('Could not open the floating window.');return;}
+  const d=w.document;
+  for(const st of document.querySelectorAll('style,link[rel=stylesheet]'))d.head.appendChild(st.cloneNode(true));
+  d.documentElement.setAttribute('style',document.documentElement.getAttribute('style')||'');
+  d.documentElement.className=document.documentElement.className;d.body.className=document.body.className+' scpip';
+  d.title='ChessLab Coach';d.body.innerHTML='<div id="scRoot"></div>';
+  SC.pip=w;SC.root=d.getElementById('scRoot');SC.root.addEventListener('click',scClick);
+  $('scPanel').innerHTML='<div class="muted" style="padding:6px 2px">The coach is in the floating window. Go to your chess.com tab and play!</div>';
+  w.addEventListener('pagehide',()=>{SC.pip=null;SC.root=$('scPanel');scRender();});
+  scRender();
+}
+$('scOk').onchange=e=>{$('scStart').disabled=!e.target.checked;};
+$('scStart').onclick=scStart;$('scStop').onclick=()=>scStop();$('scFloat').onclick=scFloat;
+$('scPanel').addEventListener('click',scClick);SC.root=$('scPanel');
+SC.tpl=store.get('scTpl4',null)||SC_LUCA;window.SC=SC;window.scFrame=scFrame;
+
+/* ---- 6. gambit picker: cycle the gambit you want to play; the coach steers toward it ---- */
+const GB=new Map();   // name -> {name,side,type,lines:[{mv,key}]}
+for(const[name,side,type,line]of GAMBITS){const raw=line.split(' '),ki=raw.findIndex(t=>t.endsWith('|')),mv=raw.map(t=>t.replace('|',''));
+  if(GBAD.includes(name+': '+line))continue;const e=GB.get(name)||{name,side,type,lines:[]};e.lines.push({mv,key:ki<0?mv.length-1:ki});GB.set(name,e);}
+const scPickList=()=>['',...[...GB.values()].filter(x=>!SC.stream||!SC.game||x.side===SC.me).map(x=>x.name)];
+function scSetPick(n){
+  SC.pick=n||'';store.set('scPick',SC.pick);for(const id of['scPick','gbPickSel'])if($(id))$(id).value=SC.pick;
+  if(SC.game&&SC.game.turn()===SC.me&&SC.an){SC.hunt=undefined;const tok=SC.tok;brillHunt(SC.game.fen(),{budget:5000,alive:()=>tok===SC.tok,pick:SC.pick}).then(h=>{if(tok===SC.tok&&h!==undefined){SC.hunt=h;scRender();}}).catch(()=>{});}
+  scRender();window.GBX&&GBX.render();
+}
+function scPickBar(){const e=GB.get(SC.pick);return `<div class="scpick"><button class="scx" data-sc="pk:-1" title="Previous gambit">◀</button><span>🎯 ${e?`<b>${esc(e.name)}</b> <span class="muted">${e.side==='w'?'(White)':'(Black)'}</span>`:'<span class="muted">Any gambit</span>'}</span><button class="scx" data-sc="pk:1" title="Next gambit">▶</button></div>`;}
+function uciOf(g,san){const x=new Chess(g.fen()),m=x.move(san);return m?m.from+m.to+(m.promotion||''):'';}
+// where are we in the picked gambit? next = the move to play now (my turn), wait = replies we hope for (bot's turn)
+function scPlan(){
+  const e=GB.get(SC.pick),g=SC.game;if(!e||!g)return null;
+  const h=g.history();if(!h.length&&g.fen()!==new Chess().fen())return{name:e.name,unknown:true};
+  if(e.side!==SC.me)return{name:e.name,wrongSide:true};
+  const live=e.lines.filter(l=>h.every((x,i)=>l.mv[i]===x));
+  if(!live.length)return{name:e.name,left:true};
+  const ahead=live.filter(l=>l.mv.length>h.length).sort((a,b)=>b.mv.length-a.mv.length);if(!ahead.length)return{name:e.name,done:true};
+  if(g.turn()===SC.me){const san=ahead[0].mv[h.length];return{name:e.name,next:{san,uci:uciOf(g,san),key:h.length===ahead[0].key,after:h.length>ahead[0].key},rest:ahead[0].mv.slice(h.length)};}
+  return{name:e.name,wait:[...new Set(ahead.map(l=>l.mv[h.length]))]};
+}
+function scPlanHtml(fen,mine){
+  const p=scPlan();if(!p)return '';const nm=`<b>${esc(p.name)}</b>`;
+  if(p.unknown)return `<div class="scplan">🎯 Started mid-game, so I can't follow the ${nm} from move 1. Start a new game to play it.</div>`;
+  if(p.wrongSide)return `<div class="scplan">🎯 The ${nm} is played by ${GB.get(p.name).side==='w'?'White':'Black'} — you're ${SC.me==='w'?'White':'Black'} this game. Pick another with ◀ ▶.</div>`;
+  if(p.done)return `<div class="scplan">✅ You played the whole ${nm} book line! From here the best moves below take over.</div>`;
+  if(p.left){const h=SC.hunt;const rel=h&&h.kind==='book'&&h.name!==p.name?`<br>💡 Related idea: the <b>${esc(h.name)}</b> fits this position — play <b>${esc(uciToSan(fen,h.uci))}</b>.`:'';return `<div class="scplan">↪️ The bot left the ${nm} line.${rel||' Back to the best moves below.'}</div>`;}
+  if(p.wait)return `<div class="scplan">🎯 ${nm}: hoping the bot plays ${p.wait.map(x=>`<b>${esc(x)}</b>`).join(' or ')}.</div>`;
+  if(p.next&&mine)return `<div class="scplan">🎯 ${nm}: play <b>${esc(p.next.san)}</b>${p.next.key?` — ${GB.get(p.name).type==='trap'?'the key move of the trap':'the gambit move'}!`:p.next.after?' — the main line after the gambit.':' — on the road to the gambit.'}<div class="muted" style="font-size:11.5px">Book line: ${p.rest.slice(0,8).map(esc).join(' ')}</div></div>`;
+  return '';
+}
+
+/* ---- 7. sounds and voice ---- */
+let scAC=null;
+function scBeep(kind){
+  if(SC.audio==='off')return;
+  try{scAC=scAC||new (window.AudioContext||window.webkitAudioContext)();const t=scAC.currentTime;
+    const notes={good:[[660,0],[880,.09]],brilliant:[[523,0],[659,.08],[784,.16],[1047,.24]],blunder:[[220,0],[160,.14]],threat:[[440,0],[440,.18]]}[kind]||[];
+    for(const[f,d]of notes){const o=scAC.createOscillator(),gn=scAC.createGain();o.type=kind==='blunder'?'sawtooth':'sine';o.frequency.value=f;gn.gain.setValueAtTime(.0001,t+d);gn.gain.exponentialRampToValueAtTime(.18,t+d+.02);gn.gain.exponentialRampToValueAtTime(.0001,t+d+.22);o.connect(gn).connect(scAC.destination);o.start(t+d);o.stop(t+d+.25);}
+  }catch(e){}
+}
+const scSpoken=san=>san.replace(/O-O-O/,'castles long').replace(/O-O/,'castles').replace(/^K/,'King ').replace(/^Q/,'Queen ').replace(/^R/,'Rook ').replace(/^B/,'Bishop ').replace(/^N/,'Knight ').replace(/x/,' takes ').replace(/=([QRBN])/,(m,p)=>' promotes to '+{Q:'queen',R:'rook',B:'bishop',N:'knight'}[p]).replace(/#/,' checkmate').replace(/\+/,' check');
+function scSay(text){if(SC.audio!=='voice'||!window.speechSynthesis||!text)return;try{const u=new SpeechSynthesisUtterance(text);u.rate=1.05;speechSynthesis.speak(u);}catch(e){}}
+function scSpeakTurn(t){
+  if(t&&!t.check)scBeep('threat');
+  if(SC.audio!=='voice')return;try{speechSynthesis.cancel();}catch(e){}
+  let s='';if(SC.lastMove&&SC.lastMove.color!==SC.me)s+='The bot played '+scSpoken(SC.lastMove.san)+'. ';
+  if(t&&t.check)s+="You're in check. ";else if(t&&t.san)s+=t.text.replace(t.san,scSpoken(t.san))+' ';
+  const pl=scPlan();if(pl&&pl.next)s+=`${pl.name}: play ${scSpoken(pl.next.san)}. `;
+  else if(SC.an&&SC.an.lines[0]){const w=scWhy(SC.an.fen,SC.an.lines[0].uci,SC.an.lines[0].e);s+=SC_IDEA[w.theme];}
+  scSay(s);
+}
+
+/* ---- 8. coached games are saved for the Gambits tab ---- */
+function scSaveGame(){
+  const g=SC.game;if(!g||g.history().length<6)return;
+  const key=g.fen()+'|'+SC.log.t;if(SC.log.saved===key)return;SC.log.saved=key;
+  let res='*';if(g.in_checkmate())res=g.turn()==='w'?'0-1':'1-0';else if(g.game_over())res='1/2-1/2';
+  const hist=g.history(),fromStart=g.history({verbose:true})[0]&&g.history({verbose:true})[0].before===undefined;
+  const gam=[...GB.values()].filter(e=>e.lines.some(l=>l.key<hist.length&&l.mv.slice(0,l.key+1).every((x,i)=>hist[i]===x))).map(e=>e.name);
+  g.header('Event','ChessLab coached game','White',SC.me==='w'?'You':'Bot','Black',SC.me==='b'?'You':'Bot','Result',res);
+  const games=store.get('scGames',[]);
+  games.unshift({t:SC.log.t,me:SC.me,res,pgn:g.pgn(),moves:hist.length,grades:SC.log.grades.slice(),gambit:gam[gam.length-1]||''});
+  store.set('scGames',games.slice(0,200));window.GBX&&GBX.render();
+}
+// the picker on the ChessLab page (Analyze → Screen coach card)
+$('scPick').innerHTML='<option value="">Any gambit (coach chooses)</option>'+['w','b'].map(sd=>`<optgroup label="${sd==='w'?'As White':'As Black'}">${[...GB.values()].filter(e=>e.side===sd).map(e=>`<option value="${esc(e.name)}">${esc(e.name)}</option>`).join('')}</optgroup>`).join('');
+$('scPick').value=SC.pick;$('scPick').onchange=e=>scSetPick(e.target.value);
+
+/* ===================== GAMBITS TAB: picker, explorer, trainer, coached games ===================== */
+window.GBX=(function(){
+  const ST={filter:'all',q:'',open:null,tr:null};
+  const srs=()=>store.get('gbSrs',{});           // name -> {box,due,reps,ok}
+  const BOX=[0,1,3,7,14,30,60];                     // days until the next review for each box
+  const isDue=n=>{const r=srs()[n];return !r||r.due<=Date.now();};
+  const stars=n=>{const r=srs()[n];const b=r?r.box:0;return '★'.repeat(b)+'☆'.repeat(Math.max(0,5-b));};
+  const fmtLine=(mv,key)=>mv.map((x,i)=>`${i%2===0?`<i>${i/2+1}.</i>`:''}<span class="${i===key?'gbkey':i>key?'gbafter':''}">${esc(x)}</span>`).join(' ');
+  const pgnOf=mv=>{const g=new Chess();mv.forEach(x=>g.move(x));return g.pgn();};
+
+  /* ---------- trainer: you play the gambit's side, the book plays the replies ---------- */
+  function trStart(name){
+    const e=GB.get(name);if(!e)return;
+    ST.tr={name,e,g:new Chess(),sel:null,last:null,miss:0,wrong:0,msg:'',done:false,hint:false,lines:e.lines.map((l,i)=>i)};
+    ST.open=null;render();trAuto();
+    const el=$('gbTrainer');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  const trLive=t=>{const h=t.g.history();return t.lines.filter(i=>{const l=t.e.lines[i].mv;return h.every((x,k)=>l[k]===x);});};
+  function trExpected(t){const h=t.g.history();return [...new Set(trLive(t).map(i=>t.e.lines[i].mv[h.length]).filter(Boolean))];}
+  function trAuto(){
+    const t=ST.tr;if(!t||t.done)return;
+    const exp=trExpected(t);
+    if(!exp.length){trFinish();return;}
+    if(t.g.turn()!==t.e.side){
+      setTimeout(()=>{if(ST.tr!==t)return;const san=exp[Math.floor(Math.random()*exp.length)],m=t.g.move(san);t.last=m;t.msg=`Opponent plays <b>${esc(san)}</b>.`;render();trAuto();},550);
+    }
+  }
+  function trFinish(){
+    const t=ST.tr;t.done=true;const S=srs(),r=S[t.name]||{box:0,due:0,reps:0,ok:0};
+    r.reps++;if(t.wrong===0){r.ok++;r.box=Math.min(BOX.length-1,r.box+1);}else r.box=0;
+    r.due=Date.now()+(r.box?BOX[r.box]*864e5:10*6e4);S[t.name]=r;store.set('gbSrs',S);
+    t.msg=t.wrong===0?`✅ Perfect! You know the <b>${esc(t.name)}</b>. Next review in ${BOX[r.box]} day${BOX[r.box]===1?'':'s'}.`
+      :`Done, with ${t.wrong} mistake${t.wrong>1?'s':''}. This one comes back for review in 10 minutes.`;
+    try{scBeep(t.wrong?'good':'brilliant');}catch(e){}
+    render();
+  }
+  function trSquare(sq){
+    const t=ST.tr;if(!t||t.done||t.g.turn()!==t.e.side)return;
+    const p=t.g.get(sq);
+    if(t.sel&&t.sel!==sq){
+      const x=new Chess(t.g.fen()),m=x.move({from:t.sel,to:sq,promotion:'q'});
+      if(m){
+        const exp=trExpected(t);
+        if(exp.includes(m.san)){t.g.move(m.san);t.last=m;t.sel=null;t.miss=0;t.hint=false;
+          const h=t.g.history(),key=trLive(t).some(i=>t.e.lines[i].key===h.length-1);
+          t.msg=key?`🔥 <b>${esc(m.san)}</b> — that's the ${t.e.type==='trap'?'key move of the trap':'gambit'}!`:`✓ <b>${esc(m.san)}</b> is right.`;
+          render();trAuto();return;}
+        t.sel=null;t.miss++;t.wrong++;t.msg=`✗ <b>${esc(m.san)}</b> isn't the book move here. ${t.miss>=2?`The move is <b>${esc(exp[0])}</b>.`:'Try again!'}`;t.hint=t.miss>=2;
+        try{scBeep('blunder');}catch(e){}render();return;
+      }
+    }
+    t.sel=p&&p.color===t.g.turn()&&t.sel!==sq?sq:null;render();
+  }
+  function trBoard(t){
+    const B=t.g.board(),fl=t.e.side==='b',dests=t.sel?t.g.moves({square:t.sel,verbose:true}).map(m=>m.to):[];
+    const exp=t.hint?trExpected(t):[],hm=exp[0]?new Chess(t.g.fen()).move(exp[0]):null;let h='';
+    for(let row=0;row<8;row++)for(let col=0;col<8;col++){const r=fl?7-row:row,f=fl?7-col:col,p=B[r][f],sq='abcdefgh'[f]+(8-r);
+      const hl=(t.last&&(t.last.from===sq||t.last.to===sq))||(hm&&(hm.from===sq||hm.to===sq));
+      h+=`<div class="sq ${(f+8-r)%2?'l':'d'}${hl?' hl':''}${t.sel===sq?' sel':''}" data-gq="${sq}">${p?`<div class="pc p-${p.color}${p.type.toUpperCase()}"></div>`:''}${dests.includes(sq)?(p?'<div class="ring"></div>':'<div class="dot"></div>'):''}</div>`;}
+    return `<div class="board gbb">${h}</div>`;
+  }
+  function trHtml(){
+    const t=ST.tr;if(!t)return '';
+    const h=t.g.history(),you=t.e.side==='w'?'White':'Black';
+    return `<div class="card gbtr" id="gbTrainer"><div class="row" style="justify-content:space-between"><h4>🎓 Training: ${esc(t.name)}</h4><button class="btn ghost sm" data-g="trstop">✕ Close</button></div>
+      <div class="gbtrw">${trBoard(t)}<div class="gbtrside">
+        <div class="muted" style="font-size:12.5px">You are <b>${you}</b>. Play the book moves; the opponent answers with the gambit's main replies.</div>
+        <div class="gbmsg">${t.msg||(t.g.turn()===t.e.side?'Your move — what does the '+esc(t.name)+' play here?':'Opponent is thinking…')}</div>
+        <div class="gbmoves">${h.map((x,i)=>(i%2?'':`<i>${i/2+1}.</i>`)+esc(x)).join(' ')||'—'}</div>
+        <div class="row" style="gap:6px;flex-wrap:wrap">${t.done?`<button class="btn sm" data-g="train:${esc(t.name)}">↻ Again</button><button class="btn sm" data-g="nextdue">⏭ Next due</button>`:`<button class="btn ghost sm" data-g="hint">💡 Hint</button><button class="btn ghost sm" data-g="train:${esc(t.name)}">↻ Restart</button>`}<button class="btn ghost sm" data-g="pick:${esc(t.name)}">🎯 Use in coach</button></div>
+        <div class="muted" style="font-size:12px">Memory: ${stars(t.name)} · mistakes this run: ${t.wrong}</div>
+      </div></div></div>`;
+  }
+
+  /* ---------- explorer ---------- */
+  function listHtml(){
+    const q=ST.q.trim().toLowerCase(),f=ST.filter;
+    let L=[...GB.values()].filter(e=>(f==='all'||(f==='w'&&e.side==='w')||(f==='b'&&e.side==='b')||(f==='trap'&&e.type==='trap')||(f==='gambit'&&e.type==='gambit')||(f==='due'&&isDue(e.name)))&&(!q||e.name.toLowerCase().includes(q)||e.lines.some(l=>l.mv.join(' ').toLowerCase().includes(q))));
+    const first=e=>e.lines[0].mv[0];
+    const groups={};for(const e of L){const k=`1.${first(e)}`;(groups[k]=groups[k]||[]).push(e);}
+    if(!L.length)return '<div class="muted" style="padding:10px">No gambits match.</div>';
+    return Object.entries(groups).sort((a,b)=>b[1].length-a[1].length).map(([k,es])=>`<div class="gbgrp"><div class="gbgh">${esc(k)} <span class="muted">· ${es.length}</span></div>${es.map(e=>{
+      const open=ST.open===e.name,key=e.lines[0].mv[e.lines[0].key];
+      return `<div class="gbitem${open?' open':''}${SC.pick===e.name?' picked':''}"><div class="gbrow" data-g="open:${esc(e.name)}"><span class="gbside ${e.side}">${e.side==='w'?'♔':'♚'}</span><b>${esc(e.name)}</b><span class="gbtype ${e.type}">${e.type}</span><span class="muted gbk">key: ${esc(key)}</span><span class="gbstars" title="How well you know it">${stars(e.name)}</span>${isDue(e.name)?'<span class="gbdue">due</span>':''}</div>
+        ${open?`<div class="gbbody">${e.lines.map(l=>`<div class="gbline">${fmtLine(l.mv,l.key)}</div>`).join('')}
+          <div class="row" style="gap:6px;margin-top:8px;flex-wrap:wrap"><button class="btn sm" data-g="train:${esc(e.name)}">🎓 Train it</button><button class="btn ghost sm" data-g="pick:${esc(e.name)}">${SC.pick===e.name?'✓ Picked for coach':'🎯 Pick for coach'}</button><button class="btn ghost sm" data-g="ana:${esc(e.name)}">⭐ Analyze line</button></div></div>`:''}</div>`;}).join('')}</div>`).join('');
+  }
+
+  /* ---------- coached games ---------- */
+  function gamesHtml(){
+    const G=store.get('scGames',[]);
+    if(!G.length)return `<div class="card"><h4>📚 Your coached games</h4><div class="muted" style="font-size:13px">Games the screen coach watches are saved here automatically, with your grades and the gambit you played.</div></div>`;
+    const res=g=>g.res==='*'?'·':((g.res==='1-0')===(g.me==='w')?'W':g.res==='1/2-1/2'?'D':'L');
+    const W=G.filter(g=>res(g)==='W').length,L=G.filter(g=>res(g)==='L').length,D=G.filter(g=>res(g)==='D').length;
+    const all=G.flatMap(g=>g.grades),good=all.filter(c=>['brilliant','great','best','excellent','good','book'].includes(c)).length,bl=all.filter(c=>c==='blunder').length;
+    const by={};for(const g of G)if(g.gambit){const b=by[g.gambit]=by[g.gambit]||{n:0,w:0,l:0};b.n++;if(res(g)==='W')b.w++;if(res(g)==='L')b.l++;}
+    const cnt=(g,c)=>g.grades.filter(x=>x===c).length;
+    return `<div class="card"><div class="row" style="justify-content:space-between"><h4>📚 Your coached games</h4><button class="btn ghost sm" data-g="clear">Clear all</button></div>
+      <div class="gbstats"><div><b>${G.length}</b><span>games</span></div><div><b style="color:#7cb342">${W}</b><span>wins</span></div><div><b>${D}</b><span>draws</span></div><div><b style="color:#e05545">${L}</b><span>losses</span></div><div><b>${all.length?Math.round(good/all.length*100)+'%':'–'}</b><span>good moves</span></div><div><b>${G.length?(bl/G.length).toFixed(1):'–'}</b><span>blunders / game</span></div></div>
+      ${Object.keys(by).length?`<div class="muted" style="font-size:12.5px;margin:8px 0 4px">By gambit</div><div class="gbby">${Object.entries(by).sort((a,b)=>b[1].n-a[1].n).map(([n,b])=>`<span><b>${esc(n)}</b> ${b.w}W ${b.l}L / ${b.n}</span>`).join('')}</div>`:''}
+      <div class="gbgames">${G.slice(0,40).map((g,i)=>`<div class="gbgame"><span class="gbres ${res(g)}">${res(g)}</span><span class="muted">${new Date(g.t).toLocaleDateString()} ${new Date(g.t).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}</span><span>${g.me==='w'?'♔ White':'♚ Black'} · ${Math.ceil(g.moves/2)} moves</span>${g.gambit?`<span class="gbtype gambit">${esc(g.gambit)}</span>`:''}<span class="muted" style="font-size:12px">${['brilliant','best','mistake','blunder'].map(c=>cnt(g,c)?`${icon(c)}${cnt(g,c)}`:'').join(' ')}</span><span style="margin-left:auto;display:flex;gap:4px"><button class="btn ghost sm" data-g="rev:${i}">⭐ Review</button><button class="btn ghost sm" data-g="del:${i}" title="Delete">🗑</button></span></div>`).join('')}</div></div>`;
+  }
+
+  function render(){
+    const el=$('pageGambits');if(!el||UI.page!=='gambits')return;
+    const due=[...GB.values()].filter(e=>isDue(e.name)).length;
+    el.innerHTML=`<div class="section-h" style="margin-top:6px"><div><h3 style="font-size:28px">🎯 Gambits</h3><div class="muted">${GB.size} gambits and traps. Pick one for the screen coach, train it, or browse every line.</div></div></div>
+      <div class="card gbpickc"><div class="row" style="gap:10px;flex-wrap:wrap"><b>Coach plays:</b><button class="btn ghost sm" data-g="pk:-1">◀</button><select id="gbPickSel"><option value="">Any gambit (coach chooses)</option>${['w','b'].map(sd=>`<optgroup label="${sd==='w'?'As White':'As Black'}">${[...GB.values()].filter(e=>e.side===sd).map(e=>`<option value="${esc(e.name)}">${esc(e.name)}</option>`).join('')}</optgroup>`).join('')}</select><button class="btn ghost sm" data-g="pk:1">▶</button>
+        <button class="btn sm" data-g="nextdue" style="margin-left:auto">🎓 Train ${due} due</button></div></div>
+      ${trHtml()}
+      <div class="card"><div class="row" style="gap:6px;flex-wrap:wrap;margin-bottom:10px"><input type="text" id="gbQ" placeholder="Search gambits or moves (e.g. Falkbeer, Nxf7)" value="${esc(ST.q)}" style="flex:1;min-width:180px">${[['all','All'],['w','As White'],['b','As Black'],['gambit','Gambits'],['trap','Traps'],['due','Due']].map(([v,l])=>`<button class="chip${ST.filter===v?' on':''}" data-g="f:${v}">${l}</button>`).join('')}</div><div id="gbList">${listHtml()}</div></div>
+      ${gamesHtml()}`;
+    $('gbPickSel').value=SC.pick;
+    $('gbPickSel').onchange=e=>scSetPick(e.target.value);
+    const q=$('gbQ');q.oninput=()=>{ST.q=q.value;$('gbList').innerHTML=listHtml();};
+  }
+  document.addEventListener('click',e=>{
+    if(UI.page!=='gambits')return;
+    const s=e.target.closest('[data-gq]');if(s){trSquare(s.dataset.gq);return;}
+    const b=e.target.closest('[data-g]');if(!b)return;const a=b.dataset.g,v=a.slice(a.indexOf(':')+1);
+    if(a.startsWith('open:')){ST.open=ST.open===v?null:v;$('gbList').innerHTML=listHtml();}
+    else if(a.startsWith('f:')){ST.filter=v;render();}
+    else if(a.startsWith('train:'))trStart(v);
+    else if(a.startsWith('pick:')){scSetPick(SC.pick===v?'':v);toast(SC.pick?`The coach will steer you toward the ${SC.pick}.`:'The coach is back to any gambit.',2500);}
+    else if(a.startsWith('pk:')){const L=['',...GB.keys()],i=L.indexOf(SC.pick);scSetPick(L[(i+(+v)+L.length)%L.length]);}
+    else if(a.startsWith('ana:')){const e2=GB.get(v);if(e2)openReview(pgnOf(e2.lines[0].mv));}
+    else if(a==='trstop'){ST.tr=null;render();}
+    else if(a==='hint'){const t=ST.tr;if(t){t.hint=true;t.wrong++;t.msg=`💡 Play <b>${esc(trExpected(t)[0]||'')}</b>.`;render();}}
+    else if(a==='nextdue'){const d=[...GB.values()].filter(x=>isDue(x.name)&&(!ST.tr||x.name!==ST.tr.name));if(d.length)trStart(d[Math.floor(Math.random()*d.length)].name);else toast('Nothing is due — you know them all for now! 🎉',3000);}
+    else if(a.startsWith('rev:')){const g=store.get('scGames',[])[+v];if(g)openReview(g.pgn);}
+    else if(a.startsWith('del:')){const G=store.get('scGames',[]);G.splice(+v,1);store.set('scGames',G);render();}
+    else if(a==='clear'){if(b.dataset.sure){store.set('scGames',[]);render();}else{b.dataset.sure='1';b.textContent='Click again to delete all';}}
+  });
+  return{render,trStart};
+})();
+
 /* ===================== TABS / NAV / KEYS ===================== */
 function openReview(pgnText){ if(pgnText) $('pgn').value=pgnText; if(location.hash!=='#analyze'){location.hash='analyze';} setTab('review'); UI.page='analyze'; runAnalysis(); bumpStat('reviews'); }
 window.openReview=openReview;
@@ -3957,21 +4789,22 @@ function setTab(t){
 function refresh(){if(UI.page==='home'||UI.page==='watch')return;UI.tab==='play'?(playRender(),renderPlayCoach()):UI.tab==='fun'?(window.Fun&&Fun.render()):UI.tab==='puzzles'?(window.Puzzles&&Puzzles.render()):UI.tab==='friends'?(window.Friends&&Friends.render()):reviewRender();}
 $('tabPlay').onclick=()=>location.hash='play';$('tabReview').onclick=()=>location.hash='analyze';$('tabFun').onclick=()=>location.hash='fun';
 /* ===================== PAGES / ROUTING ===================== */
-const PAGES=['home','play','puzzles','analyze','fun','watch','friends'];
+const PAGES=['home','play','puzzles','analyze','gambits','fun','watch','friends'];
 function showPage(p){
   UI.page=p;
   document.querySelectorAll('#navlinks a').forEach(a=>a.classList.toggle('on',a.dataset.page===p));
-  $('pageHome').classList.toggle('hidden',p!=='home'); $('pageWatch').classList.toggle('hidden',p!=='watch');
-  $('pageBoard').classList.toggle('hidden',p==='home'||p==='watch');
+  $('pageHome').classList.toggle('hidden',p!=='home'); $('pageWatch').classList.toggle('hidden',p!=='watch'); $('pageGambits').classList.toggle('hidden',p!=='gambits');
+  $('pageBoard').classList.toggle('hidden',p==='home'||p==='watch'||p==='gambits');
   if(p==='home'){ if(liveEngine) liveEngine.stop(); renderHome(); }
   else if(p==='watch'){ if(liveEngine) liveEngine.stop(); window.Watch&&Watch.render(); }
+  else if(p==='gambits'){ if(liveEngine) liveEngine.stop(); window.GBX&&GBX.render(); }
   else if(UI.tab!==(p==='analyze'?'review':p)||p==='puzzles'||p==='friends') setTab(p==='analyze'?'review':p);
   window.scrollTo(0,0);
 }
 function route(){ let p=(location.hash||'#home').slice(1); if(!PAGES.includes(p)) p='home'; showPage(p); }
 window.addEventListener('hashchange',route);
 function step(d){
-  if(UI.page==='home'||UI.page==='watch') return;
+  if(UI.page==='home'||UI.page==='watch'||UI.page==='gambits') return;
   if(UI.tab==='fun'){window.Fun&&Fun.step(d);return;}
   if(UI.tab==='puzzles'||UI.tab==='friends'){const M=UI.tab==='puzzles'?window.Puzzles:window.Friends;M&&M.step&&M.step(d);return;}
   if(UI.tab==='review'){navRev(d);return;}
@@ -5086,21 +5919,32 @@ const ytLink=c=>c.k==='v'?`https://www.youtube.com/watch?v=${c.id}${c.list?'&lis
 const ytOnSite=()=>/^https?:$/.test(location.protocol)&&NET.canEmbed();
 function ytPlayer(){
   const el=$('ytPlayer'),c=Y.cur;if(!el)return;
-  const open=c?`<button class="btn sm" data-y="pop">⧉ Pop-out player</button><a class="btn ghost sm" href="${ytLink(c)}" target="_blank" rel="noopener">Open in a new tab ↗</a>`:'';
+  const open=c?`<button class="btn sm" data-y="pop">${Y.popped===c?'📌 Snap':'▶ Play'}</button><button class="btn ghost sm" data-y="close">✕ Close video</button><a class="btn ghost sm" href="${ytLink(c)}" target="_blank" rel="noopener">Open in a new tab ↗</a>`:'';
   if(!c)el.innerHTML='<div class="ytph"><div style="font-size:38px">▶</div><b>Pick a channel or paste a link</b><div class="muted" style="margin-top:4px;font-size:13px">Videos, live streams and playlists play right here, next to a board you can move the pieces on.</div></div>';
   else if(!navigator.onLine)el.innerHTML='<div class="ytph"><b>You\'re offline</b><div class="muted" style="margin-top:4px;font-size:13px">Connect to the internet to watch YouTube.</div></div>';
   else if(Y.stopped)el.innerHTML=`<div class="ytph"><b>Paused when you left the Watch tab</b><div class="row" style="justify-content:center;margin-top:10px"><button class="btn sm" data-y="resume">▶ Resume</button>${open}</div></div>`;
-  else if(!ytOnSite())el.innerHTML=`<div class="ytph">${Y.popped===c?'<div style="font-size:30px">⧉</div><b>Playing in the pop-out window</b><div class="muted" style="margin:4px 0 10px;font-size:13px">Keep it beside this one and follow along on the board. Lost it? Press Pop-out again to bring it back.</div>':'<b>Watch in a pop-out window</b><div class="muted" style="margin:4px 0 10px;font-size:13px">YouTube blocks videos inside a page opened as a file (Error 153), so this opens a small player window you can put beside ChessLab. On chez.games/chess it plays right here.</div>'}<div class="row" style="justify-content:center">${open}</div></div>`;
+  else if(!ytOnSite())el.innerHTML=`<div class="ytph">${Y.popped===c?'<b>The video is playing on top of this box</b><div class="muted" style="margin:4px 0 10px;font-size:13px">Scrolled, moved the window or clicked behind it? Press Snap and it jumps back into place.</div>':'<b>Ready to play</b><div class="muted" style="margin:4px 0 10px;font-size:13px">In the file version YouTube plays in a small window placed right on this box. On chez.games/chess it plays inside the page.</div>'}<div class="row" style="justify-content:center">${open}</div></div>`;
   else el.innerHTML=`<iframe src="${ytSrc(c)}" title="YouTube player" allow="autoplay; encrypted-media; picture-in-picture; fullscreen; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
   const o=$('ytOpen');if(o){o.classList.toggle('hidden',!c||!ytOnSite());o.textContent='⧉ Pop out';}
 }
+// The pop-out window is placed exactly over the player box so the video looks built in. A pop-up has its own
+// title/address bar (about 64px) and YouTube's watch page has a 56px header above the video, so the window is
+// lifted by both: the video itself lands on the box. YouTube's page can't be moved afterwards, so after scrolling
+// or moving ChessLab press "Snap" and it reopens in the right spot.
+const POP_BAR=64,YT_HEAD=56;
 function ytPop(){
-  const c=Y.cur;if(!c)return;
-  const w=Math.min(900,Math.round(screen.availWidth*.5)),h=Math.round(w*9/16)+120;
-  const win=window.open(ytLink(c),'chesslabYT',`popup=yes,width=${w},height=${h},left=${screen.availWidth-w},top=0`);
+  const c=Y.cur,box=$('ytPlayer');if(!c||!box)return;
+  let r=box.getBoundingClientRect();
+  if(r.top<POP_BAR+YT_HEAD||r.bottom>innerHeight){scrollBy(0,r.top-POP_BAR-YT_HEAD-8);r=box.getBoundingClientRect();}
+  const bx=Math.max(0,(outerWidth-innerWidth)/2),top=Math.round(screenY+(outerHeight-innerHeight-bx)+r.top-POP_BAR-YT_HEAD);
+  const feat=`popup=yes,width=${Math.round(r.width)},height=${Math.round(r.height)+YT_HEAD},left=${Math.round(screenX+bx+r.left)},top=${Math.max(0,top)}`;
+  if(Y.win&&!Y.win.closed)Y.win.close();
+  const win=window.open(ytLink(c),'chesslabYT',feat);
   if(!win){toast('Your browser blocked the pop-up — allow pop-ups for this page, or use "Open in a new tab".',4500);return;}
-  try{win.focus();}catch(e){}Y.popped=c;ytPlayer();
+  Y.win=win;try{win.focus();}catch(e){}Y.popped=c;ytPlayer();
 }
+function ytClosePop(){if(Y.win&&!Y.win.closed)Y.win.close();Y.win=null;}
+addEventListener('beforeunload',ytClosePop);
 function ytPlay(c,note,user){Y.cur=c;Y.stopped=false;Y.popped=null;$('ytMsg').textContent=note||'';ytPlayer();if(user&&!ytOnSite()&&navigator.onLine)ytPop();}
 function ytBoard(){
   const el=$('ytBoard');if(!el)return;
@@ -5143,8 +5987,9 @@ function ytEnsure(el){
     if(a.startsWith('live:'))ytPlay({k:'live',id:a.slice(5)},'If the channel isn\'t live right now YouTube shows its channel page instead — press Latest for recent videos.',true);
     else if(a.startsWith('latest:'))ytPlay({k:'ch',id:a.slice(7)},'',true);
     else if(a==='pop')ytPop();
-    else if(a==='resume'){Y.stopped=false;ytPlayer();}
-    else if(a==='theater'){Y.theater=!Y.theater;ytSync();}
+    else if(a==='close'){ytClosePop();Y.popped=null;Y.cur=null;ytPlayer();}
+    else if(a==='resume'){Y.stopped=false;ytPlayer();if(!ytOnSite())ytPop();}
+    else if(a==='theater'){Y.theater=!Y.theater;ytSync();if(Y.popped&&Y.win&&!Y.win.closed)setTimeout(ytPop,80);}
     else if(a==='board'){Y.board=!Y.board;store.set('ytBoard',Y.board);ytSync();}
     else if(a==='undo'){Y.g.undo();const h=Y.g.history({verbose:true});Y.last=h[h.length-1]||null;Y.sel=null;ytBoard();}
     else if(a==='reset'){Y.g=new Chess();Y.last=null;Y.sel=null;ytBoard();}
@@ -5153,7 +5998,7 @@ function ytEnsure(el){
   });
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&Y.theater){Y.theater=false;ytSync();}});
   // stop the sound when you leave the tab
-  window.addEventListener('hashchange',()=>{if(location.hash!=='#watch'){if(Y.theater){Y.theater=false;ytSync();}if(Y.cur&&!Y.stopped&&$('ytPlayer').querySelector('iframe')){Y.stopped=true;ytPlayer();}}});
+  window.addEventListener('hashchange',()=>{if(location.hash!=='#watch'){if(Y.theater){Y.theater=false;ytSync();}if(Y.cur&&!Y.stopped&&($('ytPlayer').querySelector('iframe')||(Y.win&&!Y.win.closed))){ytClosePop();Y.popped=null;Y.stopped=true;ytPlayer();}}});
   ytSync();ytPlayer();ytBoard();
 }
 /* ChessLab TV: a live Stockfish-vs-Stockfish game played on this device, so it needs no website at all */
@@ -5233,7 +6078,7 @@ function render(){
   el.querySelector('#tvRev').onclick=()=>{if(!TV.g||!TV.sans.length){toast('Wait for a few moves first.');return;}TV.paused=true;const g=new Chess();g.header('Event','ChessLab TV','White','Stockfish','Black','Stockfish');TV.sans.forEach(x=>g.move(x));openReview(g.pgn());};
   if(!TV.g)tvNew();tvDraw();tvLoop();
 }
-window.Watch={render,loadPlayer,ytParse,ytSrc};
+window.Watch={render,loadPlayer,ytParse,ytSrc,Y};
 })();
 
 </script>
